@@ -12,6 +12,7 @@ import numpy as np
 # import third-party libraries
 import matplotlib.pyplot as plt
 import pandas as pd
+import wrds
 # import local libraries
 
 plt.close('all')
@@ -108,92 +109,154 @@ if __name__ == '__main__':
     
     print('\n--------------\nExercise 3\n--------------')
     
-    # compute simple return
-    log_returns_daily = s_daily.pct_change()
-    log_returns_daily = log_returns_daily.apply(lambda x: np.log(1+x))
-    # weekly log returns
-    s_weekly = s_daily.resample('W').first()
-    log_returns_weekly = s_weekly.pct_change()
-    log_returns_weekly = log_returns_weekly.apply(lambda x: np.log(1+x))
-    # monthly log returns
-    s_monthly = s_daily.resample('M').first()
-    log_returns_monthly = s_monthly.pct_change()
-    log_returns_monthly = log_returns_monthly.apply(lambda x: np.log(1+x))
+    def run_analysis(data, label, d = D):
     
-    # print summary statistics
-    print('Summary statistics for daily log returns')
-    print(log_returns_daily.describe())
-    print('\nSummary statistics for weekly log returns')
-    print(log_returns_weekly.describe())
-    print('\nSummary statistics for monthly log returns')
-    print(log_returns_monthly.describe())
-
-    # compute annualized mean of log-returns
-    annualized_mean_daily = np.mean(log_returns_daily)*D
-    print('\nAnnualized mean of daily log-returns: {}'.format(annualized_mean_daily))
-    annualized_mean_weekly = np.mean(log_returns_weekly)*W
-    print('Annualized mean of weekly log-returns: {}'.format(annualized_mean_weekly))
-    annualized_mean_monthly = np.mean(log_returns_monthly)*M
-    print('Annualized mean of mohthly log-returns: {}'.format(annualized_mean_monthly))
-    
-    # compute standard deviation of log-returns   
-    annualized_std_daily = np.std(log_returns_daily)*np.sqrt(D)
-    print('\nAnnualized std of daily log-returns: {}'.format(annualized_std_daily))
-    annualized_std_weekly = np.std(log_returns_weekly)*np.sqrt(W)
-    print('Annualized std of weekly log-returns: {}'.format(annualized_std_weekly))    
-    annualized_std_monthly = np.std(log_returns_monthly)*np.sqrt(M)
-    print('Annualized std of monthly log-returns: {}'.format(annualized_std_monthly))   
+        # compute simple return
+        if label == 'simulated':
+            log_returns_daily = data.pct_change()
+        else:
+            log_returns_daily = data
+        log_returns_daily = log_returns_daily.apply(lambda x: np.log(1+x))
+        # weekly log returns
+        s_weekly = data.resample('W').first()
+        if label == 'simulated':
+            log_returns_weekly = s_weekly.pct_change()
+        else:
+            log_returns_weekly = s_weekly
+        log_returns_weekly = log_returns_weekly.apply(lambda x: np.log(1+x))
+        # monthly log returns
+        s_monthly = data.resample('M').first()
+        if label == 'simulated':
+            log_returns_monthly = s_monthly.pct_change()
+        else:
+            log_returns_monthly = s_monthly
+        log_returns_monthly = log_returns_monthly.apply(lambda x: np.log(1+x))
         
-    # compute rolling one-year time series of std annualized data
-    rolling_annualized_mean_daily = log_returns_daily.rolling(D).mean()*D
-    rolling_annualized_mean_weekly = log_returns_weekly.rolling(W).mean()*W
-    rolling_annualized_mean_monthly = log_returns_monthly.rolling(M).mean()*M
+        # print summary statistics
+        print('Summary statistics for daily log returns')
+        print(log_returns_daily.describe())
+        print('\nSummary statistics for weekly log returns')
+        print(log_returns_weekly.describe())
+        print('\nSummary statistics for monthly log returns')
+        print(log_returns_monthly.describe())
     
-    # compute rolling one-year time series of mean annualized data
-    rolling_annualized_std_daily = log_returns_daily.rolling(D).std()*np.sqrt(D)
-    rolling_annualized_std_weekly = log_returns_weekly.rolling(W).std()*np.sqrt(W)
-    rolling_annualized_std_monthly = log_returns_monthly.rolling(M).std()*np.sqrt(M)
-    
-    # plot
-    if PLOT:
-        plt.figure()
-        rolling_annualized_mean_daily.plot(label = 'daily', title = 'Rolling annualized mean')
-        rolling_annualized_mean_weekly.plot(label = 'weekly')
-        rolling_annualized_mean_monthly.plot(label = 'monthly', grid = True)
-        plt.legend()
-    
-        plt.figure()
-        rolling_annualized_std_daily.plot(label = 'daily', title = 'Rolling annualized std')
-        rolling_annualized_std_weekly.plot(label = 'weekly')
-        rolling_annualized_std_monthly.plot(label = 'monthly', grid = True)
-        plt.legend()
-    
-    # resample for bins of 365 days of daily log-returns
-    mean_log_returns_daily = log_returns_daily.resample('A').mean()*D
-    var_log_returns_daily = np.square(log_returns_daily).resample('A').mean()*D
-    
-    # resample for bins of 365 days of monthly log-returns
-    mean_log_returns_monthly = log_returns_monthly.resample('A').mean()*M
-    var_log_returns_monthly = np.square(log_returns_monthly).resample('A').mean()*M
-    
-    # print results
-    print('\nMean of mean estimator (daily): {}'.format(mean_log_returns_daily.mean()))
-    print('Variance of mean estimator (daily): {}'.format(mean_log_returns_daily.var()))
-    
-    print('\nMean of variance estimator (daily): {}'.format(var_log_returns_daily.mean()))
-    print('Variance of variance estimator (daily): {}.'.format(var_log_returns_daily.var()))
-    
-    print('\nMean of mean estimator (monthly): {}'.format(mean_log_returns_monthly.mean()))
-    print('Variance of mean estimator (monthly): {}'.format(mean_log_returns_monthly.var()))
-    
-    print('\nMean of variance estimator (monthly): {}'.format(var_log_returns_monthly.mean()))
-    print('Variance of variance estimator (monthly): {}.'.format(var_log_returns_monthly.var()))
+        # compute annualized mean of log-returns
+        annualized_mean_daily = np.mean(log_returns_daily)*d
+        print('\nAnnualized mean of daily log-returns: {}'.format(annualized_mean_daily))
+        annualized_mean_weekly = np.mean(log_returns_weekly)*W
+        print('Annualized mean of weekly log-returns: {}'.format(annualized_mean_weekly))
+        annualized_mean_monthly = np.mean(log_returns_monthly)*M
+        print('Annualized mean of mohthly log-returns: {}'.format(annualized_mean_monthly))
+        
+        # compute standard deviation of log-returns   
+        annualized_std_daily = np.std(log_returns_daily)*np.sqrt(d)
+        print('\nAnnualized std of daily log-returns: {}'.format(annualized_std_daily))
+        annualized_std_weekly = np.std(log_returns_weekly)*np.sqrt(W)
+        print('Annualized std of weekly log-returns: {}'.format(annualized_std_weekly))    
+        annualized_std_monthly = np.std(log_returns_monthly)*np.sqrt(M)
+        print('Annualized std of monthly log-returns: {}'.format(annualized_std_monthly))   
+            
+        # compute rolling one-year time series of std annualized data
+        rolling_annualized_mean_daily = log_returns_daily.rolling(d).mean()*d
+        rolling_annualized_mean_weekly = log_returns_weekly.rolling(W).mean()*W
+        rolling_annualized_mean_monthly = log_returns_monthly.rolling(M).mean()*M
+        
+        # compute rolling one-year time series of mean annualized data
+        rolling_annualized_std_daily = log_returns_daily.rolling(d).std()*np.sqrt(d)
+        rolling_annualized_std_weekly = log_returns_weekly.rolling(W).std()*np.sqrt(W)
+        rolling_annualized_std_monthly = log_returns_monthly.rolling(M).std()*np.sqrt(M)
+        
+        # plot
+        if PLOT:
+            plt.figure()
+            rolling_annualized_mean_daily.plot(label = 'daily', title = 'Rolling annualized mean ({})'.format(label))
+            rolling_annualized_mean_weekly.plot(label = 'weekly')
+            rolling_annualized_mean_monthly.plot(label = 'monthly', grid = True)
+            plt.legend()
+        
+            plt.figure()
+            rolling_annualized_std_daily.plot(label = 'daily', title = 'Rolling annualized std ({})'.format(label))
+            rolling_annualized_std_weekly.plot(label = 'weekly')
+            rolling_annualized_std_monthly.plot(label = 'monthly', grid = True)
+            plt.legend()
+        
+        # resample for bins of 365 days of daily log-returns
+        mean_log_returns_daily = log_returns_daily.resample('A').mean()*d
+        var_log_returns_daily = np.square(log_returns_daily).resample('A').mean()*d
+        
+        # resample for bins of 365 days of monthly log-returns
+        mean_log_returns_monthly = log_returns_monthly.resample('A').mean()*M
+        var_log_returns_monthly = np.square(log_returns_monthly).resample('A').mean()*M
+        
+        # print results
+        print('\nMean of mean estimator (daily): {}'.format(mean_log_returns_daily.mean()))
+        print('Variance of mean estimator (daily): {}'.format(mean_log_returns_daily.var()))
+        
+        print('\nMean of variance estimator (daily): {}'.format(var_log_returns_daily.mean()))
+        print('Variance of variance estimator (daily): {}.'.format(var_log_returns_daily.var()))
+        
+        print('\nMean of mean estimator (monthly): {}'.format(mean_log_returns_monthly.mean()))
+        print('Variance of mean estimator (monthly): {}'.format(mean_log_returns_monthly.var()))
+        
+        print('\nMean of variance estimator (monthly): {}'.format(var_log_returns_monthly.mean()))
+        print('Variance of variance estimator (monthly): {}.'.format(var_log_returns_monthly.var()))
+
+    # run exercise 3 with simulated data
+    run_analysis(data = s_daily, label = 'simulated')
 
 # =============================================================================
 # Exercise 4
 # =============================================================================
 
     print('\n--------------\nExercise 4\n--------------')
+    
+    # connect to databse and download csv files (run once)
+    """
+    db = wrds.Connection(wrds_username = 'wmartin')
+    db.create_pgpass_file() # run once
+
+    aapl = db.raw_sql("select date, ret from crsp.dsf where permco in (7) and date>='2001-01-01' and date<='2018-12-31'")
+    gs = db.raw_sql("select date, ret from crsp.dsf where permco in (35048) and date>='2001-01-01' and date<='2018-12-31'")
+    msft = db.raw_sql("select date, ret from crsp.dsf where permco in (8048) and date>='2001-01-01' and date<='2018-12-31'")
+    pg = db.raw_sql("select date, ret from crsp.dsf where permco in (21446) and date>='2001-01-01' and date<='2018-12-31'")
+    ge = db.raw_sql("select date, ret from crsp.dsf where permco in (20792) and date>='2001-01-01' and date<='2018-12-31'")
+    aapl.to_csv('aapl.csv')
+    gs.to_csv('gs.csv')
+    msft.to_csv('msft.csv')
+    pg.to_csv('pg.csv')
+    ge.to_csv('ge.csv')
+    """
+    start = datetime.datetime(2001, 1, 1)
+    end = datetime.datetime(2018, 12, 31)
+    
+    # read csvs
+    use_cols = ['ret', 'date']
+    index_col = 'date'
+    aapl = pd.read_csv('aapl.csv', usecols = use_cols, index_col = index_col)
+    gs = pd.read_csv('gs.csv', usecols = use_cols, index_col = index_col)
+    msft = pd.read_csv('msft.csv', usecols = use_cols, index_col = index_col)
+    pg = pd.read_csv('pg.csv', usecols = use_cols, index_col = index_col)
+    ge = pd.read_csv('ge.csv', usecols = use_cols, index_col = index_col)
+
+    # aggregate data in dictionary
+    data = dict(aapl = aapl, gs = gs, msft = msft, pg = pg, ge = ge)
+    
+    for company, df in data.items():
+        print('\nRunning analysis for {}'.format(company))
+        
+        # index to datetime
+        df.index = pd.to_datetime(df.index)
+        series = df['ret']
+        
+        # run analysis on series
+        run_analysis(series, company, d = 252)
+    
+    
+    
+    
+    
+    
+    
     
     
     
