@@ -167,9 +167,12 @@ def Problem3analysis(Data):
     n = np.shape(Data)[0]
     r_monthly= temp.resample('M').mean()
     r_weekly = temp.resample('W').mean()
-    temp.describe()
-    r_monthly.describe()
-    r_weekly.describe()
+    temp_summary = temp.describe()
+    monthly_summary = r_monthly.describe()
+    weekly_summary = r_weekly.describe()
+    print(temp_summary)
+    print(monthly_summary)
+    print(weekly_summary)
     
     delta_monthly = 18/216
     delta_weekly = 18/940
