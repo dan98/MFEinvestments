@@ -24,15 +24,15 @@ years = 10
 days = 365
 n = years * days
 dt = 1/365
-s0 = 1.0
+s0 = 100
 
-PLOT = False
+PLOT = True
 
 D = 365
 W = 52
 M = 12
 
-np.random.seed(3)
+np.random.seed(100)
 
 if __name__ == '__main__':
     
@@ -43,14 +43,17 @@ if __name__ == '__main__':
     print('--------------\nExercise 1\n--------------')
     
     # compute path of share price
-    dz = np.random.randn(n) * np.sqrt(dt)
-    s = s0 * np.exp(np.cumsum((mu - 0.5*sigma*sigma)*dt + sigma*dz))
+    dz1 = np.random.randn(n) * np.sqrt(dt)
+    # dz = np.insert(dz, 0, 0, axis = 0)
+    s = s0 * np.exp(np.cumsum((mu - 0.5*sigma*sigma)*dt + sigma*dz1))
     
     # plot path of share price
     if PLOT:
         plt.figure()
         plt.plot(s)
         plt.legend(['Share price'])
+        plt.xlabel('Observations')
+        plt.ylabel('Price')
         plt.grid('on')
 
     # simple return
@@ -63,6 +66,8 @@ if __name__ == '__main__':
         plt.figure()
         plt.plot(log_returns)
         plt.legend(['Daily log returns'])
+        plt.xlabel('Observations')
+        plt.ylabel('Log return')
         plt.grid('on')
     
     # annualized mean
@@ -93,6 +98,8 @@ if __name__ == '__main__':
         plt.figure()
         ax = s_daily.plot(grid = True)
         ax.legend(['Daily share prices'])
+        plt.xlabel('Time')
+        plt.ylabel('Price')
 
     # compute monthly average share price
     s_monthly = s_daily.resample('M').mean()
@@ -101,13 +108,23 @@ if __name__ == '__main__':
     if PLOT:
         plt.figure()
         ax = s_monthly.plot(grid = True)
-        ax.legend(['Monthly share prices'])
+        ax.legend(['Monthly average share prices'])
+        plt.xlabel('Time')
+        plt.ylabel('Price')
 
 # =============================================================================
 # Exercise 3 
 # =============================================================================
     
     print('\n--------------\nExercise 3\n--------------')
+    
+    start = datetime.datetime(1950, 1, 1)
+    end = datetime.datetime(2018, 12, 31)
+    index = pd.period_range(start, end, freq = 'D')
+    n = len(index)
+    dz = np.random.randn(n) * np.sqrt(dt)
+    s_daily = s0 * np.exp(np.cumsum((mu - 0.5*sigma*sigma)*dt + sigma*dz))
+    s_daily = pd.Series(s_daily, index)
     
     def run_analysis(data, label, d = D):
     
@@ -118,17 +135,19 @@ if __name__ == '__main__':
             log_returns_daily = data
         log_returns_daily = log_returns_daily.apply(lambda x: np.log(1+x))
         # weekly log returns
-        s_weekly = data.resample('W').first()
         if label == 'simulated':
+            s_weekly = data.resample('W').last()
             log_returns_weekly = s_weekly.pct_change()
         else:
+            s_weekly = data.resample('W').sum()
             log_returns_weekly = s_weekly
         log_returns_weekly = log_returns_weekly.apply(lambda x: np.log(1+x))
         # monthly log returns
-        s_monthly = data.resample('M').first()
         if label == 'simulated':
+            s_monthly = data.resample('M').last()
             log_returns_monthly = s_monthly.pct_change()
         else:
+            s_monthly = data.resample('M').sum()
             log_returns_monthly = s_monthly
         log_returns_monthly = log_returns_monthly.apply(lambda x: np.log(1+x))
         
@@ -190,13 +209,21 @@ if __name__ == '__main__':
         
         # print results
         print('\nMean of mean estimator (daily): {}'.format(mean_log_returns_daily.mean()))
+        if label == 'simulated':
+            print('Theoretical value: {}'.format(mu))
         print('Variance of mean estimator (daily): {}'.format(mean_log_returns_daily.var()))
+        if label == 'simulated':
+            print('Theoretical value: {}'.format(0.04))
+
+        print('\nMean of mean estimator (monthly): {}'.format(mean_log_returns_monthly.mean()))
+        if label == 'simulated':
+            print('Theoretical value: {}'.format(mu))
+        print('Variance of mean estimator (monthly): {}'.format(mean_log_returns_monthly.var()))
+        if label == 'simulated':
+            print('Theoretical value: {}'.format(0.04))
         
         print('\nMean of variance estimator (daily): {}'.format(var_log_returns_daily.mean()))
         print('Variance of variance estimator (daily): {}.'.format(var_log_returns_daily.var()))
-        
-        print('\nMean of mean estimator (monthly): {}'.format(mean_log_returns_monthly.mean()))
-        print('Variance of mean estimator (monthly): {}'.format(mean_log_returns_monthly.var()))
         
         print('\nMean of variance estimator (monthly): {}'.format(var_log_returns_monthly.mean()))
         print('Variance of variance estimator (monthly): {}.'.format(var_log_returns_monthly.var()))
@@ -211,10 +238,9 @@ if __name__ == '__main__':
     print('\n--------------\nExercise 4\n--------------')
     
     # connect to databse and download csv files (run once)
+    # db = wrds.Connection(wrds_username = 'wmartin')
+    # db.create_pgpass_file() # run once
     """
-    db = wrds.Connection(wrds_username = 'wmartin')
-    db.create_pgpass_file() # run once
-
     aapl = db.raw_sql("select date, ret from crsp.dsf where permco in (7) and date>='2001-01-01' and date<='2018-12-31'")
     gs = db.raw_sql("select date, ret from crsp.dsf where permco in (35048) and date>='2001-01-01' and date<='2018-12-31'")
     msft = db.raw_sql("select date, ret from crsp.dsf where permco in (8048) and date>='2001-01-01' and date<='2018-12-31'")
@@ -232,6 +258,7 @@ if __name__ == '__main__':
     # read csvs
     use_cols = ['ret', 'date']
     index_col = 'date'
+    
     aapl = pd.read_csv('aapl.csv', usecols = use_cols, index_col = index_col)
     gs = pd.read_csv('gs.csv', usecols = use_cols, index_col = index_col)
     msft = pd.read_csv('msft.csv', usecols = use_cols, index_col = index_col)
