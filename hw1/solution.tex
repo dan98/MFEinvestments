@@ -67,12 +67,32 @@
     Thus, $$ dY_t = 0 dt +  \frac{1}{S_t}dS_t + \frac{1}{2}\frac{-1}{S_t^2}(\sigma S_t)^2 dt = \mu dt + \sigma dz_t - \frac{\sigma^2}{2}dt$$
     and $$ \ln(S_t) = (\mu-\frac{\sigma^2}{2})t + \sigma dz_t$$
     The solution of the SDE is: $ S_t = S_0 \exp((\mu-\frac{\sigma^2}{2})t+ \sigma z_t)$.
-    Simulating on $10$ years, with the given drift and volatility parameters, the share price can be found in Figure \ref{GMB}. 
+    Simulating on $10$ years, with the given drift and volatility parameters, the share price can be found in Figure \ref{GMB}. The corresponding log-returns of the share are displayed in Figure \ref{DLR}.
+    With this data, we can compute the annualized mean and standard deviation of log-returns:
+    
+    \begin{table}[h]
+      \centering
+        \begin{tabular}{|l|l|}
+        \hline
+        Annualized mean & Annualized Standard Deviation \\ \hline
+        7.659 \%        & 20.336 \%                    \\ \hline
+        \end{tabular}
+        \caption{Simulation log-returns statistics}
+      \end{table}
+      We can see that the estimators of simulated share prices are consistent with the parameters $\mu = 6\%$ and $\sigma = 20\%$ but there is still high variance in the estimation. 
+      
     \begin{figure}[h]
       \centering
       \includegraphics[scale = 0.71]{Figures/simulated.pdf}
       \caption{Geometric Brownian Motion share price simulation}
       \label{GMB}
+    \end{figure}
+    
+    \begin{figure}[h]
+      \centering
+      \includegraphics[scale = 0.7]{Figures/logreturns.pdf}
+      \caption{Daily log-returns of the simulated share}
+      \label{DLR}
     \end{figure}
   \end{exercise}
 
