@@ -80,22 +80,41 @@
         \caption{Simulation log-returns statistics}
       \end{table}
       We can see that the estimators of simulated share prices are consistent with the parameters $\mu = 6\%$ and $\sigma = 20\%$ but there is still high variance in the estimation. 
-      
-    \begin{figure}[h]
-      \centering
-      \includegraphics[scale = 0.71]{Figures/simulated.pdf}
-      \caption{Geometric Brownian Motion share price simulation}
-      \label{GMB}
-    \end{figure}
-    
-    \begin{figure}[h]
-      \centering
-      \includegraphics[scale = 0.7]{Figures/logreturns.pdf}
-      \caption{Daily log-returns of the simulated share}
-      \label{DLR}
-    \end{figure}
+
+  \begin{figure}[h]
+	\centering
+	\begin{minipage}[b]{0.49\textwidth}
+		\includegraphics[width = \textwidth]{Figures/simulation.pdf}
+		\caption{Share price simulation}
+		\label{GMB}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.49\textwidth}
+		\includegraphics[width = \textwidth]{Figures/logreturns.pdf}
+		\caption{Daily log-returns}
+		\label{DLR}
+  \end{minipage}	
+  \end{figure}
   \end{exercise}
 
+  \begin{exercise}{2}
+    To control the accuracy of our estimators of the mean and the volatility, we can simulate more samples and estimate the variance of these two estimators.
+    We have simulated daily share prices from January $1^{\text{st}}$, $1950$ to December $31^{\text{st}}$, 2018 and so we get $25202$ daily samples. We can resample the daily prices into monthly ones by taking local monthly averages. The graph of the daily and averaged monthly share prices are in Figures \ref{GMB2} and \ref{GMB2M}.
+    \begin{figure}[h]
+      \centering
+      \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[width = \textwidth]{Figures/simulation2.pdf}
+        \caption{Share price simulation (daily)}
+        \label{GMB2}
+      \end{minipage}
+      \hfill
+      \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[width = \textwidth]{Figures/simulation2monthly.pdf}
+        \caption{Monthly average}
+        \label{GMB2M}
+      \end{minipage}	
+      \end{figure}
+  \end{exercise}
 
 
   %\section*{Python Code}
