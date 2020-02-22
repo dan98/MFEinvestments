@@ -1,6 +1,7 @@
 \documentclass[10pt]{article}
 
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 %\usepackage{beton}
 %\usepackage{ccfonts}
 %\usepackage{concrete}
@@ -59,10 +60,22 @@
 	\maketitle
 
   \begin{exercise}{1}
+    First, we need to solve the Geometric Brownian Motion SDE. 
+    The SDE is given by: 
+    $$ \frac{dS_t}{S_t} = \mu dt + \sigma dz_t$$ where $z_t$ is a standard Brownian Motion. 
+    We can apply Itô's lemma on the stochastic process $Y_t = f(S_t) = \ln(S_t)$.
+    Thus, $$ dY_t = 0 dt +  \frac{1}{S_t}dS_t + \frac{1}{2}\frac{-1}{S_t^2}(\sigma S_t)^2 dt = \mu dt + \sigma dz_t - \frac{\sigma^2}{2}dt$$
+    and $$ \ln(S_t) = (\mu-\frac{\sigma^2}{2})t + \sigma dz_t$$
+    The solution of the SDE is: $ S_t = S_0 \exp((\mu-\frac{\sigma^2}{2})t+ \sigma z_t)$.
+    Simulating on $10$ years, with the given drift and volatility parameters, the share price can be found in Figure \ref{GMB}. 
+    \begin{figure}[h]
+      \centering
+      \includegraphics[scale = 0.71]{Figures/simulated.pdf}
+      \caption{Geometric Brownian Motion share price simulation}
+      \label{GMB}
+    \end{figure}
   \end{exercise}
 
-  \begin{proof}
-  \end{proof}
 
 
   %\section*{Python Code}
