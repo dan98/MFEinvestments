@@ -230,6 +230,341 @@
   
   \end{exercise}
 
+  \begin{exercise}{4}
+  
+	We proceed similarly as in exercise 3 but with real data.
+	
+	\bigbreak	
+		
+	\textbf{Apple}
+	
+	\smallbreak
+	
+	The summary statistics are the followings:
+	
+	\bigbreak	
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ 		\hline
+		\multicolumn{4}{|c|}{Summary statistics of log returns of Apple} \\
+		\hline
+		Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		count   &  4527 & 940 & 216\\
+ 		mean & 0.001132 & 0.005518 & 0.023517\\
+ 		std & 0.023080 & 0.049161 & 0.105660\\
+ 		min & -0.197470 & -0.290710 & -0.453292\\
+ 		25\% & -0.010026 & -0.022411 & -0.027271\\
+ 		50\% & 0.000860 & 0.008078 & 0.030809\\
+ 		75\% & 0.012450 & 0.034924 & 0.089654\\
+ 		max & 0.130194 & 0.220095 & 0.337724\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	For each frequency, we then proceed to compute the annualized mean and standard deviation of the log-returns:
+	
+	\bigbreak
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+		\hline
+	 	\multicolumn{4}{|c|}{Annualized metrics of log-returns of Apple} \\
+	 	\hline
+	 	Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		mean  &  0.285267 & 0.286937 & 0.282208\\
+ 		std & 0.366347 & 0.354317 & 0.365167\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	Using a rolling one-year window, we plot the time-series of the annualized mean and std deviation of log-returns estimates for each frequency:
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_mean_aapl.png}	
+		\caption{Annualized mean of log-returns of Apple (daily, weekly, monthly)}	
+		\label{fig:problem3d_mean_aapl}
+	
+	\end{figure}
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_std_aapl.png}	
+		\caption{Annualized std deviation of log-returns of Apple (daily, weekly, monthly)}	
+		\label{fig:problem3d_std_aapl}
+	
+	\end{figure}
+		
+	\bigbreak	
+		
+	\textbf{Goldman Sachs}
+	
+	\smallbreak
+	
+	The summary statistics are the followings:
+	
+	\bigbreak	
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ 		\hline
+		\multicolumn{4}{|c|}{Summary statistics of log returns of Goldman Sachs} \\
+		\hline
+		Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		count   &  4527 & 940 & 216\\
+ 		mean & 0.000141 & 0.000766 & 0.004757\\
+ 		std & 0.022295 & 0.047307 & 0.083148\\
+ 		min & -0.210223 & -0.427937 & -0.290885\\
+ 		25\% & -0.009903 & -0.022032 & -0.050073\\
+ 		50\% & 0.000244 & 0.003461 & 0.014704\\
+ 		75\% & 0.010450 & 0.025272 & 0.056586\\
+ 		max & 0.234818 & 0.356032 & 0.195242\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	For each frequency, we then proceed to compute the annualized mean and standard deviation of the log-returns:
+	
+	\bigbreak
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+		\hline
+	 	\multicolumn{4}{|c|}{Annualized metrics of log-returns of Goldman Sachs} \\
+	 	\hline
+	 	Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		mean  &  0.035651 & 0.039821 & 0.057080\\
+ 		std & 0.353886 & 0.340952 & 0.287366\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	Using a rolling one-year window, we plot the time-series of the annualized mean and std deviation of log-returns estimates for each frequency:
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_mean_gs.png}	
+		\caption{Annualized mean of log-returns of Goldman Sachs (daily, weekly, monthly)}	
+		\label{fig:problem3d_mean_gs}
+	
+	\end{figure}
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_std_gs.png}	
+		\caption{Annualized std deviation of log-returns of Goldman Sachs (daily, weekly, monthly)}	
+		\label{fig:problem3d_std_gs}
+	
+	\end{figure}
+
+	\bigbreak	
+		
+	\textbf{Microsoft}
+	
+	\smallbreak
+	
+	The summary statistics are the followings:
+	
+	\bigbreak	
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ 		\hline
+		\multicolumn{4}{|c|}{Summary statistics of log returns of Microsoft} \\
+		\hline
+		Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		count   &  4527 & 940 & 216\\
+ 		mean & 0.000435 & 0.002210 & 0.009887\\
+ 		std & 0.017863 & 0.036112 & 0.070669\\
+ 		min & -0.124578 & -0.219669 & -0.189425\\
+ 		25\% & -0.007842 & -0.016186 & -0.035620\\
+ 		50\% & 0.000271 & 0.002047 & 0.018235\\
+ 		75\% & 0.008638 & 0.021435 & 0.051449\\
+ 		max & 0.170626 & 0.143311 & 0.306621\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	For each frequency, we then proceed to compute the annualized mean and standard deviation of the log-returns:
+	
+	\bigbreak
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+		\hline
+	 	\multicolumn{4}{|c|}{Annualized metrics of log-returns of Microsoft} \\
+	 	\hline
+	 	Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		mean  &  0.109558 & 0.114940 & 0.118649\\
+ 		std & 0.283531 & 0.260270 & 0.244236\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	Using a rolling one-year window, we plot the time-series of the annualized mean and std deviation of log-returns estimates for each frequency:
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_mean_msft.png}	
+		\caption{Annualized mean of log-returns of Microsoft (daily, weekly, monthly)}	
+		\label{fig:problem3d_mean_msft}
+	
+	\end{figure}
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_std_msft.png}	
+		\caption{Annualized std deviation of log-returns of Microsoft (daily, weekly, monthly)}	
+		\label{fig:problem3d_std_msft}
+	
+	\end{figure}	  
+  
+	\bigbreak	
+		
+	\textbf{Procter and Gamble}
+	
+	\smallbreak
+	
+	The summary statistics are the followings:
+	
+	\bigbreak	
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ 		\hline
+		\multicolumn{4}{|c|}{Summary statistics of log returns of Procter and Gamble} \\
+		\hline
+		Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		count   &  4527 & 940 & 216\\
+ 		mean & 0.000297 & 0.001451 & 0.006634\\
+ 		std & 0.011272 & 0.023812 & 0.042314\\
+ 		min & -0.083161 & -0.187835 & -0.128388\\
+ 		25\% & -0.004988 & -0.010057 & -0.018551\\
+ 		50\% & 0.000300 & 0.002197 & 0.009741\\
+ 		75\% & 0.005703 & 0.014371 & 0.032006\\
+ 		max & 0.097257 & 0.118140 & 0.108149\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	For each frequency, we then proceed to compute the annualized mean and standard deviation of the log-returns:
+	
+	\bigbreak
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+		\hline
+	 	\multicolumn{4}{|c|}{Annualized metrics of log-returns of Procter and Gamble} \\
+	 	\hline
+	 	Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		mean  &  0.074738 & 0.075452 & 0.079604\\
+ 		std & 0.178924 & 0.171622 & 0.146239\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	Using a rolling one-year window, we plot the time-series of the annualized mean and std deviation of log-returns estimates for each frequency:
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_mean_pg.png}	
+		\caption{Annualized mean of log-returns of Procter and Gamble (daily, weekly, monthly)}	
+		\label{fig:problem3d_mean_pg}
+	
+	\end{figure}
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_std_pg.png}	
+		\caption{Annualized std deviation of log-returns of Procter and Gamble (daily, weekly, monthly)}	
+		\label{fig:problem3d_std_pg}
+	
+	\end{figure}	  
+ 
+	\bigbreak	
+		
+	\textbf{General Electric}
+	
+	\smallbreak
+	
+	The summary statistics are the followings:
+	
+	\bigbreak	
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ 		\hline
+		\multicolumn{4}{|c|}{Summary statistics of log returns of General Electric} \\
+		\hline
+		Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		count   &  4527 & 940 & 216\\
+ 		mean & -0.000282 & -0.001314 & -0.005171\\
+ 		std & 0.019175 & 0.041075 & 0.079993\\
+ 		min & -0.136841 & -0.246562 & -0.356068\\
+ 		25\% &  -0.008103 & -0.018518 & -0.044020\\
+ 		50\% & 0.000000 & -0.000495 & -0.003015\\
+ 		75\% & 0.007908 & 0.018517 & 0.040110\\
+ 		max & 0.179844 & 0.289828 & 0.214621\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	For each frequency, we then proceed to compute the annualized mean and standard deviation of the log-returns:
+	
+	\bigbreak
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+		\hline
+	 	\multicolumn{4}{|c|}{Annualized metrics of log-returns of General Electric} \\
+	 	\hline
+	 	Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		mean  &  -0.071126 & -0.068346 & -0.062046\\
+ 		std & 0.304355 & 0.296039 & 0.276460\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	Using a rolling one-year window, we plot the time-series of the annualized mean and std deviation of log-returns estimates for each frequency:
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_mean_ge.png}	
+		\caption{Annualized mean of log-returns of General Electric (daily, weekly, monthly)}	
+		\label{fig:problem3d_men_ge}
+	
+	\end{figure}
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem4d_std_ge.png}	
+		\caption{Annualized std deviation of log-returns of General Electric (daily, weekly, monthly)}	
+		\label{fig:problem3d_std_ge}
+	
+	\end{figure} 
+ 
+  \end{exercise} 
 
   %\section*{Python Code}
 
