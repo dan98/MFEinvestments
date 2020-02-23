@@ -188,45 +188,46 @@ if __name__ == '__main__':
         # plot
         if PLOT:
             plt.figure()
-            rolling_annualized_mean_daily.plot(label = 'daily', title = 'Rolling annualized mean ({})'.format(label))
+            rolling_annualized_mean_daily.plot(label = 'daily', title = 'Annualized mean of log-returns using a rolling one-year window ({})'.format(label))
             rolling_annualized_mean_weekly.plot(label = 'weekly')
             rolling_annualized_mean_monthly.plot(label = 'monthly', grid = True)
             plt.legend()
+            plt.xlabel('Time')
+            plt.ylabel('Annualized mean of log-returns')
         
             plt.figure()
-            rolling_annualized_std_daily.plot(label = 'daily', title = 'Rolling annualized std ({})'.format(label))
+            rolling_annualized_std_daily.plot(label = 'daily', title = 'Annualized std of log-returns using a rolling one-year window ({})'.format(label))
             rolling_annualized_std_weekly.plot(label = 'weekly')
             rolling_annualized_std_monthly.plot(label = 'monthly', grid = True)
             plt.legend()
+            plt.xalbel/('Time')
+            plt.ylabel('Annualized std deviation of log-returs')
         
-        # resample for bins of 365 days of daily log-returns
-        mean_log_returns_daily = log_returns_daily.resample('A').mean()*d
-        var_log_returns_daily = np.square(log_returns_daily).resample('A').mean()*d
-        
-        # resample for bins of 365 days of monthly log-returns
-        mean_log_returns_monthly = log_returns_monthly.resample('A').mean()*M
-        var_log_returns_monthly = np.square(log_returns_monthly).resample('A').mean()*M
-        
-        # print results
-        print('\nMean of mean estimator (daily): {}'.format(mean_log_returns_daily.mean()))
         if label == 'simulated':
+            # resample for bins of 365 days of daily log-returns
+            mean_log_returns_daily = log_returns_daily.resample('A').mean()*d
+            var_log_returns_daily = np.square(log_returns_daily).resample('A').mean()*d
+            
+            # resample for bins of 365 days of monthly log-returns
+            mean_log_returns_monthly = log_returns_monthly.resample('A').mean()*M
+            var_log_returns_monthly = np.square(log_returns_monthly).resample('A').mean()*M
+            
+            # print results
+            print('\nMean of mean estimator (daily): {}'.format(mean_log_returns_daily.mean()))
             print('Theoretical value: {}'.format(mu))
-        print('Variance of mean estimator (daily): {}'.format(mean_log_returns_daily.var()))
-        if label == 'simulated':
+            print('Variance of mean estimator (daily): {}'.format(mean_log_returns_daily.var()))
             print('Theoretical value: {}'.format(0.04))
-
-        print('\nMean of mean estimator (monthly): {}'.format(mean_log_returns_monthly.mean()))
-        if label == 'simulated':
+    
+            print('\nMean of mean estimator (monthly): {}'.format(mean_log_returns_monthly.mean()))
             print('Theoretical value: {}'.format(mu))
-        print('Variance of mean estimator (monthly): {}'.format(mean_log_returns_monthly.var()))
-        if label == 'simulated':
+            print('Variance of mean estimator (monthly): {}'.format(mean_log_returns_monthly.var()))
             print('Theoretical value: {}'.format(0.04))
-        
-        print('\nMean of variance estimator (daily): {}'.format(var_log_returns_daily.mean()))
-        print('Variance of variance estimator (daily): {}.'.format(var_log_returns_daily.var()))
-        
-        print('\nMean of variance estimator (monthly): {}'.format(var_log_returns_monthly.mean()))
-        print('Variance of variance estimator (monthly): {}.'.format(var_log_returns_monthly.var()))
+            
+            print('\nMean of variance estimator (daily): {}'.format(var_log_returns_daily.mean()))
+            print('Variance of variance estimator (daily): {}.'.format(var_log_returns_daily.var()))
+            
+            print('\nMean of variance estimator (monthly): {}'.format(var_log_returns_monthly.mean()))
+            print('Variance of variance estimator (monthly): {}.'.format(var_log_returns_monthly.var()))
 
     # run exercise 3 with simulated data
     run_analysis(data = s_daily, label = 'simulated')
