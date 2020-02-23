@@ -70,7 +70,7 @@
     Simulating on $10$ years, with the given drift and volatility parameters, the share price can be found in Figure \ref{GMB}. The corresponding log-returns of the share are displayed in Figure \ref{DLR}.
     With this data, we can compute the annualized mean and standard deviation of log-returns:
     
-    \begin{table}[h]
+    \begin{table}[H]
       \centering
         \begin{tabular}{|l|l|}
         \hline
@@ -81,7 +81,7 @@
       \end{table}
       We can see that the estimators of simulated share prices are consistent with the parameters $\mu = 6\%$ and $\sigma = 20\%$ but there is still high variance in the estimation. 
 
-  \begin{figure}[h]
+  \begin{figure}[H]
 	\centering
 	\begin{minipage}[b]{0.49\textwidth}
 		\includegraphics[width = \textwidth]{Figures/simulation.pdf}
@@ -100,7 +100,7 @@
   \begin{exercise}{2}
     To control the accuracy of our estimators of the mean and the volatility, we can simulate more samples and estimate the variance of these two estimators.
     We have simulated daily share prices from January $1^{\text{st}}$, $1950$ to December $31^{\text{st}}$, 2018 and so we get $25202$ daily samples. We can resample the daily prices into monthly ones by taking local monthly averages. The graph of the daily and averaged monthly share prices are in Figures \ref{GMB2} and \ref{GMB2M}.
-    \begin{figure}[h]
+    \begin{figure}[H]
       \centering
       \begin{minipage}[b]{0.49\textwidth}
         \includegraphics[width = \textwidth]{Figures/simulation2.pdf}
@@ -115,6 +115,120 @@
       \end{minipage}	
       \end{figure}
   \end{exercise}
+  
+  \begin{exercise}{3}
+ 	 
+	From our simulated data of daily prices, we generate time-series of daily, weekly, and monthly log-returns and compute a summary statistics for each frequency (using the \textit{describe()} method from the \textit{pandas} library) :
+	
+	\bigbreak
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ 		\hline
+		\multicolumn{4}{|c|}{Summary statistics of log returns} \\
+		\hline
+		Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		count   &  25201 & 3601 & 827\\
+ 		mean & 0.000116 & 0.000812 & 0.003565\\
+ 		std & 0.010416 & 0.027782 & 0.057413\\
+ 		min & -0.041882 & -0.099737 & -0.177405\\
+ 		25\% &  -0.006899 & -0.017644 & -0.033800\\
+ 		50\% & 0.000300 & 0.000883 & 0.003040\\
+ 		75\% & 0.007208 & 0.019693 & 0.041604\\
+ 		max & 0.042026 & 0.107188 & 0.172747\\
+ 		\hline
+	\end{tabular}
+
+	\bigbreak	
+	
+	For each frequency, we then proceed to compute the annualized mean and standard deviation of the log-returns: 
+	
+	\bigbreak
+	
+	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+		\hline
+	 	\multicolumn{4}{|c|}{Annualized metrics of log-returns} \\
+	 	\hline
+	 	Data & Daily & Weekly & Monthly\\
+ 		\hline
+ 		mean  &  0.042358 & 0.042232 & 0.042778\\
+ 		std & 0.198990 & 0.200312 & 0.198765\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	Using a rolling one-year window, we plot the time-series of the annualized mean and std deviation of log-returns estimates for each frequency:
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem3d_mean.png}	
+		\caption{Annualized mean of log-returns of simulated data (daily, weekly, monthly)}	
+		\label{fig:problem3d_mean}
+	
+	\end{figure}
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.5]{Figures/problem3d_std.png}	
+		\caption{Annualized std deviation of log-returns of simulated data (daily, weekly, monthly)}	
+		\label{fig:problem3d_std}
+	
+	\end{figure}
+	
+	From Figure \ref{fig:problem3d_mean}, we observe that the estimation of the annualized mean of log-returns using a rolling one-year window is very noisy. As a matter of fact, the estimation varies from approximately +/- 60\% where in reality it is 6\% for all frequencies. Thus, varying the frequency does not improve the estimation of the mean but increasing the horizon length  will. 
+	
+	\smallbreak
+	
+	From Figure \ref{fig:problem3d_std}, we observe that increasing the frequency (from monthly to daily) improves the estimation of the standard deviation quite considerably. Indeed, at a monthly frequency, we observe estimations of the std deviation varying from 10\% to 30\% approximately where in reality it is 20\%. At a daily frequency, the estimates vary closely around the real value. In conclusion, increasing the frequency allows us to better estimate the volatility. 
+  
+	\bigbreak
+	
+	 We recall that the estimator of $\mu$ is given by the sample mean:
+	 
+	\begin{align*}
+		\hat{\mu} = \frac{1}{n \Delta}\sum^{n}_{i = 1}R_{i}
+	\end{align*}
+	
+	And that the simple estimator of the variance is computed as follows (which does not depend on $\hat{\mu}$):
+	
+	\begin{align*}
+		\hat{\sigma^{2}} = \frac{1}{n \Delta}\sum^{n}_{i = 1}(R_{i})^{2}
+	\end{align*}
+	 
+	 For daily and monthly frequencies, we compute the mean and variance of both our mean and variance estimator:
+	 
+	 \bigbreak
+	 
+	 \begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}| }
+		\hline
+	 	\multicolumn{4}{|c|}{Metrics of mean estimator} \\
+	 	\hline
+	 	Data & Daily & Monthly & Theoretical\\
+ 		\hline
+ 		mean  &  0.042348 & 0.042354 & 0.06 \\
+ 		variance & 0.043211 & 0.043283 & 0.04\\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak	
+	
+	\begin{tabular}{ |p{2cm}||p{2cm}|p{3cm}|p{2cm}|p{3cm}| }
+		\hline
+	 	\multicolumn{5}{|c|}{Metrics of variance estimator} \\
+	 	\hline
+	 	Data & Daily & Theoretical daily  & Monthly & Theoretical monthly \\
+ 		\hline
+ 		mean  &  0.039602 & 0 & 0.039660 & 0 \\
+ 		variance & 7.274037e-06 & 0 & 0.000178 & 0 \\
+ 		\hline
+	\end{tabular}
+	
+	\bigbreak
+  
+  \end{exercise}
 
 
   %\section*{Python Code}
@@ -122,4 +236,4 @@
   % \subsection*{Exercise}
   % \lstinputlisting{code/exercise.py}
 \end{document}
- 
+
