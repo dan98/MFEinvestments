@@ -190,7 +190,7 @@ if __name__ == '__main__':
             plt.figure()
             rolling_annualized_mean_daily.plot(label = 'daily', title = 'Annualized mean of log-returns using a rolling one-year window ({})'.format(label))
             rolling_annualized_mean_weekly.plot(label = 'weekly')
-            rolling_annualized_mean_monthly.plot(label = 'monthly', grid = True)
+            rolling_annualized_mean_monthly.plot(label = 'monthly')
             plt.legend()
             plt.xlabel('Time')
             plt.ylabel('Annualized mean of log-returns')
@@ -198,10 +198,10 @@ if __name__ == '__main__':
             plt.figure()
             rolling_annualized_std_daily.plot(label = 'daily', title = 'Annualized std of log-returns using a rolling one-year window ({})'.format(label))
             rolling_annualized_std_weekly.plot(label = 'weekly')
-            rolling_annualized_std_monthly.plot(label = 'monthly', grid = True)
+            rolling_annualized_std_monthly.plot(label = 'monthly')
             plt.legend()
-            plt.xalbel/('Time')
-            plt.ylabel('Annualized std deviation of log-returs')
+            plt.xlabel('Time')
+            plt.ylabel('Annualized std deviation of log-returns')
         
         if label == 'simulated':
             # resample for bins of 365 days of daily log-returns
@@ -216,18 +216,27 @@ if __name__ == '__main__':
             print('\nMean of mean estimator (daily): {}'.format(mean_log_returns_daily.mean()))
             print('Theoretical value: {}'.format(mu))
             print('Variance of mean estimator (daily): {}'.format(mean_log_returns_daily.var()))
-            print('Theoretical value: {}'.format(0.04))
+            print('Theoretical value: {}'.format(0.2*0.2))
     
             print('\nMean of mean estimator (monthly): {}'.format(mean_log_returns_monthly.mean()))
             print('Theoretical value: {}'.format(mu))
             print('Variance of mean estimator (monthly): {}'.format(mean_log_returns_monthly.var()))
-            print('Theoretical value: {}'.format(0.04))
+            print('Theoretical value: {}'.format(0.2*0.2))
             
             print('\nMean of variance estimator (daily): {}'.format(var_log_returns_daily.mean()))
+            mean_variance_daily = sigma**2 + mu**2/365
+            print('Theoretical value: {}'.format(mean_variance_daily))
             print('Variance of variance estimator (daily): {}.'.format(var_log_returns_daily.var()))
+            variance_variance_daily = 2*sigma**4/365 + 4*mu**2*sigma**2/(365**2)
+            print('Theoretical value: {}'.format(variance_variance_daily))
+            
             
             print('\nMean of variance estimator (monthly): {}'.format(var_log_returns_monthly.mean()))
+            mean_variance_monthly = sigma**2 + mu**2/12
+            print('Theoretical value: {}'.format(mean_variance_monthly))
             print('Variance of variance estimator (monthly): {}.'.format(var_log_returns_monthly.var()))
+            variance_variance_monthly = 2*sigma**4/12 + 4*mu**2*sigma**2/(12**2)
+            print('Theoretical value: {}'.format(variance_variance_monthly))
 
     # run exercise 3 with simulated data
     run_analysis(data = s_daily, label = 'simulated')
