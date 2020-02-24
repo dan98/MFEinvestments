@@ -97,6 +97,8 @@
   \end{figure}
   \end{exercise}
 
+	\newpage
+
   \begin{exercise}{2}
     To control the accuracy of our estimators of the mean and the volatility, we can simulate more samples and estimate the variance of these two estimators.
     We have simulated daily share prices from January $1^{\text{st}}$, $1950$ to December $31^{\text{st}}$, 2018 and so we get $25202$ daily samples. We can resample the daily prices into monthly ones by taking local monthly averages. The graph of the daily and averaged monthly share prices are in Figures \ref{GMB2} and \ref{GMB2M}.
@@ -115,6 +117,8 @@
       \end{minipage}	
       \end{figure}
   \end{exercise}
+  
+	\newpage  
   
   \begin{exercise}{3}
  	 
@@ -228,7 +232,7 @@
 	
 	\bigbreak
 
-	Where we have taken the formulae for theoretical values for the mean and variance of the mean and variance estimators:
+	Where we have taken the formulae for theoretical values for the mean and variance of both the mean and variance estimators:
 	
 	\begin{align*}
 		\Ebb[\hat{\mu}] = \mu \\
@@ -236,9 +240,17 @@
 		\Ebb[\hat{\sigma}^{2}] = \sigma^{2} + \mu^{2} \frac{T}{n} \\
 		Var[\hat{\sigma}^{2}] = \frac{2\sigma^{4}}{n} + 4\mu^{2}\sigma^{2}\frac{T}{n^{2}}
 	\end{align*}
+	
+	The first moments of the sample mean are not too far off of their theoretical counterparts although we know from the course that the sample mean is an unbiased estimator of $\mu$.
+	
+	\smallbreak
+	
+	Finally, we saw in the course that the estimator of the variance is biased but we see that even with a monthly frequency, the estimation is pretty accurate. For both frequencies, we see that the variance estimator is reduced to 0.
   
   \end{exercise}
 
+	\newpage
+	
   \begin{exercise}{4}
   
 	We proceed similarly as in exercise 3 but with real data.
@@ -572,6 +584,12 @@
 		\label{fig:problem3d_std_ge}
 	
 	\end{figure} 
+	
+	The variation of the time-series of the annualized mean using a rolling one-year window on real data seems to be larger than with simulated data. Indeed, we observe variations around $+/- 60\%$ in exercise 3, whereas with real data, this variations often go beyond this interval. This makes the job of estimating the expected return on stocks more difficult.  
+ 
+	\smallbreak
+	
+	For the time-series of the annualized standard deviation of a rolling one-year window, we observe a very big difference between real and simulated data. With simulated data, our conclusion were that by increasing the frequency, we were able to improve the estimation of the standard deviation by quite a margin. This is not at all the case now with real data. On the contrary, the range of the time-series remains large even at high frequencies. This can be explained by the fact that we assumed a constant volatility whereas in real life, the volatility varies over time, making the job of estimating quite difficult. 
  
   \end{exercise} 
 
