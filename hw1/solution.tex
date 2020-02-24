@@ -198,7 +198,7 @@
 		\hat{\sigma^{2}} = \frac{1}{n \Delta}\sum^{n}_{i = 1}(R_{i})^{2}
 	\end{align*}
 	 
-	 For daily and monthly frequencies, we compute the mean and variance of both our mean and variance estimator:
+	 For daily and monthly frequencies, we compute the mean and variance of both our mean and variance estimator, as well as the theoretical values:
 	 
 	 \bigbreak
 	 
@@ -228,7 +228,14 @@
 	
 	\bigbreak
 
-	  
+	Where we have taken the formulae for theoretical values for the mean and variance of the mean and variance estimators:
+	
+	\begin{align*}
+		\Ebb[\hat{\mu}] = \mu \\
+		Var[\hat{\mu}] = \frac{\sigma^{2}}{T} \\
+		\Ebb[\hat{\sigma}^{2}] = \sigma^{2} + \mu^{2} \frac{T}{n} \\
+		Var[\hat{\sigma}^{2}] = \frac{2\sigma^{4}}{n} + 4\mu^{2}\sigma^{2}\frac{T}{n^{2}}
+	\end{align*}
   
   \end{exercise}
 
