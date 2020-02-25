@@ -86,7 +86,26 @@
 	
 	\maketitle
 
-  \begin{exercise}{1}
+  \begin{exercise}{1}(Utility Theory)
+
+From the statement, we know that the random variables $Y$ and $\epsilon$ have the following distributions:
+$$ Y \sim \mathcal{N}(\mu_Y,\sigma_Y^2), \quad \epsilon \sim \mathcal{N}(-\mu_\epsilon,\sigma_\epsilon^2)$$ but they are not independent and have correlation $\rho$. 
+The covariance between the two is $Cov(Y,\epsilon) = \rho\sqrt{\sigma_Y^2}\sqrt{\sigma_\epsilon^2} = \rho\sigma_\epsilon\sigma_\epsilon$. 
+
+We have to consider the random vector $\mathbf{Z} = (Y,\epsilon)^\top$ which has multivariate gaussian distribution because every linear combination of the components $\alpha Y + \beta \epsilon$ is normally distributed. Thus:
+$$ \mathbf{Z} \sim \mathcal{N}_2 \left( {\mu_Y \choose -\mu_\epsilon},\begin{bmatrix}
+  \sigma^2_Y&\rho\sigma_Y\sigma_\epsilon\\
+  \rho\sigma_Y\sigma_\epsilon&\sigma_\epsilon^2\\
+  \end{bmatrix} \right) $$
+
+  First, we can calculate the relative risk aversion and the absolute risk aversion:
+\begin{equation*}
+  \text{ARA}(W) = -\frac{u''(W)}{u'(W)} = \frac{a^2e^{-aW}}{ae^{-aW}} = a, \quad \text{RRA}(W) = -\frac{Wu''(W)}{u'(W)} = -aW
+\end{equation*} since $u'(W) = ae^{-aW}$ and $u''(W) = -a^2e^{-aW}$.
+
+Then, we want to compute the insurance premium $\pi$ to insure the risk of $\epsilon$ such that: $$ \Ebb[u(Y+\epsilon)] = \Ebb[u(Y-\pi)] $$
+We can first compute the right hand side expectation using the moments generating function of a multivariate gaussian random variable:
+$$ MGF(t)$$
   \end{exercise}
 \end{document}
 
