@@ -14,6 +14,7 @@
 \usepackage{pgfplots}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{bbm}
 \pgfplotsset{compat=1.5}
 
 \usepackage{listings}
@@ -107,8 +108,37 @@ $$ \mathbf{Z} \sim \mathcal{N}_2 \left( {\mu_Y \choose -\mu_\epsilon},\begin{bma
 \end{equation*} since $u'(W) = ae^{-aW}$ and $u''(W) = -a^2e^{-aW}$.
 
 Then, we want to compute the insurance premium $\pi$ to insure the risk of $\epsilon$ such that: $$ \Ebb[u(Y+\epsilon)] = \Ebb[u(Y-\pi)] $$
-We can first compute the right hand side expectation using the moments generating function of a multivariate gaussian random variable:
-$$ MGF(t)$$
+We can first compute the right hand side expectation using the moments generating function of a multivariate gaussian random variable $\mathcal{N}_n(\mathbf{\mu},\mathbf{\Sigma}) $:
+$$ MGF_\mathbf{X}(t) = \Ebb[e^{\mathbf{t}^\top\mathbf{Z}}] = \exp(\mathbf{t}^\top\mathbf{\mu} + \frac{1}{2}\mathbf{t}^\top\mathbf{\Sigma}\mathbf{t})$$
+Thus, 
+\begin{align*}
+  \Ebb[e^{-a(Y+\epsilon)}] = \Ebb[e^{-a\mathbbm{1}^\top\mathbf{Z}}] &= \exp(-a\mathbbm{1}^\top\mu + \frac{1}{2}a^2\mathbbm{1}^\top\mathbf{\Sigma}\mathbbm{1}) \\
+  &= \exp(-a(\mu_Y - \mu_\epsilon)+\frac{1}{2}a^2(\sigma_Y^2 + 2\rho\sigma_Y\sigma_\epsilon + \sigma_\epsilon^2))
+\end{align*}
+
+On the other side, we can see that:
+\begin{align*}
+  \Ebb[e^{-a(Y-\pi)}] &= e^{a\pi}\Ebb[e^{-aY}] \\
+  &= e^{a\pi}e^{-a\mu_Y + \frac{1}{2}a^2\sigma_Y^2}
+\end{align*}
+ 
+Combining the two, we get:
+\begin{align*}
+  &e^{-a(\mu_Y-\mu_\epsilon) +\frac{1}{2}a^2(\sigma_Y^2 + 2\rho\sigma_Y\sigma_\epsilon + \sigma_\epsilon^2)} = e^{a\pi}e^{-a\mu_Y + \frac{1}{2}a^2\sigma_Y^2}\\
+  &\iff e^{a\pi} = e^{a\mu_\epsilon +\frac{1}{2}a^2(2\rho\sigma_Y\sigma_\epsilon + \sigma_\epsilon^2)}\\
+  &\iff \pi = \mu_\epsilon + \frac{1}{2}a(2\rho\sigma_Y\sigma_\epsilon + \sigma_\epsilon^2)
+\end{align*}
+Finally, the maximum insurance premium we are willing to pay to insure the risk of $\epsilon$ is $\mu_\epsilon + \frac{1}{2}a(2\rho\sigma_Y\sigma_\epsilon + \sigma_\epsilon^2)$.
+
+Furthermore, we can study how the premium evolves according to the five parameters of the random variable distributions. 
+We differentiate $\pi$ with respect to these variables:
+\begin{itemize}
+  \item $\frac{\partial\pi}{\partial\mu_\epsilon} = 1$
+  \item $\frac{\partial\pi}{\partial a} = \rho\sigma_Y\sigma_\epsilon + \sigma_\epsilon^2$
+  \item $\frac{\partial\pi}{\partial\rho} = a\sigma_Y\sigma_\epsilon$
+  \item $\frac{\partial\pi}{\partial\sigma_\epsilon} = a\rho\sigma_Y + \sigma_\epsilon$
+  \item $\frac{\partial\pi}{\partial\sigma_Y} = a\rho\sigma_\epsilon$
+\end{itemize}
   \end{exercise}
 \end{document}
 
