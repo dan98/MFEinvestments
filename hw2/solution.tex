@@ -196,8 +196,8 @@ print(round(stats.kurtosis(sample), 3))
     \centering
     \begin{tabular}{|c | c |}
       \hline
-      \mu & 0.072 \\ \hline
-      \sigma & 0.137 \\ \hline
+      $\mu$ & 0.072 \\ \hline
+      $\sigma$ & 0.137 \\ \hline
       g & -1.323 \\ \hline
       k &  1.953 \\\hline
     \end{tabular}
@@ -421,10 +421,100 @@ $r_f$ &        $\pi^* \times 100\%$ \\
  
       \end{figure}
 
+  \end{enumerate}
 
+\newpage
 
-  \end{itemize}
- 
+\end{exercise}
+
+	
+
+\begin{exercise}{3}
+
+	We compute the mean and variance of daily simple returns for the 5 companies at hand as well as the mean and variance of the 'winsorized' empirical distribution:
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c c c c||} 
+ 		\hline
+		& mean & 'winsorized' mean & variance & 'winsorized' variance \\ [0.5ex] 
+ 		\hline\hline
+ 		aapl & 0.001167 & 0.000705 & 0.000665 & 0.000262 \\ 
+ 		gs & 0.000437 & 0.000296 & 0.000547 & 0.000232 \\
+ 		msft & 0.000388 & 0.000309 & 0.000370 & 0.000192 \\
+ 		pg & 0.000306 & 0.000336 & 0.000177 & 0.000109 \\
+ 		ge & -9.246418e-05 & 4.680753e-05 & 0.000376 & 0.000184 \\ [1ex] 
+ \hline
+ \end{tabular}
+	\end{table}
+	
+	Moreover, we plot and compare the density function of stock returns with the normal distributions with empirical mean and variance and empirical 'winsorized' mean and variance. We do this for all 5 companies:
+	
+		\begin{figure}[H]
+	
+			\centering
+			\includegraphics[scale=0.7]{Figures/ex3_aapl.png}	
+			\caption{Density function of stock returns with empirical normal distributions (non-winsorized and winsorized) of aapl}	
+			\label{fig:ex3_aapl}
+	
+		\end{figure}
+		
+		\begin{figure}[H]
+	
+			\centering
+			\includegraphics[scale=0.7]{Figures/ex3_gs.png}	
+			\caption{Density function of stock returns with empirical normal distributions (non-winsorized and winsorized) of gs}	
+			\label{fig:ex3_gs}
+	
+		\end{figure}
+		
+		\begin{figure}[H]
+	
+			\centering
+			\includegraphics[scale=0.7]{Figures/ex3_msft.png}	
+			\caption{Density function of stock returns with empirical normal distributions (non-winsorized and winsorized) of msft}	
+			\label{fig:ex3_msft}
+	
+		\end{figure}
+		
+		\begin{figure}[H]
+	
+			\centering
+			\includegraphics[scale=0.7]{Figures/ex3_pg.png}	
+			\caption{Density function of stock returns with empirical normal distributions (non-winsorized and winsorized) of pg}	
+			\label{fig:ex3_pg}
+	
+		\end{figure}
+		
+		\begin{figure}[H]
+	
+			\centering
+			\includegraphics[scale=0.7]{Figures/ex3_ge.png}	
+			\caption{Density function of stock returns with empirical normal distributions (non-winsorized and winsorized) of ge}	
+			\label{fig:ex3_ge}
+	
+		\end{figure}
+
+	For each stock, we compute the $95\%$ and $99\%$ Value-at-Risk from the empirical distribution of returns and compare the values with those of a normal distribution with corresponding mean and variance:
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c c c c||} 
+ 		\hline
+		& $95\%$ VaR (empirical) & $99\%$ VaR (empirical)  & $95\%$ VaR (normal) & $99\%$ VaR (normal) \\ [0.5ex] 
+ 		\hline\hline
+ 		aapl & -0.038023 & -0.064111 & -0.041281 & -0.058868 \\ 
+ 		gs & -0.033770 & -0.062409 & -0.038048 & -0.053993 \\
+ 		msft & -0.028345 & -0.054692 & -0.031273 & -0.044392 \\
+ 		pg & -0.017401 & -0.034385 & -0.021615 & -0.030697 \\
+ 		ge & -0.029225 & -0.056332 & -0.032028 & -0.045260 \\ [1ex] 
+ \hline
+ 		\end{tabular}
+	\end{table}
+
+	We do the same for the Conditional Expected Shortfall:
+	
+	
 
 \end{exercise}
   
