@@ -15,6 +15,7 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{bbm}
+\usepackage{booktabs}
 \pgfplotsset{compat=1.5}
 
 \usepackage{listings}
@@ -42,7 +43,7 @@
     tabsize=2
 }
 
-\lstset{style=mystyle}
+\lstset{language=Python, style=mystyle}
 
 \usepackage{mathtools}
 
@@ -139,6 +140,251 @@ We differentiate $\pi$ with respect to these variables:
   \item $\frac{\partial\pi}{\partial\sigma_\epsilon} = a\rho\sigma_Y + \sigma_\epsilon$
   \item $\frac{\partial\pi}{\partial\sigma_Y} = a\rho\sigma_\epsilon$
 \end{itemize}
+
   \end{exercise}
+
+
+\begin{exercise}{2}(Value at Risk, Expected Shortfall, and Expected Utility)
+  \begin{enumerate}[(a)]
+    \item
+  In order to compute the moments of the given distribution, one can use the
+  built-in \textrm{NumPy} and \textrm{SciPy} functionality for samples. It is
+  easy to see that by creating a sample in which the prior probabilities are the
+  same as the ones given, the sample and the distribution moments will be the
+  same. This is, however, only applicable for discrete distributions.
+  \begin{lstlisting}
+#%% Imports
+
+import pandas as pd;
+import numpy as np;
+import matplotlib.pyplot as plt;
+
+import scipy.stats as stats;
+
+#%% Generating the Sample
+
+pr = np.array([0.025, 0.05, 0.10, 0.10, 0.10, 0.2, 0.2, 0.2, 0.025]);
+ret = np.array([-0.4, -0.2, -0.1, 0, 0.05, 0.1, 0.15, 0.20, 0.30]);
+
+
+sample = np.array([]);
+
+# Generate the sample with the given priors
+for i in range(pr.size):
+    # print(pr[i]);
+    for j in range(int(1000*pr[i])):
+        sample = np.append(sample, ret[i])
+
+
+#%% Plotting the sample (visualization)
+
+plt.figure();
+plt.hist(sample);
+plt.show();
+
+
+#%% Sub-item (a): Compute the moments of the distribution
+
+print(round(np.mean(sample), 3))
+print(round(np.std(sample), 3))
+print(round(stats.skew(sample), 3))
+print(round(stats.kurtosis(sample), 3))
+  \end{lstlisting}
+  As such, the computed values are:
+
+  \begin{figure}[H]
+    \centering
+    \begin{tabular}{|c | c |}
+      \hline
+      \mu & 0.072 \\ \hline
+      \sigma & 0.137 \\ \hline
+      g & -1.323 \\ \hline
+      k &  1.953 \\\hline
+    \end{tabular}
+    \caption{The moments of the distribution}
+  \end{figure}
+
+  From the moments, we observe that the mean of the distribution is positive,
+  but the distribution is negatively-skewed. For example, the lowest (negative)
+  return is bigger in absolute value than the highest possible positive return.
+  The kurtosis of any univariate normal distribution is 3. \textit{Excess
+    kurtosis} is defined as the kurtosis minus 3. In our case the excess
+  kurtosis is negative which classifies this distribution as a
+  \textit{platykurtic} or sometimes called sub-Gaussian distribution. This means
+  that the tales are thinner and sampling from it produces fewer and less
+  extreme outliers than does the normal distribution.
+\item
+  The Value-at-Risk $VAR_p$ is the loss $l$ such that the probability of a loss
+  higher than $l$ is bounded by $p$. For our discrete distribution this
+  equivalent to the quantile for which the left tail has a total probability of
+  $p$. For a discrete distribution, the values at risk are also discrete and as
+  $p$ increases from $0$ to $1$, the $VAR$ increases when sum of the left prefix
+  of the probabilities (left tail) becomes smaller than $p$. As such, $VAR_{1\%}
+  = -.40 \times \$ 100 = -\$ 40$
+  and $VAR_{5\%} = -.20 \times \$ 100 = -\$20$ because $1\% < 0.025$ and $0.025 < 5\% < 0.075$.
+
+ \item
+   By definition, the Expected Shortfall (ES) or the Conditional Tail
+   Expectation (CTE) is the mean of the values at risk with probability smaller
+   than $p$:
+   \begin{equation*}
+     ES_p = \frac 1 p \int_0^p VAR_\gamma d\gamma
+   \end{equation*}
+   For the distribution of asset returns it holds that:
+   \begin{equation*}
+     VAR_\gamma = \begin{cases} -\$ 40 & \gamma < 0.025 \\ -\$ 20 & 0.025 < \gamma < 0.075 \end{cases}
+   \end{equation*}
+
+   Hence, the Expected Shortfall at $5\%$ equals:
+   \begin{equation*}
+     ES_{5\%} = \frac{1}{5\%} \int_0^{5\%} VAR_\gamma d\gamma = \frac{1}{5\%} \left( 0.025 \times (-\$ 40) + 0.025 \times (-\$20) \right) = - \$ 30.
+   \end{equation*}
+
+   \item
+     The break-even risk-free rate can be computed by equating the utility of
+     the two scenarios: portfolio with all wealth invested in the risky asset
+     or the risk-free rate:
+     \begin{equation*}
+       \Ebb \big[ u\left((1 + r) \times W_0\right) \big] = u(r_f \times W_0)
+     \end{equation*}
+     where the Constant Elasticity of Substitution (CES) utility function is
+     \begin{equation*}
+       u(c) = \frac{c^{1 - \gamma}}{1 - \gamma}, \;\; \gamma = 2
+     \end{equation*}
+     Solving for $r_f$:
+     \begin{equation*}
+       r_f = \frac{u^{-1}\left( \Ebb\big[ u\left( (1+r) \times W_0 \right) \big] \right)}{W_0}
+     \end{equation*}
+
+     The following Python code computes the equivalent risk-free rate to stand
+     at $r_f = 5.03\%$. That is, given the customer's risk-averseness, he would
+     be willing to forgo $\mu - r_f = 2.22\%$ in expected return if the risk
+     is eliminated. The level of risk-free rate above which she would choose to
+     invest all her wealth in the risk-free asset is $5.03 \%$. This cut-off
+     rate decreases with the increase in the risk-aversion coefficient:
+     \begin{figure}[H]
+       \centering
+          \begin{tabular}{||c|c||}
+          \toprule
+          $\gamma$ &        $r_f$ \\
+          \midrule
+          2  &       5.03\% \\ \hline
+          3  &       3.59\% \\ \hline
+          4  &       1.87\% \\ \hline
+          5  &      -0.14\% \\ \hline
+          6  &      -2.46\% \\ \hline
+          7  &      -5.01\% \\ \hline
+          8  &      -7.68\% \\ \hline
+          9  &     -10.34\% \\ \hline
+          10 &     -12.88\% \\ \hline
+          11 &     -15.21\% \\ \hline
+          12 &     -17.31\% \\ \hline
+          13 &     -19.16\% \\ \hline
+          14 &     -20.79\% \\ \hline
+          \bottomrule
+          \end{tabular}
+      \end{figure}
+      The break-even rate decreases because the investor becomes more
+      risk-averse which translates into a lower risk-free rate that he would
+      accept just to eliminate any risk.
+    \begin{lstlisting}
+#%% Part (d) Utility
+
+def utility(w, gamma = 2):
+    return np.power(w, 1 - gamma)/(1 - gamma)
+
+def inverse_utility(u, gamma = 2):
+    return np.exp(np.log(u*(1 - gamma))/(1 - gamma))
+
+
+# Test the inverse utility function
+# print(inverse_utility(utility(400)));
+
+# 100% either in risky or risk-free
+
+gamma_range = range(2, 15)
+rf = pd.Series(data = np.zeros(len(gamma_range)),
+               index = gamma_range,
+               name = "rate")
+
+W0 = 100
+
+rf = [inverse_utility(np.mean([utility((1 + x) * W0, ra) for x in sample]), ra)/W0 - 1 for ra in gamma_range]
+"""
+for ra in gamma_range:
+    expected_utility = np.mean([utility((1 + x) * W0, ra) for x in sample])
+    rf[ra] = inverse_utility(expected_utility, ra) / W0 - 1
+"""
+    
+pf = pd.DataFrame(data = rf, index = gamma_range)
+pf.columns = ['rate']
+display(pf.style.format({"rate": lambda x: "{:.2%}".format(x)}))
+
+print('The breakeven risk-free asset is %.2f%%' % (pf.loc[2] * 100))
+
+print('The investor is willing to forgo %.2f%% in expected return' % ((mu - pf.loc[2])*100))
+    \end{lstlisting}
+    \item
+      If she can invest a fraction of her wealth in the risk-free asset, the
+      rate at which she will not choose to invest anything in the risk-free
+      asset is between $2\%$ and $2.5\%$ which is lower than the risk-free rate
+      found in the previous sub-item.
+      While the $r_f = 5.03\%$ risk-free rate generates the same amount of
+      utility as the risky asset alone, the two combined is able to produce more
+      utility because the investor compromises between return and risk by
+      investing in the risk-less asset and mitigating the unattractive risk.
+      At the same time, the investor will choose not to invest in the risk-free
+      rate if its rate is too disadvantageous and will choose to invest all of
+      its wealth in the risk-less asset if its return is at least the expected
+      return of the risky asset.
+
+      The rate at which she will not choose to
+      invest anything in the risk-free asset is lower than the risk-free rate
+      found in the previous sub-item because if it were higher or equal ($r'_f \geq 
+      r_f$), by
+      choosing not to invest in it at all, the utility generated will be
+      $\Ebb\left[ (1 + r) \times W_0 \right]$ while she could have generated more
+      utility by simply investing all $W_0$ in the risk-free rate:
+      $u(r'_f \times W_0) \geq u(r_f \times W_0) = \Ebb\left[ (1 + r) \times W_0
+      \right]$, hence contradiction.
+
+
+      \begin{figure}[H]
+        \centering
+       \begin{tabular}{||c|c||}
+\toprule
+$r_f$ &        $\pi^* \times 100\%$ \\
+\midrule
+0.000 &       0.00 \\ \hline
+0.005 &       0.00 \\ \hline
+0.010 &       0.00 \\ \hline
+0.015 &       0.00 \\ \hline
+0.020 &       0.00 \\ \hline
+0.025 &       5.00 \\ \hline
+0.030 &      10.00 \\ \hline
+0.035 &      20.00 \\ \hline
+0.040 &      30.00 \\ \hline
+0.045 &      35.00 \\ \hline
+0.050 &      45.00 \\ \hline
+0.055 &      55.00 \\ \hline
+0.060 &      70.00 \\ \hline
+0.065 &      80.00 \\ \hline
+0.070 &      95.00 \\ \hline
+0.075 &      100.00 \\ \hline
+\bottomrule
+\end{tabular}
+\caption{The optimal fraction of wealth to invest in the risk-free asset under
+  various risk-free rates}
+
+ 
+      \end{figure}
+
+
+
+  \end{itemize}
+ 
+
+\end{exercise}
+  
 \end{document}
 
