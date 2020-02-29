@@ -85,6 +85,7 @@ gamma = 2;
 # Start investing all the wealth in the risk-less asset at approx 7.2% return
 # it is higher than the equivalent risk-free interest rate providing the same
 # utility as the expectation of the utility of the risky return.
+
 for rf in np.arange(0.070, 0.074, 0.001):
     utility_pi = {};
     # invest pi in the risk-less asset
