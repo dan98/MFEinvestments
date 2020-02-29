@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1582991182 "solution.tex" "solution.pdf" "solution" 1582991182
+["pdflatex"] 1582992031 "solution.tex" "solution.pdf" "solution" 1582992031
   "/Users/daniel/Library/texlive/2019/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk" 1570523844 6964 4bf09e1fe39580b77a4aa413c9822e9c ""
   "/Users/daniel/Library/texlive/2019/texmf-var/fonts/pk/ljfour/public/bbm/bbm7.600pk" 1582982069 4840 9fb3c8de4112b3110ddabcaca2a44eeb ""
   "/Users/daniel/Library/texlive/2019/texmf-var/fonts/pk/ljfour/public/concmath-fonts/xccsy10.600pk" 1570518758 13276 cede9148e5d1cd22c6db345161b3cc61 ""
@@ -263,11 +263,11 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1570436273 4259636 39d0d3ba4c8f5a2147e22372e277a74d ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "solution.aux" 1582991121 804 7ad5a7ec85b49902e71bd4ba49fac3fd "pdflatex"
-  "solution.out" 1582991121 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "solution.tex" 1582991182 15211 96f7eefd7c4487103733299e824f0b35 ""
+  "solution.aux" 1582991185 1008 36c3c1224397106cd1bd6f431f252dee "pdflatex"
+  "solution.out" 1582991184 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "solution.tex" 1582992030 16386 d2e7de99b3dc44958c5a50494e680616 ""
   (generated)
   "solution.pdf"
-  "solution.out"
-  "solution.aux"
   "solution.log"
+  "solution.aux"
+  "solution.out"

@@ -347,6 +347,48 @@ print('The investor is willing to forgo %.2f%% in expected return' % ((mu - pf.l
       utility by simply investing all $W_0$ in the risk-free rate:
       $u(r'_f \times W_0) \geq u(r_f \times W_0) = \Ebb\left[ (1 + r) \times W_0
       \right]$, hence contradiction.
+      
+\begin{lstlisting}
+#%% Part (e)
+
+gamma = 2;
+# Start investing all the wealth in the risk-less asset at approx 7.2% return
+# it is higher than the equivalent risk-free interest rate providing the same
+# utility as the expectation of the utility of the risky return.
+
+rf_range = np.arange(0.000, 0.074, 0.005)
+
+pi_star = pd.Series(data = None, index = rf_range, name = "Pi*")
+
+for rf in rf_range:
+    utility_pi = {};
+    # invest pi in the risk-less assets
+    for pi in np.arange(0, 1 + 0.05, 0.05):
+        
+        utility_pi[pi] = np.mean([utility((1 + x) * W0 * (1 - pi) +
+                              (1 + rf) * W0 * pi, gamma) for x in sample]);
+    pi_star[rf] = max(utility_pi, key = utility_pi.get);
+    
+display(pi_star)
+
+#%%
+
+plt.figure()
+plt.plot(pi_star)
+plt.show()
+
+pi = pd.DataFrame(data = pi_star, index = rf_range)
+pi.index.names = ['rf']
+
+display(pi.style.format({"Pi*": lambda x: "{:.2}".format(x)}))
+print(pi.to_latex(float_format=lambda x: '%10.2f' % (x*100)))
+
+print('The breakeven risk-free asset is %.2f%%' % (pf.loc[2] * 100))
+
+print('The investor is willing to forfeit %.2f%% in expected return' % ((mu - pf.loc[2])*100))
+
+
+\end{lstlisting}
 
 
       \begin{figure}[H]
