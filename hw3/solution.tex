@@ -94,6 +94,45 @@
   \begin{exercise}{1}
 
 \end{exercise}
+
+\begin{exercise}{2}(Portfolio math)
+   First we show that a minimum variance frontier portfolio $w$ can be written as a convex combination of two minimum variance frontier portfolios $w_a$ and $w_b$.
+   $w$ is a minimum variance frontier portfolio if it solves the optimization problem. It can be written as: 
+   $$ w = \lambda\Sigma^{-1}\mathbbm{1}+ \gamma\Sigma^{-1}\mu$$ with $\lambda = \frac{C- \mu_pB}{\Delta}$ and $\gamma = \frac{\mu_pA-B}{\Delta}$. 
+
+   Consider now two arbitrary minimum variance porfolios $w_a$ and $w_b$ with returns $\mu_a$, $\mu_b$ respectively and write $w = \alpha w_a + (1-\alpha)w_b$. 
+   Then \begin{align*}
+    w &= \alpha (\lambda_a\Sigma^{-1}\mathbbm{1} + \gamma_a\Sigma^{-1}\mu) + (1-\alpha)(\lambda_b\Sigma^{-1}\mathbbm{1} + \gamma_b\Sigma^{-1}\mu) \\
+    &= (\alpha \lambda_a + (1-\alpha) \lambda_b)\Sigma^{-1}\mathbbm{1} + (\alpha \gamma_a + (1-\alpha) \gamma_b)\Sigma^{-1}\mu
+   \end{align*} 
+   But $A,B,C,D$ do not depend on the portfolio but only on the available assets so they do not change between $w_a$ and $w_b$. So we obtain:
+   $$ w = \frac{C- (\alpha\mu_a+(1-\alpha)\mu_b)B}{\Delta}\Sigma^{-1}\mathbbm{1} + \frac{(\alpha\mu_p + (1-\alpha)\mu_b)A-B}{\Delta}\Sigma^{-1}\mu$$
+
+  The return of $w$ equals $\alpha\mu_a+(1-\alpha)\mu_b$ and its variance is $\alpha^2 w_a^\top\Sigma w_a + (1-\alpha)^2 w_b^\top\Sigma w_b + \alpha(1-\alpha)w_a^\top\Sigma w_b$
+
+  Finally, $w$ is of the form of a minimum variance frontier portfolio solving the following optimization problem: 
+  $$ \min_{w} \frac{1}{2} w^\top\Sigma w \text{ such that } w^\top\mu = \alpha\mu_a+(1-\alpha)\mu_b \text{ and } w^\top\mathbbm{1} = 1$$
+  
+  Conversely, if we have the minimum variance portfolio $w$ and want to write it as a combination of two different portfolios $w_a$ and $w_b$ (with return $\mu_a$ and $\mu_b$), we can define $\alpha = \frac{\mu_p-\mu_b}{\mu_a-\mu_b}, 1- \alpha = \frac{\mu_a - \mu_p}{\mu_a - \mu_b}$. 
+  Thus, \begin{align*}
+    \alpha w_a + (1-\alpha)w_b &= \frac{C- (\alpha\mu_a+(1-\alpha)\mu_b)B}{\Delta}\Sigma^{-1}\mathbbm{1} + \frac{(\alpha\mu_p + (1-\alpha)\mu_b)A-B}{\Delta}\Sigma^{-1}\mu \\
+    &= \frac{C- (\mu_p)B}{\Delta}\Sigma^{-1}\mathbbm{1} + \frac{(\mu_p)A-B}{\Delta}\Sigma^{-1}\mu = w
+  \end{align*} because $ \frac{\mu_p-\mu_b}{\mu_a-\mu_b}\mu_a + \frac{\mu_a - \mu_p}{\mu_a - \mu_b}\mu_b = \frac{\mu_p(\mu_a-\mu_b)-\mu_a\mu_b + \mu_a\mu_b}{\mu_a-\mu_b} = \mu_p$
+\\
+  This proves that any minimum variance frontier portfolio can be replicated by a convex combination of two minimum variance frontier portfolios. 
+
+  For the second part of the exercise, we follow the hint. The expected return of the convex combination of the two portfolios is: $ \Ebb[Y] = wR + (1-w)R_{\text{min}}$. In addition, the variance of this portfolio is given by:
+  $$ Var(Y) = w^2Var(R) + (1-w)^2Var(R_{\text{min}}) + w(1-w)Cov(R,R_{\text{min}})$$
+  Since the global minimum-variance portfolio has the minimal variance among all portfolios, we can see that $Var(Y) \geq Var(R_{\text{min}})$ and this value is achieved when $w = 0$. 
+
+  To find the minimum algebraically, we can differentiate the variance with respect to $w$: $$ \frac{\partial Var(Y)}{\partial w } = 2wVar(R) - 2(1-w)Var(R_{\text{min}})+2(1-2w)Cov(R,R_{\text{min}})$$ and equate it with $0$:
+  $$ w(2Var(R) + 2Var(R_{\text{min}})-4Cov(R,R_{\text{min}})) = 2Var(R_{\text{min}})-2Cov(R,R_{\text{min}})$$ that leads to: 
+  $$ \hat{w} = \frac{Var(R_{\text{min}})-Cov(R,R_{\text{min}})}{Var(R)+Var(R_{\text{min}})-Cov(R,R_{\text{min}})}$$
+  But to be the unique minimum, $\hat{w}$ needs to be $0$ as we saw previously. 
+
+  Thus, $ Var(R_{\text{min}}) = Cov(R,R_{\text{min}})$.
+
+\end{exercise}
   
 \end{document}
 
