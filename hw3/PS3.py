@@ -53,4 +53,27 @@ mean_60_40 = np.dot(w_60_40,mu)
 std_60_40 = np.sqrt(w_60_40.transpose()@Cov@w_60_40)
 SR_60_40 = (mean_60_40 - R0)/std_60_40 #Shape Ratio
 
+w_RP_unlevered = np.array([1./data.std(),1./bonds.std(),0])
+w_RP_unlevered /= np.linalg.norm(w_RP_unlevered,1)
+
+RP_unlevered_mean = np.dot(w_RP_unlevered,mu)
+RP_unlevered_std = np.sqrt(w_RP_unlevered.transpose()@Cov@w_RP_unlevered)
+RP_unlevered_SR = (RP_unlevered_mean-R0)/RP_unlevered_std
+
+
+w_RP = np.array([1./data.std(),1./bonds.std(),1./bill.std()])
+w_RP /= np.linalg.norm(w_RP,1)
+temp = np.sqrt(w_RP.transpose()@Cov@w_RP)
+w_RP /= temp
+w_RP *= std_60_40
+
+RP_mean = np.dot(w_RP,mu)
+RP_std = np.sqrt(w_RP.transpose()@Cov@w_RP)
+RP_SR = (RP_mean-R0)/RP_std
+
+plot_mean = np.array([TAN_mean,mean_60_40,RP_mean,RP_unlevered_mean])
+plot_std = np.array([TAN_std,std_60_40,RP_std,RP_unlevered_std])
+plt.plot(plot_std,plot_mean,'x')
+
+
 
