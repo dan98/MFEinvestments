@@ -106,7 +106,7 @@
     where $\mathbbm{1}$ is the $N \times 1$ vector of ones. The maximization is
     then formulated in terms of the Lagrangian with no constraints as follows
     \begin{align*}
-      \Lcal = (R_f + (\mu - \mathbbm{1}R_0)^T \omega) - \gamma \frac 1 2 \omega^T \Sigma \omega.
+      \Lcal = (R_f + (\mu - \mathbbm{1}R_f)^T \omega) - \gamma \frac 1 2 \omega^T \Sigma \omega.
     \end{align*}
     
     The FOC condition with respect to $\omega$ reads as:
@@ -117,7 +117,7 @@
     \begin{align*}
       \omega^* = \gamma^{-1}\Sigma^{-1} \left( \mu - R_f \mathbbm{1} \right)
     \end{align*}
-    The $\omega^*$ is optimal since the Hessian $\frac{\partial \Lcal}{\partial \omega} =
+    The $\omega^*$ is optimal since the Hessian $\frac{\partial^2 \Lcal}{\partial \omega\partial \omega^\top} =
     -\Sigma$ which is negative semi-definite.
       \begin{align*}
         cov \left[R, R_p \right] &= cov \left[ R, R_f + (\omega^*)^T(R - R_f\mathbbm{1}) \right] \\
@@ -172,8 +172,9 @@
   \end{exercise}
 
 \begin{exercise}{2}(Portfolio math)
-   First we show that a minimum variance frontier portfolio $w$ can be written as a convex combination of two minimum variance frontier portfolios $w_a$ and $w_b$.
-   $w$ is a minimum variance frontier portfolio if it solves the optimization problem. It can be written as: 
+   First we show that a convex combination of two minimum variance frontier portfolios $w_a$ and $w_b$ is a minimum variance frontier portfolio.
+
+   $w$ is a minimum variance frontier portfolio if it solves the optimization problem and thus can be written as: 
    $$ w = \lambda\Sigma^{-1}\mathbbm{1}+ \gamma\Sigma^{-1}\mu$$ with $\lambda = \frac{C- \mu_pB}{\Delta}$ and $\gamma = \frac{\mu_pA-B}{\Delta}$. 
 
    Consider now two arbitrary minimum variance porfolios $w_a$ and $w_b$ with returns $\mu_a$, $\mu_b$ respectively and write $w = \alpha w_a + (1-\alpha)w_b$. 
@@ -184,7 +185,7 @@
    But $A,B,C,D$ do not depend on the portfolio but only on the available assets so they do not change between $w_a$ and $w_b$. So we obtain:
    $$ w = \frac{C- (\alpha\mu_a+(1-\alpha)\mu_b)B}{\Delta}\Sigma^{-1}\mathbbm{1} + \frac{(\alpha\mu_p + (1-\alpha)\mu_b)A-B}{\Delta}\Sigma^{-1}\mu$$
 
-  The return of $w$ equals $\alpha\mu_a+(1-\alpha)\mu_b$ and its variance is $\alpha^2 w_a^\top\Sigma w_a + (1-\alpha)^2 w_b^\top\Sigma w_b + \alpha(1-\alpha)w_a^\top\Sigma w_b$
+  The return of $w$ equals $\alpha\mu_a+(1-\alpha)\mu_b$ and its variance is $\alpha^2 w_a^\top\Sigma w_a + (1-\alpha)^2 w_b^\top\Sigma w_b + 2\alpha(1-\alpha)w_a^\top\Sigma w_b$
 
   Finally, $w$ is of the form of a minimum variance frontier portfolio solving the following optimization problem: 
   $$ \min_{w} \frac{1}{2} w^\top\Sigma w \text{ such that } w^\top\mu = \alpha\mu_a+(1-\alpha)\mu_b \text{ and } w^\top\mathbbm{1} = 1$$
@@ -198,7 +199,7 @@
   This proves that any minimum variance frontier portfolio can be replicated by a convex combination of two minimum variance frontier portfolios. 
 
   For the second part of the exercise, we follow the hint. The expected return of the convex combination of the two portfolios is: $ \Ebb[Y] = wR + (1-w)R_{\text{min}}$. In addition, the variance of this portfolio is given by:
-  $$ Var(Y) = w^2Var(R) + (1-w)^2Var(R_{\text{min}}) + w(1-w)Cov(R,R_{\text{min}})$$
+  $$ Var(Y) = w^2Var(R) + (1-w)^2Var(R_{\text{min}}) + 2w(1-w)Cov(R,R_{\text{min}})$$
   Since the global minimum-variance portfolio has the minimal variance among all portfolios, we can see that $Var(Y) \geq Var(R_{\text{min}})$ and this value is achieved when $w = 0$. 
 
   To find the minimum algebraically, we can differentiate the variance with respect to $w$: $$ \frac{\partial Var(Y)}{\partial w } = 2wVar(R) - 2(1-w)Var(R_{\text{min}})+2(1-2w)Cov(R,R_{\text{min}})$$ and equate it with $0$:
