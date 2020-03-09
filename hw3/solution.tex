@@ -59,6 +59,7 @@
 \newcommand{\C}{\mathbf{C}}
 \newcommand{\Pbb}{\mathbb{P}}
 \newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Lcal}{\mathcal{L}}
 \newcommand{\Acal}{\mathcal{A}}
 \newcommand{\Ecal}{\mathcal{E}}
 \newcommand{\Ebb}{\mathbb{E}}
@@ -91,9 +92,84 @@
 	
 	\maketitle
 
-  \begin{exercise}{1}
+  \begin{exercise}{1}(Efficient portfolios)
+    \begin{itemize}
+      \item
+    The return on the portfolio is linear in the returns of the risky assets and
+    the risk-free return:
 
-\end{exercise}
+    \begin{align*}
+      \mu_P &= \mu^T \omega + (1 - \mathbbm{1}^T \omega) R_f \\
+      \mu_P - R_f &= \mu^T \omega +  - \mathbbm{1}^T \omega R_f \\
+      \mu_P - R_f &= (\mu - R_f\mathbbm{1})^T \omega
+    \end{align*}
+    where $\mathbbm{1}$ is the $N \times 1$ vector of ones. The maximization is
+    then formulated in terms of the Lagrangian with no constraints as follows
+    \begin{align*}
+      \Lcal = (R_f + (\mu - \mathbbm{1}R_0)^T \omega) - \gamma \frac 1 2 \omega^T \Sigma \omega.
+    \end{align*}
+    
+    The FOC condition with respect to $\omega$ reads as:
+    \begin{align*}
+      \frac{\partial \Lcal}{\partial \omega} = \mu - \mathbbm{1} R_f - \gamma \Sigma \omega = 0
+    \end{align*}
+    and solving for $\omega$ yields the following optimal $\omega^*$:
+    \begin{align*}
+      \omega^* = \gamma^{-1}\Sigma^{-1} \left( \mu - R_f \mathbbm{1} \right)
+    \end{align*}
+    The $\omega^*$ is optimal since the Hessian $\frac{\partial \Lcal}{\partial \omega} =
+    -\Sigma$ which is negative semi-definite.
+      \begin{align*}
+        cov \left[R, R_p \right] &= cov \left[ R, R_f + (\omega^*)^T(R - R_f\mathbbm{1}) \right] \\
+        &= cov \left[ R, (\omega^*)^T R \right]a \\
+        &= cov \left[ R - \mu, R - \mu \right] \omega^* \\
+        &= var \left[ R, R \right] \omega^* \\
+        &= \Sigma \omega^* \\
+        &= \Sigma \gamma^{-1} \Sigma^{-1} (\mu - R_f \mathbbm{1}) \\
+        &=\gamma^{-1}(\mu - R_f \mathbbm{1}) \\
+        &\Downarrow \\
+          \gamma cov\left[ R, R_p \right]&= \mu - R_f\mathbbm{1} \;\;\; (\star)
+      \end{align*}
+      \item
+        \begin{align*}
+          \mu_P = \Ebb\left[ R_p \right] &= \Ebb\left[ R_f + \omega^T(R - R_f\mathbbm{1}) \right] \\
+          &= R_f + \omega^T ( \mu - R_f \mathbbm{1}) \\                                         &= \omega^T \mu + (1 - \omega^T \mathbbm{1}) R_f \\
+          &= \omega^T(\mu - \mathbbm{1}R_f) + R_f \\
+          &\stackrel{\star}{=} \omega^T\gamma cov\left[ R, R_p \right] + R_f \\
+          &= \gamma cov \left[ \omega^TR, R_p \right]+ R_f \\
+          &= \gamma cov \left[ R_p, R_p \right] + R_f\\
+          &= \gamma \sigma^2_P  + R_f\\
+          &\Downarrow \\
+          \mu_P - R_f &= \gamma \sigma_P^2\\
+          &\Downarrow \\
+          \gamma &= \frac{\mu_P - R_f}{\sigma_P^2}\\
+          & \Downarrow \\
+          (\mu - R_f \mathbbm{1}) &\stackrel{\star}{=} \gamma cov\left[ R, R_p \right] = \frac{cov\left[ R, R_p \right]}{\sigma_P^2} (\mu_P - R_f) = \beta_{P} (\mu_P - R_f)
+          \end{align*}
+          Where $\beta_{P} = (\beta_{1, P}, \ldots, \beta_{N, P})^T$.
+
+          \item
+            A linear regression model is
+            \begin{align*}
+              Y = X_1 \beta_1 + \cdots + X_N \beta_N + \epsilon
+            \end{align*}
+            with the following assumptions:
+            \begin{enumerate}[\textbf{A}1.]
+              \item \textbf{Linearity} between $Y$ and $X_i$.
+              \item \textbf{Full rank}  of $X$.
+              \item \textbf{Exogeneity}: $\Ebb\left[ \epsilon \mid X_1,
+                  \cdots, X_N \right] = 0$.
+              \item \textbf{Homoskedasticity and nonautocorrelation}: 
+                $cov(\epsilon_i, \epsilon_j | X_i, X_j) = 0 \;\; \forall i \neq j$
+                and $var(\epsilon_i \mid X_1, \ldots, X_N) = \sigma^2$.
+              \item \textbf{Normality of the errors}: $\epsilon \mid X_1,
+                \ldots, X_N \sim N(0, \sigma^2)$.
+            \end{enumerate}
+
+            
+
+    \end{itemize}
+  \end{exercise}
 
 \begin{exercise}{2}(Portfolio math)
    First we show that a minimum variance frontier portfolio $w$ can be written as a convex combination of two minimum variance frontier portfolios $w_a$ and $w_b$.
