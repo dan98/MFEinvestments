@@ -384,9 +384,17 @@
 	
 	\textbf{What explains the difference between the RP and RP-unlevered portfolio performance?}
 	
+	\smallbreak
+	
+	The RP-levered portfolio allows trade T-Bills while the unlevered RP-portfolio does not. The former thus allows to short the the riskless asset and maximize returns but face higher risk. This can be seen on Figure 1 where the RP-levered portfolio is higher up on the Capital Market Line (CML) compared to the RP-unlevered portfolio.
+	
 	\bigbreak	
 	
-	We now follow the same method but now by using the three-year monthly excess returns instead of the full sample. We obtain a mean of returns of the RP-unlevered portfolio using a rolling-window of $0.005280$ and a mean of returns of the RP-levrered portfolio using a rolling-window of $0.007845$. These metrics are almost identical (slightly lower) than their full-window counterparts. \textbf{Why?}
+	We now follow the same method but now by using the three-year monthly excess returns instead of the full sample. We obtain a mean of returns of the RP-unlevered portfolio using a rolling-window of $0.005280$ and a mean of returns of the RP-levrered portfolio using a rolling-window of $0.007845$. These metrics are almost identical (slightly lower) than their full-window counterparts. \textbf{How do the performances of these "rolling-window" RP strategies compare with that of the "full-window" strategies? Are they identical? Why?} 
+	
+	\smallbreak
+	
+	The performance of the portfolio using a rolling-window instead of the full-window strategy is lower. This is because the estimation of  the expected returns now depends on a smaller horizon. Moreover, the standard deviation is computed on subsamples in the case of using a rolling-window which in turn implies a higher error on its estimation (seen in the first lecture for the estimation of standard deviations).
 	
 	\bigbreak
 	
@@ -416,6 +424,12 @@
  			\hline
 		 \end{tabular}
 	\end{table}	
+	
+	\textbf{If the mean-variance investor could in addition invest in either the ”full-window” RP strategy or the ”rolling-window” RP strategy, would she want to do so? Explain what is AFP’s argument why risk-parity is actually a useful strategy.}
+	
+	\smallbreak
+	
+	
 
 \end{exercise}
   
