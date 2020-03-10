@@ -116,8 +116,8 @@
     \begin{align*}
       \omega^* = \gamma^{-1}\Sigma^{-1} \left( \mu - R_f \mathbbm{1} \right)
     \end{align*}
-    The $\omega^*$ is optimal since the Hessian $\frac{\partial \Lcal}{\partial \omega} =
-    -\Sigma$ is negative semi-definite.
+    The $\omega^*$ is optimal since the Hessian $\frac{\partial^2 \Lcal}{\partial \omega\partial \omega^\top} =
+    -\Sigma$ which is negative semi-definite.
       \begin{align*}
         cov \left[R, R_p \right] &= cov \left[ R, R_f + (\omega^*)^T(R - R_f\mathbbm{1}) \right] \\
         &= cov \left[ R, (\omega^*)^T R \right]a \\
@@ -258,8 +258,9 @@
   \end{exercise}
 
 \begin{exercise}{2}(Portfolio math)
-   First we show that a minimum variance frontier portfolio $w$ can be written as a convex combination of two minimum variance frontier portfolios $w_a$ and $w_b$.
-   $w$ is a minimum variance frontier portfolio if it solves the optimization problem. It can be written as: 
+   First we show that a convex combination of two minimum variance frontier portfolios $w_a$ and $w_b$ is a minimum variance frontier portfolio.
+
+   $w$ is a minimum variance frontier portfolio if it solves the optimization problem and thus can be written as: 
    $$ w = \lambda\Sigma^{-1}\mathbbm{1}+ \gamma\Sigma^{-1}\mu$$ with $\lambda = \frac{C- \mu_pB}{\Delta}$ and $\gamma = \frac{\mu_pA-B}{\Delta}$. 
 
    Consider now two arbitrary minimum variance porfolios $w_a$ and $w_b$ with returns $\mu_a$, $\mu_b$ respectively and write $w = \alpha w_a + (1-\alpha)w_b$. 
@@ -270,7 +271,7 @@
    But $A,B,C,D$ do not depend on the portfolio but only on the available assets so they do not change between $w_a$ and $w_b$. So we obtain:
    $$ w = \frac{C- (\alpha\mu_a+(1-\alpha)\mu_b)B}{\Delta}\Sigma^{-1}\mathbbm{1} + \frac{(\alpha\mu_p + (1-\alpha)\mu_b)A-B}{\Delta}\Sigma^{-1}\mu$$
 
-  The return of $w$ equals $\alpha\mu_a+(1-\alpha)\mu_b$ and its variance is $\alpha^2 w_a^\top\Sigma w_a + (1-\alpha)^2 w_b^\top\Sigma w_b + \alpha(1-\alpha)w_a^\top\Sigma w_b$
+  The return of $w$ equals $\alpha\mu_a+(1-\alpha)\mu_b$ and its variance is $\alpha^2 w_a^\top\Sigma w_a + (1-\alpha)^2 w_b^\top\Sigma w_b + 2\alpha(1-\alpha)w_a^\top\Sigma w_b$
 
   Finally, $w$ is of the form of a minimum variance frontier portfolio solving the following optimization problem: 
   $$ \min_{w} \frac{1}{2} w^\top\Sigma w \text{ such that } w^\top\mu = \alpha\mu_a+(1-\alpha)\mu_b \text{ and } w^\top\mathbbm{1} = 1$$
@@ -284,7 +285,7 @@
   This proves that any minimum variance frontier portfolio can be replicated by a convex combination of two minimum variance frontier portfolios. 
 
   For the second part of the exercise, we follow the hint. The expected return of the convex combination of the two portfolios is: $ \Ebb[Y] = wR + (1-w)R_{\text{min}}$. In addition, the variance of this portfolio is given by:
-  $$ Var(Y) = w^2Var(R) + (1-w)^2Var(R_{\text{min}}) + w(1-w)Cov(R,R_{\text{min}})$$
+  $$ Var(Y) = w^2Var(R) + (1-w)^2Var(R_{\text{min}}) + 2w(1-w)Cov(R,R_{\text{min}})$$
   Since the global minimum-variance portfolio has the minimal variance among all portfolios, we can see that $Var(Y) \geq Var(R_{\text{min}})$ and this value is achieved when $w = 0$. 
 
   To find the minimum algebraically, we can differentiate the variance with respect to $w$: $$ \frac{\partial Var(Y)}{\partial w } = 2wVar(R) - 2(1-w)Var(R_{\text{min}})+2(1-2w)Cov(R,R_{\text{min}})$$ and equate it with $0$:
@@ -296,6 +297,213 @@
 
 
 \end{exercise}
+
+\newpage
+
+\begin{exercise}{3}
+
+	After downloading the data, we compute the mean return, standard deviation, and correlation matrix for returns over the entire sample period.
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Mean of returns \\ [0.5ex] 
+ 			\hline\hline
+ 			vwretd & 0.008877 \\ 
+ 			b2ret & 0.004718 \\
+ 			tmytm & 0.003626 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Standard deviation of returns \\ [0.5ex] 
+ 			\hline\hline
+ 			vwretd & 0.043508 \\ 
+ 			b2ret & 0.008161 \\
+ 			tmytm & 0.002559 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c c c||} 
+ 			\hline
+ 			Correlation matrix of returns & & &  \\ [0.5ex] 
+ 			\hline\hline
+ 			& vwretd & b2ret & tmytm \\
+ 			vwretd & 1.000000 & 0.092795 & -0.021777 \\ 
+ 			b2ret & 0.092795 & 1.000000 & 0.240501 \\
+ 			tmytm & -0.021777 & 0.240501 & 1.000000\\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}
+	
+	The Tangency portfolio can be computed with the following formula:
+	
+	\begin{align*}
+		w_{tan} = \frac{\Sigma^{-1}(\mu - R_{0}\textbf{1})}{B - AR_{0}}		
+	\end{align*}
+	
+	Where
+	
+	\begin{align*}
+		A = \textbf{1'}\Sigma^{-1}\textbf{1}
+	\end{align*}
+	
+	And 
+	
+	\begin{align*}
+		B = \textbf{1'}\Sigma^{-1}\mu
+	\end{align*}
+	
+	We obtain weights of $14\%$ in the stock and $86\%$ in the bond. The mean, standard deviation and Sharpe ratio of the Tangency portfolio are the following
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Metrics of tangency portfolio \\ [0.5ex] 
+ 			\hline\hline
+ 			mean & 0.005309 \\ 
+ 			std & 0.009761 \\
+ 			Sharpe ratio & 0.172410 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+
+	We do the same for a portfolio that invests $60\%$ in stocks and $40\%$ in bonds (the 60/40 portfolio):
+
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Metrics of 60/40 portfolio \\ [0.5ex] 
+ 			\hline\hline
+ 			mean & 0.007213 \\ 
+ 			std & 0.026607 \\
+ 			Sharpe ratio & 0.134831 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+	
+	Where we have computed the mean of a portfolio as follows
+	
+	\begin{align*}
+		\mu_{p} = w'\mu
+	\end{align*}
+	
+	The portfolio standard deviation
+	
+	\begin{align*}
+		\sigma_{p} = \sqrt[]{w'\Sigma w}
+	\end{align*}
+
+	And finally the Sharpe ratio
+	
+	\begin{align*}
+		SR = \frac{\mu - \bar{R}^{f}}{\sigma}
+	\end{align*}
+	
+	We then compute the unlevered risk-parity (RP) portfolio following the AFP paper
+	
+	\begin{align*}
+		w_{i, unleverd} = \frac{1}{\sum_{i} \hat{\sigma}_{i}^{-1}} \hat{\sigma}^{-1}_{i}
+	\end{align*}
+	
+	We find that approximately $15\%$ should be invested in stocks and $85\%$ in bonds. The metrics of this portfolio are the following
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Metrics of RP-unlevered portfolio \\ [0.5ex] 
+ 			\hline\hline
+ 			mean & 0.005358 \\ 
+ 			std & 0.010057 \\
+ 			Sharpe ratio & 0.172252 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+	
+	We perform similarly for the levered RP portfolio where the weights are computed as follows
+	
+	\begin{align*}
+		w_{levered} = \frac{\sigma_{60/40}}{\sigma_{RP-unlevered}} w_{RP-unlevered}
+	\end{align*}
+	
+	Since the weights don't add up to 1, we conclude that we have to go short on T-bills by
+	
+	\begin{align*}
+		1 - \sum_{i} w_{i, levered}
+	\end{align*}
+
+	We find that we need to invest $41\%$ in stocks, $224\%$ in bonds and $-165\%$ in T-Bills. The metrics of this portfolio are the following
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Metrics of RP-levered portfolio \\ [0.5ex] 
+ 			\hline\hline
+ 			mean & 0.008209 \\ 
+ 			std & 0.026607 \\
+ 			Sharpe ratio & 0.172252 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+
+	We plot the RP-levered and RP-unlevered portfolios on the efficient frontier along with the Tangency and 60/40 portfolio:
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.8]{figures/ex3.png}	
+		\caption{RP-levered, RP-unlevered, Tangency, and 60/40 portfolio with efficient frontier}	
+		\label{fig:ex3}
+	
+	\end{figure} 
+	
+	\textbf{What explains the difference between the RP and RP-unlevered portfolio performance?}
+	
+	\bigbreak	
+	
+	We now follow the same method but now by using the three-year monthly excess returns instead of the full sample. We obtain a mean of returns of the RP-unlevered portfolio using a rolling-window of $0.005280$ and a mean of returns of the RP-levered portfolio using a rolling-window of $0.007845$. These metrics are almost identical (slightly lower) than their full-window counterparts. \textbf{Why?}
+	
+	\bigbreak
+	
+	We now consider an investor who has a mean-variance utility U
+	
+	\begin{align*}
+		U = \mu_{p} - \frac{a}{2}\sigma^{2}_{p}
+	\end{align*}
+	
+	Using the full-sample estimates of the means and covariance matrix stocks and bonds, the optimal portfolio can be computed as follows:
+	
+	\begin{align*}
+		w_{0} = \frac{1}{a} \Sigma^{-1} (\mu  - R_{0}\textbf{1})
+	\end{align*}
+	
+	We end up with $42\%$ in stocks, $253\%$ in bonds and $-195\%$ in T-Bills. The metrics are the following
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Metrics of optimal portfolio \\ [0.5ex] 
+ 			\hline\hline
+ 			mean & 0.008580 \\ 
+ 			std & 0.028735 \\
+ 			Sharpe ratio & 0.172410 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+
+\end{exercise}
   
 \end{document}
-
