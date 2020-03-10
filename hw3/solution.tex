@@ -116,8 +116,8 @@
     \begin{align*}
       \omega^* = \gamma^{-1}\Sigma^{-1} \left( \mu - R_f \mathbbm{1} \right)
     \end{align*}
-    The $\omega^*$ is optimal since the Hessian $\frac{\partial^2 \Lcal}{\partial \omega\partial \omega^\top} =
-    -\Sigma$ which is negative semi-definite.
+    The $\omega^*$ is optimal since the Hessian $\frac{\partial^2
+      \Lcal}{\partial \omega\partial \omega^\top} = -\Sigma$ is negative semi-definite.
       \begin{align*}
         cov \left[R, R_p \right] &= cov \left[ R, R_f + (\omega^*)^T(R - R_f\mathbbm{1}) \right] \\
         &= cov \left[ R, (\omega^*)^T R \right]a \\
@@ -263,7 +263,7 @@
    $w$ is a minimum variance frontier portfolio if it solves the optimization problem and thus can be written as: 
    $$ w = \lambda\Sigma^{-1}\mathbbm{1}+ \gamma\Sigma^{-1}\mu$$ with $\lambda = \frac{C- \mu_pB}{\Delta}$ and $\gamma = \frac{\mu_pA-B}{\Delta}$. 
 
-   Consider now two arbitrary minimum variance porfolios $w_a$ and $w_b$ with returns $\mu_a$, $\mu_b$ respectively and write $w = \alpha w_a + (1-\alpha)w_b$. 
+   Subsequently consider two arbitrary minimum variance porfolios $w_a$ and $w_b$ with returns $\mu_a$, $\mu_b$ respectively and write $w = \alpha w_a + (1-\alpha)w_b$. 
    Then \begin{align*}
     w &= \alpha (\lambda_a\Sigma^{-1}\mathbbm{1} + \gamma_a\Sigma^{-1}\mu) + (1-\alpha)(\lambda_b\Sigma^{-1}\mathbbm{1} + \gamma_b\Sigma^{-1}\mu) \\
     &= (\alpha \lambda_a + (1-\alpha) \lambda_b)\Sigma^{-1}\mathbbm{1} + (\alpha \gamma_a + (1-\alpha) \gamma_b)\Sigma^{-1}\mu
