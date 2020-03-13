@@ -95,5 +95,75 @@
   \begin{exercise}{1}
    
 \end{exercise}
+
+\newpage
+
+\begin{exercise}{2}
+
+	After downloading the daily returns on the Amazon stock from CRSP, the CRSP value-weighted market return, and the short-term t-bill from 2009 to 2019, we plot our results
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.8]{figures/ex2_1.png}	
+		\caption{Daily returns for 10 years of the Amazon stock (ret), the CRSP value-weighted  market return (vwretd) and the short-term t-bill (tdyld)}	
+		\label{fig:ex2_1}	
+	
+	\end{figure} 
+	
+ 	Before continuing our analysis, we compute the excess returns using the t-bill rate as the risk-free rate. We then compute the covariance matrix of these excess returns which gives us
+	
+	\begin{align*}
+		\begin{pmatrix}
+			0.000447 & 0.000117\\
+			0.000117 & 0.000107
+		\end{pmatrix}			
+	\end{align*}	 
+	
+	Where the first element of the diagonal represents the variance of the excess returns on the Amazon stock and the second element of the diagonal the variance of the excess returns on the CRSP value-weighted market return. The non-diagonal elements are simply the covariance elements of the 2 aforementioned quantities. 	
+	
+	\smallbreak
+	
+	Computing the beta becomes straightforwards
+	
+	\begin{align*}
+		\beta = \frac{Cov(R, R_{M})}{Var(R_{M})} = 1.091364
+	\end{align*}
+
+	We now plot the rolling-window estimate of the beta of the stock using six month data-window. We also plot the adjusted beta series using the Bloomberg formula 
+	
+	\begin{align*}
+		\beta_{adj} = w \times \beta_{est} + (1 - w) \times \beta_{avg}
+	\end{align*}
+	
+	Where $\beta_{avg} = 1 $ and $w = 2/3$. We also plot the constant beta found above.
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.8]{figures/ex2_2.png}	
+		\caption{Beta series of rolling-window estimate of beta, adjusted beta and constant beta using real data}	
+		\label{fig:ex2_2}
+				
+	\end{figure}	
+
+	We now simulated 10 years of data of excess returns for a stock that satisfies the CAPM equation. Using the formula below, we are able to compute idiosyncratic risk of the stock
+	
+	\begin{align*}
+		Var(\epsilon) = Var(R) - \beta^{2} Var(R_{M})
+	\end{align*}
+	
+	Below is the plot of the rolling-window estimate for the beta using simulated data this time (together with the adjusted and constant beta series)
+	
+	\begin{figure}[H]
+	
+		\centering
+		\includegraphics[scale=0.8]{figures/ex2_3.png}	
+		\caption{Beta series of rolling-window estimate of beta, adjusted beta and constant beta using simulated data}	
+		\label{fig:ex2_2}
+				
+	\end{figure}
+		
+\end{exercise}
   
 \end{document}
