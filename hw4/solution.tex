@@ -174,8 +174,21 @@
 
 \newpage
 
-\begin{exercise}{4}
-
+\begin{exercise}{4} 
+	
+\begin{itemize}
+	\item We know that the optimal portfolio when holding the riskless asset is given by: $$ w = \frac{1}{a}\Sigma^{-1}(\mu-R_0\mathbbm{1})$$
+	And with the given values, we find the following weights in the mean-variance portfolio: $$ w_0 = (0.7154,-0.4465,-0.2423)$$ The sum of the three weights equals $0.0266$, so the investor borrows this amount at the risk-free rate to invest in the risky portfolio. 
+	\item As all investors are mean-variance investors, they should invest in the optimal portfolio given in the previous point, with their respective risk aversion parameter $a$. \textbf{SAME $a$ for everybody?? so market portfolio = $w_0$ ?? }
+	\item \textbf{depends on the previous answer ...}
+	\item Since the risk-free asset is in net zero supply, this means that if X borrows money at rate $R_0$, he can only achieve it with investor Y. There is no bank. So investor Y has to lend money to X at rate $R_0$. His position in the riskless asset is $-0.0266$.  
+	\item The optimal portfolio is given by the mean-variance optimal weights with no risk-free asset, but with the constraint $w'\mathbbm{1} = 1 + 0.0266 = 1.0266$.
+	We can write the Lagrangian with this constraint and we obtain:
+	$$ \lambda = \frac{B - 1.0266a}{A} $$ and
+	$$ \tilde{w} = \frac{1}{a}\Sigma^{-1}(\mu-\frac{B-1.0266a}{A}\mathbbm{1})$$
+	This gives the following portfolio: $\tilde{w} = (0.4039,0.3405,0.2821)$.
+	\item ?
+\end{itemize}
 \end{exercise}
   
 \end{document}
