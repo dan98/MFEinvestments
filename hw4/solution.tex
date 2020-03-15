@@ -178,9 +178,12 @@
 	
 \begin{itemize}
 	\item We know that the optimal portfolio when holding the riskless asset is given by: $$ w = \frac{1}{a}\Sigma^{-1}(\mu-R_0\mathbbm{1})$$
-	And with the given values, we find the following weights in the mean-variance portfolio: $$ w_0 = (0.7154,-0.4465,-0.2423)$$ The sum of the three weights equals $0.0266$, so the investor borrows this amount at the risk-free rate to invest in the risky portfolio. 
+	And with the given values, we find the following weights in the mean-variance portfolio: $$ w_0 = (0.4846,0.3724,0.2978)$$ The sum of the three weights equals $1.1548$, so the investor borrows $0.1548$ at the risk-free rate to invest in the risky portfolio. 
 	\item As all investors are mean-variance investors, they should invest in the optimal portfolio given in the previous point, with their respective risk aversion parameter $a$. \textbf{SAME $a$ for everybody?? so market portfolio = $w_0$ ?? }
-	\item \textbf{depends on the previous answer ...}
+	The market portfolio is given by the expression: 
+	$$w_M = \sum_{i=1}^l{\frac{W_i}{W}w_i} = w_0\frac{\sum_{i=1}^l{W_i}}{W} = w_0$$
+	So the market return is $R_M = w_M'\mu = 11.17\%$ and the standard deviation of returns is $\sigma_M = \sqrt{w_M'\Sigma w_M} = 0.1039$.
+	\item a = 5?
 	\item Since the risk-free asset is in net zero supply, this means that if X borrows money at rate $R_0$, he can only achieve it with investor Y. There is no bank. So investor Y has to lend money to X at rate $R_0$. His position in the riskless asset is $-0.0266$.  
 	\item The optimal portfolio is given by the mean-variance optimal weights with no risk-free asset, but with the constraint $w'\mathbbm{1} = 1 + 0.0266 = 1.0266$.
 	We can write the Lagrangian with this constraint and we obtain:
