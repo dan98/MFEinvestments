@@ -179,18 +179,21 @@
 \begin{itemize}
 	\item We know that the optimal portfolio when holding the riskless asset is given by: $$ w = \frac{1}{a}\Sigma^{-1}(\mu-R_0\mathbbm{1})$$
 	And with the given values, we find the following weights in the mean-variance portfolio: $$ w_0 = (0.4846,0.3724,0.2978)$$ The sum of the three weights equals $1.1548$, so the investor borrows $0.1548$ at the risk-free rate to invest in the risky portfolio. 
-	\item As all investors are mean-variance investors, they should invest in the optimal portfolio given in the previous point, with their respective risk aversion parameter $a$. \textbf{SAME $a$ for everybody?? so market portfolio = $w_0$ ?? }
-	The market portfolio is given by the expression: 
-	$$w_M = \sum_{i=1}^l{\frac{W_i}{W}w_i} = w_0\frac{\sum_{i=1}^l{W_i}}{W} = w_0$$
-	So the market return is $R_M = w_M'\mu = 11.17\%$ and the standard deviation of returns is $\sigma_M = \sqrt{w_M'\Sigma w_M} = 0.1039$.
-	\item a = 5?
-	\item Since the risk-free asset is in net zero supply, this means that if X borrows money at rate $R_0$, he can only achieve it with investor Y. There is no bank. So investor Y has to lend money to X at rate $R_0$. His position in the riskless asset is $-0.0266$.  
-	\item The optimal portfolio is given by the mean-variance optimal weights with no risk-free asset, but with the constraint $w'\mathbbm{1} = 1 + 0.0266 = 1.0266$.
-	We can write the Lagrangian with this constraint and we obtain:
-	$$ \lambda = \frac{B - 1.0266a}{A} $$ and
-	$$ \tilde{w} = \frac{1}{a}\Sigma^{-1}(\mu-\frac{B-1.0266a}{A}\mathbbm{1})$$
-	This gives the following portfolio: $\tilde{w} = (0.4039,0.3405,0.2821)$.
-	\item ?
+	\item As all investors are mean-variance investors, they should invest in the optimal portfolio given in the previous point, with their respective risk aversion parameter $a$. We can use the relation given in the lecture to find the market portfolio: 
+	$$w_0 = \frac{B-AR_0}{a}w_{tan}$$ and we also know that the tangency portfolio equals the market portfolio. This leads to the market weights: 
+	$$ w_M = (0.4196, 0.3225, 0.2579)$$
+	So the market return is $R_M = w_M'\mu = 9.68\%$ and the standard deviation of returns is $\sigma_M = \sqrt{w_M'\Sigma w_M} = 9.00\%$.
+	\item A mean-variance investor will only invest in the market portfolio if the optimal portfolio is the same as the tangency portfolio (and thus the market one). So we require the condition $w_0 = w_{tan}$ that is equivalent with the previous equation to: $a_M = B-AR_0$. Thus, the economy-wide aggregate risk aversion is $a_M = 5.7742$. 
+	\\
+	So the implicit risk-aversion implied by the market portfolio is higher than the risk-aversion of investor X ($a=5$). This is consistent since X is borrowing at the risk-free rate whereas holders of the market portfolio do not lend or borrow on the riskless asset. Therefore, the economy-wide risk-aversion is expected to be higher. 
+	\item Since the risk-free asset is in net zero supply, this means that if X borrows money at rate $R_0$, he can only achieve it with investor Y. There is no bank. So investor Y has to lend money to X at rate $R_0$. His position in the riskless asset is $-0.1548$ because they have the same initial wealth.  
+	\item The optimal portfolio is given by the mean-variance optimal weights with no risk-free asset, but with the constraint $w'\mathbbm{1} = 1 - 0.1548 = 0.8452$ as Y has to lend this amount to X and it is required that they have the same initial wealth (the weights sum to $1$ with the risk-free weight).
+	The optimal portfolio for investor Y should then satisfy the constraint: $w_Y'\mathbbm{1} = 0.8452$. 
+	
+	This is equivalent with $\mathbbm{1}'(\frac{1}{a_Y}\Sigma^{-1}(\mu-R_0\mathbbm{1}))= 0.8425$ and it is solved by $a_Y = 6.8317$. So this risk-aversion is much higher than the one of X because Y is lending in the riskless asset. 
+
+	Finally, the optimal portfolio for investor Y is $$w_Y = \frac{1}{a_Y}\Sigma^{-1}(\mu-R_0\mathbbm{1}) = (0.3546, 0.2726, 0.2180)$$
+
 \end{itemize}
 \end{exercise}
   
