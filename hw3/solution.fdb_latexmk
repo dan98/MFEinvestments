@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1583827173 "solution.tex" "solution.pdf" "solution" 1583827173
+["pdflatex"] 1584391175 "solution.tex" "solution.pdf" "solution" 1584391181
   "/Users/daniel/Library/texlive/2019/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk" 1570523844 6964 4bf09e1fe39580b77a4aa413c9822e9c ""
   "/Users/daniel/Library/texlive/2019/texmf-var/fonts/pk/ljfour/public/concmath-fonts/xccsy10.600pk" 1570518758 13276 cede9148e5d1cd22c6db345161b3cc61 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
@@ -36,7 +36,6 @@
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/ecc/eorm6.tfm" 1136768653 3208 551e1cbe065c87b3488910e53c607663 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/ecc/eorm7.tfm" 1136768653 3220 f430b7fe9b0cc216fa5855cd8b4f3a22 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/ecc/eorm8.tfm" 1136768653 3208 f4ad74de91b321fde13c6755421e0340 ""
-  "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/ecc/eoti10.tfm" 1136768653 2868 9c234fdac11a397f3163497ea0a27a1b ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/eulervm/zeuex10.tfm" 1170375113 1100 df4a2e32feb1018ab7cadccbd3b36cc5 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/eulervm/zeurm10.tfm" 1170375113 1408 5ab706b0cf7ada23e6d5ade78caa495e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/eulervm/zeurm5.tfm" 1170375113 1412 20fa45624b824451fdb086dc43ba3202 ""
@@ -69,7 +68,6 @@
   "/usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sform10.pfb" 1215737283 127772 65c9e532151a90baf750b54ab63c88ac ""
   "/usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sform5.pfb" 1215737283 130755 1120302aff9694fb79a999df17c245ce ""
   "/usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sform7.pfb" 1215737283 128188 ce7605e344d03c858f44e86314887ce5 ""
-  "/usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfoti10.pfb" 1215737283 170923 bca3ac575d27becc31a60ba37532367d ""
   "/usr/local/texlive/2019/texmf-dist/fonts/vf/public/eulervm/zeuex10.vf" 1170375113 860 44fdac6c57269a45f8f95eb68b24d6ec ""
   "/usr/local/texlive/2019/texmf-dist/fonts/vf/public/eulervm/zeurm10.vf" 1170375113 924 7c0edb062253eb3de516d1194d1a2f55 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/vf/public/eulervm/zeurm5.vf" 1170375113 920 fea7b2c3e034f056dc18db51a773a87f ""
@@ -251,11 +249,11 @@
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1570436273 4259636 39d0d3ba4c8f5a2147e22372e277a74d ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
   "figures/ex3.png" 1583826903 34776 839843a7c5a64438bf1b481f3f873984 ""
-  "solution.aux" 1583826993 1128 e65bab2cc89fcbed1227240cc3c62033 "pdflatex"
-  "solution.out" 1583826993 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "solution.tex" 1583827159 20385 9e2620fd93d36c94672e03e15e1092f2 ""
+  "solution.aux" 1584391181 972 b2b16657bb8bf587e2d47ba2e6f1a389 "pdflatex"
+  "solution.out" 1584391180 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "solution.tex" 1583836407 17370 72cb0ca73187a55b4a9906a345ba73b2 ""
   (generated)
-  "solution.pdf"
-  "solution.aux"
   "solution.log"
   "solution.out"
+  "solution.pdf"
+  "solution.aux"
