@@ -88,12 +88,50 @@
 	
   \renewcommand{\qedsymbol}{\smiley}
 	\title{Investments Class \\ Problem set 4}
-	\author{Daniel Grosu, William Martin, Denis Steffen}
+	\author{Daniel Grosu, William Martin, Denis Stiffen}
 	
 	\maketitle
 
-  \begin{exercise}{1}
-   
+\begin{exercise}{1}(Risk Decomposition)
+      A readout of the standard deviation of error between
+      \textrm{03/17/08} and \textrm{03/14/11}, daily adjusted, figures up to
+      $1.420\%$. To transform that into annualized units of variance, we perform
+      the following computation:
+
+      \begin{align*}
+        var\left[ \epsilon \right] = \Delta^{-1} \sigma_{\Delta}^2 = 252 \times (1,420 \%)^2 = 508,13 \%^2.
+      \end{align*}
+      Where $252$ is the number of trading days in one year.
+      The above error term is the volatility after controlling for market
+      returns, hence it is the so-called idiosyncratic or diversifiable risk
+      which in percentage units is
+
+      \begin{align*}
+        v_i = \sqrt{var\left[ \epsilon \right]} = 22,54 \%
+      \end{align*}
+
+      The raw beta of the Philip Morris International US Equity is $\beta =
+      0.635$. The digest of statistical numbers in the sidebar does not contain
+      the variance of the market return, but we can compute it by combining the
+      $R^2$ and the $\beta$ statistics:
+
+      \begin{align*}
+        R^2 &= \frac{\beta_i^2 \sigma_M^2}{\beta_i^2 \sigma_M^2 + v_i^2} \\
+        \sigma_M^2 &= \frac{R^2 v_i^2}{(1 - R^2) \beta_i^2} \\
+        \sigma_M &= \sqrt{\frac{R^2}{(1 - R^2)}}\frac{v_i}{\beta_i} \\
+        \sigma_M &= \sqrt{\frac{0.416}{1 - 0.416}} \frac{22.54\%}{0.635} = 29,96\%
+      \end{align*}
+
+      The systematic risk then is:
+      \begin{align*}
+        \beta_i^2 \sigma_M^2 = (0.635)^2(29,96\%)^2 = 361,93\%^2 = (19,02\%)^2
+      \end{align*}
+
+      The total risk $var\left[ R \right]$ is the sum of the systematic and the
+      idiosyncratic risk:
+      \begin{align*}
+        var\left[ R \right] = \beta_i^2 \sigma_M^2 + var\left[ \epsilon \right] = (19,02\%)^2 + (22,54\%)^2 = (29,49\%)^2
+      \end{align*}
 \end{exercise}
 
 \newpage
@@ -154,12 +192,14 @@
 	\end{align*}
 	
 	Below is the plot of the rolling-window estimate for the beta using simulated data this time (together with the adjusted and constant beta series)
+
+	\begin{figure}
 	
 	\begin{figure}[H]
 	
 		\centering
 		\includegraphics[scale=0.8]{figures/ex2_3.png}	
-		\caption{Beta series of rolling-window estimate of beta, adjusted beta and constant beta using simulated data}	
+		\caption{Beta series of rolling-window estimate of beta, adjusted beta and constant beta using simulated data}
 		\label{fig:ex2_2}
 				
 	\end{figure}
@@ -169,14 +209,39 @@
 \newpage
 
 \begin{exercise}{3}
+  \begin{itemize}{(a)}
+    \item
+      \textbf{FALSE.} The CAPM implies exactly the opposite: that all the stocks
+      are represented by points on the security market line. The security market
+      line being a bijection between returns and betas, it implies in particular
+      that two securities of equal expected returns have the same beta.
+    \item
+      \textbf{FALSE.} Idiosyncratic risks do not matter at all for the CAPM
+      because it is diversifiable. An investor may choose to invest in the
+      security with higher idiosyncratic risk because its systematic risk
+      (measured by beta) is smaller.
 
+    \item
+      \textbf{FALSE.} According to CAPM, standard deviation is the right measure
+      of risk only for assets perfectly correlated with the market. Otherwise,
+      the beta is the right measure of risk.
+    \item
+      The asset with positive alpha is currently undervalued. By no means should
+      a mean-variance investor put all his wealth into this asset: in this way
+      none of its idiosyncratic risk is diversified away.
+      \item
+        No. The expected return of the market is such a economy is the average
+        of the expected returns of the two risky assets. The beta of each asset
+        is the ratio of the individual idiosyncratic risk to the average
+        idiosyncratic risk. 
+  \end{itemize}
 \end{exercise}
 
 \newpage
 
 \begin{exercise}{4} 
 	
-\begin{itemize}
+\begin{itemize} 
 	\item We know that the optimal portfolio when holding the riskless asset is given by: $$ w = \frac{1}{a}\Sigma^{-1}(\mu-R_0\mathbbm{1})$$
 	And with the given values, we find the following weights in the mean-variance portfolio: $$ w_0 = (0.4846,0.3724,0.2978)$$ The sum of the three weights equals $1.1548$, so the investor borrows $0.1548$ at the risk-free rate to invest in the risky portfolio. 
 	\item As all investors are mean-variance investors, they should invest in the optimal portfolio given in the previous point, with their respective risk aversion parameter $a$. We can use the relation given in the lecture to find the market portfolio: 

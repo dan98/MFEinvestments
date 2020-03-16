@@ -166,7 +166,93 @@
                 \ldots, X_N \sim N(0, \sigma^2)$.
             \end{enumerate}
 
-            
+              The above assumptions are satisfied when regressing the excess
+             return of an asset on the excess return of the market portfolio:
+
+             \begin{align*}
+               R_i &= R_f + \beta_i(R_P - R_f) + \epsilon_i \\
+               R_i - R_f &= \beta_i(R_P - R_f) + \epsilon_i
+             \end{align*}
+
+             The exogeneity assumption is verified by taking the expectation of
+             the model:
+
+             \begin{align*}
+               \Ebb\left[ R_i - R_f \right] &= \beta_i \Ebb\left[ R_P - R_f \right] + \Ebb\left[ \epsilon_i \right] \\
+               \mu_i - R_f &= \beta_i (\mu_P - R_f) + \Ebb\left[ \epsilon_i \right] \\
+                0 &\stackrel{\star \star}{=} \Ebb\left[ \epsilon_i \right]
+             \end{align*}
+
+             To check the homoskedasticity assumption, take the covariance of each side of
+             the model with the stochastic return on the market
+             portfolio:
+
+             \begin{align*}
+               cov(R_i - R_f, R_P) &= \beta_icov(R_p - R_f, R_P) + cov(\epsilon_i, R_p) \\
+               cov(R_i, R_P) &= \beta_icov(R_P, R_P) + cov(\epsilon_i, R_p) \\
+               cov(R_i, R_P) &= \frac{cov(R_i, R_P)}{\sigma_P^2}cov(R_P, R_P) + cov(\epsilon_i, R_p) \\
+               cov(\epsilon_i, R_p) &= 0
+             \end{align*}
+
+             The previously found expression for $\beta_{i, P}$ is consistent:
+             \begin{align*}
+               \beta_{i} = \frac{cov(R_i - R_f, R_P - R_f)}{var(R_P - R_f)} = \frac{cov(R_i, R_P)}{\sigma_P^2} = \beta_{i, P}
+               \end{align*}
+               When regressing on $R_i$ alone and not on the excess above $R_f$, the intersect is still
+               $R_f$ as it follows from the previously found identity and the
+               fact that $\Ebb\left[ \epsilon_i \right] = 0$.
+             \item
+               \begin{proposition}{[Sharpe-Ratios]}
+               All the mean-variance efficient portfolios have the same Sharpe
+               ratio where we define its Sharpe ratio as $SR_p = \frac{\mu_p -
+                 R_f}{\sigma_P}$:
+               \end{proposition}
+               \begin{proof}
+               To show that all the portfolios have the same Sharpe ratio we will
+               suppose that there exists another portfolio $P'$ and show that
+               $SR_P = SR_{P'}$.
+               In the previous subtask we found that
+               \begin{align*}
+                 (\mu - R_f \mathbbm{1}) = \beta_P(\mu_P - R_f)
+               \end{align*}
+               multiplying on the left by the asset weights of the alternative
+               mean-variance efficient
+               portfolio $\omega_{P'}$ we get that
+               \begin{align}
+                 (\omega_{P'})^T(\mu - R_f \mathbbm{1}) &= (\omega_{P'})^T \frac{cov(R, R_P)}{\sigma_P^2} (\mu_P - R_f) \\
+                 \label{eq:twoportfolios}
+                 (\mu_{P'} - R_f) &= \frac{cov(R_{P'}, R_P)}{\sigma_P^2} (\mu_P - R_f)
+               \end{align}
+               All the mean-variance efficient portfolios are a linear
+               combination of the tangent portfolio $R_{tan}$ and the risk-free
+               assets $R_f$. Let $\eta$ and $\eta'$ be the weights of the tangent
+               portfolio in the portfolios $P$ and $P'$:
+               \begin{align*}
+                 R_{P} &= \eta \times R_{tan} + (1 - \eta) R_f \\
+                 R_{P'} &= \eta' \times R_{tan} + (1 - \eta') R_f \\
+               \end{align*}
+               Then the covariance between the two portfolios is
+               \begin{align}
+                 \label{eq:covariances}
+                 cov(R_P, R_{P'}) = \eta \eta' cov(R_{tan}, R_{tan}) = \eta \eta'
+               \end{align}
+               while the variances are:
+               \begin{align}
+                 \label{eq:variances}
+                 \sigma^2_P &= var(R_{P}) = \eta^2 \\
+                 \sigma^2_{P'} &= var(R_{P'}) = \eta'^2
+               \end{align}
+
+               Plugging \autoref{eq:variances} and \autoref{eq:covariances} in
+               \autoref{eq:twoportfolios} yields:
+               \begin{align*}
+                 (\mu_{P'} - R_f) &= \frac{\eta \eta'}{\eta^2} (\mu_P - R_f) \\
+                 \frac{(\mu_{P'} - R_f)}{\eta'} &= \frac{(\mu_P - R_f)}{\eta} \\
+                 \frac{(\mu_{P'} - R_f)}{\sigma_{P'}} &= \frac{(\mu_P - R_f)}{\sigma_{P}} \\
+                 SR_{P} &= SR_{P'}
+               \end{align*}
+               \end{proof}
+           
 
     \end{itemize}
   \end{exercise}
