@@ -355,6 +355,7 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm5.t
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/eusm5.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/public/eulervm/zeuex10.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/euex10.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/ecc/eoti10.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/public/eulervm/zeurm5.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/eurm5.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
@@ -389,3 +390,5 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sform10.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sform5.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sform7.pfb
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfoti10.pfb
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/wasy2-ps/wasy10.pfb
