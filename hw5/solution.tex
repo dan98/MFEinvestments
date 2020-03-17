@@ -1,0 +1,114 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{beton}
+%\usepackage{ccfonts}
+%\usepackage{concrete}
+\usepackage{concmath}
+\usepackage{eulervm}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{marginnote}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{bbm}
+\usepackage{booktabs}
+\pgfplotsset{compat=1.5}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{language=Python, style=mystyle}
+
+\usepackage{mathtools}
+
+\usepackage{wasysym}
+\usepackage[margin=1.5in]{geometry} 
+\usepackage{enumerate}
+\index{\usepackage}\usepackage{multicol}
+
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Lcal}{\mathcal{L}}
+\newcommand{\Acal}{\mathcal{A}}
+\newcommand{\Ecal}{\mathcal{E}}
+\newcommand{\Ebb}{\mathbb{E}}
+\newcommand{\Qbb}{\mathbb{Q}}
+
+
+\renewcommand{\mathbf}{\mathbold}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{definition}[2][Definition]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+	
+  \renewcommand{\qedsymbol}{\smiley}
+	\title{Investments Class \\ Problem set 5}
+	\author{Daniel Grosu, William Martin, Denis Stiffen}
+		
+\maketitle
+
+\begin{exercise}{1}
+The tangency portfolio is the optimal weights solution for the variance minimization problem:
+$$ \min_w{\frac{1}{2}w'\Sigma w} \quad \text{ with the constraints } (\mu-R_0\mathbbm{1})'w = \mu_p-R_0 \text{ and } w'\mathbbm{1} = 1$$ which can be solved by using a Lagrangian function: $L(w,\lambda) =  \frac{1}{2}w'\Sigma w - \lambda((\mu-R_0\mathbbm{1})'w - \mu_p-R_0)$. 
+\\
+We derive with respect to the two parameters:
+\begin{align*}
+  &\frac{\partial L}{\partial w} = \Sigma w -\lambda (\mu-R_0\mathbbm{1}) = 0 \\
+  &\frac{\partial L}{\partial \lambda} = (\mu-R_0\mathbbm{1})'w - \mu_p-R_0 = 0 
+\end{align*}
+And, thus: $w = \lambda\Sigma^{-1}(\mu-R_0\mathbbm{1})$. $\lambda$ can be calculated using the second constraint (the sum of weights equals $1$, only risky-assets in the portfolio). So, we obtain:
+$$ \lambda = (\mathbbm{1}'\Sigma^{-1}(\mu-R_0\mathbbm{1}))^{-1}$$
+
+Using the course notations, with $A = \mathbbm{1}'\Sigma^{-1}\mu$ and $B=\mathbbm{1}\Sigma^{-1}\mathbbm{1}$, we end up with:
+$$ w_t = \frac{1}{B-AR_0}\Sigma^{-1}(\mu-R_0\mathbbm{1})$$
+
+In our case, we have $3$ risky assets. The Covariance matrix equals:
+$$ \Sigma = $$
+\end{exercise}
+  
+\end{document}
