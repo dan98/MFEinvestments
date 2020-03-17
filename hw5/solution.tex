@@ -93,22 +93,44 @@
 \maketitle
 
 \begin{exercise}{1}
-The tangency portfolio is the optimal weights solution for the variance minimization problem:
-$$ \min_w{\frac{1}{2}w'\Sigma w} \quad \text{ with the constraints } (\mu-R_0\mathbbm{1})'w = \mu_p-R_0 \text{ and } w'\mathbbm{1} = 1$$ which can be solved by using a Lagrangian function: $L(w,\lambda) =  \frac{1}{2}w'\Sigma w - \lambda((\mu-R_0\mathbbm{1})'w - \mu_p-R_0)$. 
-\\
-We derive with respect to the two parameters:
-\begin{align*}
-  &\frac{\partial L}{\partial w} = \Sigma w -\lambda (\mu-R_0\mathbbm{1}) = 0 \\
-  &\frac{\partial L}{\partial \lambda} = (\mu-R_0\mathbbm{1})'w - \mu_p-R_0 = 0 
-\end{align*}
-And, thus: $w = \lambda\Sigma^{-1}(\mu-R_0\mathbbm{1})$. $\lambda$ can be calculated using the second constraint (the sum of weights equals $1$, only risky-assets in the portfolio). So, we obtain:
-$$ \lambda = (\mathbbm{1}'\Sigma^{-1}(\mu-R_0\mathbbm{1}))^{-1}$$
+  \begin{itemize}
+    \item The tangency portfolio is the optimal weights solution for the variance minimization problem:
+    $$ \min_w{\frac{1}{2}w'\Sigma w} \quad \text{ with the constraints } (\mu-R_0\mathbbm{1})'w = \mu_p-R_0 \text{ and } w'\mathbbm{1} = 1$$ which can be solved by using a Lagrangian function: $L(w,\lambda) =  \frac{1}{2}w'\Sigma w - \lambda((\mu-R_0\mathbbm{1})'w - \mu_p-R_0)$. 
+    \\
+    We derive with respect to the two parameters:
+    \begin{align*}
+      &\frac{\partial L}{\partial w} = \Sigma w -\lambda (\mu-R_0\mathbbm{1}) = 0 \\
+      &\frac{\partial L}{\partial \lambda} = (\mu-R_0\mathbbm{1})'w - \mu_p-R_0 = 0 
+    \end{align*}
+    And, thus: $w = \lambda\Sigma^{-1}(\mu-R_0\mathbbm{1})$. $\lambda$ can be calculated using the second constraint (the sum of weights equals $1$, only risky-assets in the portfolio). So, we obtain:
+    $$ \lambda = (\mathbbm{1}'\Sigma^{-1}(\mu-R_0\mathbbm{1}))^{-1}$$
+    
+    Using the course notations, with $A = \mathbbm{1}'\Sigma^{-1}\mu$ and $B=\mathbbm{1}\Sigma^{-1}\mathbbm{1}$, we end up with:
+    $$ w_t = \frac{1}{B-AR_0}\Sigma^{-1}(\mu-R_0\mathbbm{1})$$
+    
+    In our case, we have $3$ risky assets. The covariance matrix equals:
+    $$ \Sigma = \left[ {\begin{array}{ccc}
+      0.0225  &  0.0075  &  0.0090\\
+      0.0075  &  0.0625  &  0.0150\\
+      0.0090  &  0.0150  &  0.0900
+    \end{array} } \right]$$ since $Cov(i,j) = Corr(i,j)\sigma_i\sigma_j$. Because $A = 54.4444$ and $B = 5.4778$, so the tangency portfolio has the following weights: $$ w_t = (0.4407, 0.2886, 0.2707)$$ 
+    The tangency mean and standard deviation are $\mu_t = w_t'\mu = 11.22\%$ and $\sigma_t = \sqrt{w_t'\Sigma w_t} = 15.02\%$. Its Sharpe Ratio is $SR_t = \frac{\mu_t - R_0}{\sigma_t} = 0.4140$. 
+    \item To find the zero beta portfolio $w_z$, the portfolio has to satisfy $w_z'\Sigma w_t = 0$ and is of the form $w = \lambda\Sigma^{-1}\mathbbm{1}+ \gamma\Sigma^{-1}\mu$ since it is also a mean-variance portfolio. Using the previous results, we can rewrite it as:
+    \begin{align*}
+      0 &= w_z'\Sigma(\frac{1}{B-AR_0}\Sigma^{-1}(\mu-R_0\mathbbm{1})) \\
+      &= \frac{1}{B-AR_0}w_z'(\mu-R_0\mathbbm{1}) \\
+      &= \frac{1}{B-AR_0}(w_z'\mu - R_0w_z'\mathbbm{1}) \\
+      &= \frac{1}{B-AR_0}(\mu_z - R_0)
+    \end{align*} because the portfolio is invested in risky assets only, so $w_z'\mathbbm{1} = 1$. And we require $\mu_z = R_0 = 5\%$. 
+    \\
+    We know $\mu_z$, so we can now compute the parameters $\lambda = \frac{C-\mu_zB}{AC-B^2}$ and $\gamma = \frac{\mu_zA-B}{AC-B^2}$ with $C = \mu'\Sigma^{-1}\mu$. 
+    We obtain $C = 0.5830$ and so $\lambda= 0.1779$ and $\gamma = -1.5858$. 
+    Finally, the zero beta portfolio is: 
+    $$ w_z = (1.9099, -0.2748, -0.6351)$$
+    And the corresponding mean, standard deviation and Sharpe ratio: 
+    $$ \mu_z = 5\%, \quad \sigma_z = 31.41\%, \quad SR_z = 0$$
+  \end{itemize}
 
-Using the course notations, with $A = \mathbbm{1}'\Sigma^{-1}\mu$ and $B=\mathbbm{1}\Sigma^{-1}\mathbbm{1}$, we end up with:
-$$ w_t = \frac{1}{B-AR_0}\Sigma^{-1}(\mu-R_0\mathbbm{1})$$
-
-In our case, we have $3$ risky assets. The Covariance matrix equals:
-$$ \Sigma = $$
 \end{exercise}
   
 \end{document}
