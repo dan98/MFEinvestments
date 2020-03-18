@@ -105,7 +105,7 @@
     And, thus: $w = \lambda\Sigma^{-1}(\mu-R_0\mathbbm{1})$. $\lambda$ can be calculated using the second constraint (the sum of weights equals $1$, only risky-assets in the portfolio). So, we obtain:
     $$ \lambda = (\mathbbm{1}'\Sigma^{-1}(\mu-R_0\mathbbm{1}))^{-1}$$
     
-    Using the course notations, with $A = \mathbbm{1}'\Sigma^{-1}\mu$ and $B=\mathbbm{1}\Sigma^{-1}\mathbbm{1}$, we end up with:
+    Using the course notations, with $A = \mathbbm{1}'\Sigma^{-1}\mu$ and $B=\mathbbm{1}'\Sigma^{-1}\mathbbm{1}$, we end up with:
     $$ w_t = \frac{1}{B-AR_0}\Sigma^{-1}(\mu-R_0\mathbbm{1})$$
     
     In our case, we have $3$ risky assets. The covariance matrix equals:
@@ -129,6 +129,64 @@
     $$ w_z = (1.9099, -0.2748, -0.6351)$$
     And the corresponding mean, standard deviation and Sharpe ratio: 
     $$ \mu_z = 5\%, \quad \sigma_z = 31.41\%, \quad SR_z = 0$$
+    \item The investor can invest in the tangency and the zero beta portfolio, so her portfolio can be written as $w_P = x_tw_t + x_zw_z$, with coefficients $x_t,x_z$ as described in the problem set. The investor will invest in both risky-assets and in the risk free rate because $\mathbbm{1}'w_P = \mathbbm{1}'(x_tw_t+x_zw_z) = x_t\mathbbm{1}'w_t + x_z\mathbbm{1}'w_z = x_t + w_t \leq m$ since the tangency and zero beta portfolios are invested in risky assets exclusively. 
+    \\ However, $m =1.2\geq 1$, so she can invest in both risky portfolios and in the risk free rate.  
+
+    As given, we have to maximize the objective function: $$ \max_w \Ebb[R_P] - \frac{a}{2}V[R_P]$$ subject to two constraints: $R_P = R_0 + x_t(R_t - R_0)  + x_z(R_z-R_0), \quad \mathbbm{1}'w_p \leq m$. 
+    \\
+    The Lagrangian for this problem is: \begin{align*}
+      L(x_t,x_z) &= \Ebb[R_P] - \frac{a}{2}V[R_P] - \lambda(x_t+x_z -m)\\
+      &= R_0 +x_t(\mu_t-R_0) + x_z(\mu_z-R_0) - \frac{a}{2}(x_t^2\sigma_t^2+x_z^2\sigma_z^2) - \lambda(x_t+x_z-m)
+    \end{align*} and we differentiate it with respect to the two coefficients $x_t$ and $x_z$: 
+    \begin{align*}
+      &\frac{\partial L}{\partial x_t} = \mu_t-R_0 -ax_t\sigma_t^2-\lambda = 0\\
+      &\frac{\partial L}{\partial x_z} = \mu_z-R_0 -ax_z\sigma_z^2-\lambda = 0
+    \end{align*}
+    But we require the second constraint to be an inequality, so the first-order condition for second constraint becomes $ \lambda\geq 0 \text{ and } \lambda(x_t+x_z-m) = 0$ (KKT conditions). 
+
+    This is solved by: 
+    \begin{align*}
+      x_t &= \frac{\mu_t -R_0 -\lambda}{a\sigma_t^2}\\
+      x_z &= \frac{\mu_z -R_0 -\lambda}{a\sigma_z^2}
+    \end{align*} and using the Sharpe ratio formulas, and the fact that $SR_z = 0$:
+    \begin{align*}
+      x_t &= \frac{1}{a}(SR_t/\sigma_t - \lambda/\sigma_t^2)\\
+      x_z &= \frac{1}{a}(-\lambda/\sigma_z^2)
+    \end{align*}
+    For $\lambda$, we have two cases: if $x_t+x_z < m$, then the KKT conditions imply that $\lambda = 0$. In this case, the investor does not invest in the zero beta portfolio ($x_z = 0$ and $x_t = SR_t/{a\sigma_t}$). The second case is $x_t+x_z = m$ and using the expressions for $x_t$ and $x_z$ we get:
+    $$ \frac{1}{a}(SR_t\sigma_t - \lambda/\sigma_t^2) + \frac{1}{a}(-\lambda/\sigma_z^2) = m$$
+    and thus $$ \lambda = (SR_t/\sigma_t -am)\frac{\sigma_t^2\sigma_z^2}{\sigma_t^2+\sigma_z^2}$$
+
+    So the portfolio becomes, in the first case: 
+    \begin{align*}
+      w_p = x_tw_t = \frac{1}{a}\frac{SR_t}{\sigma_t} w_t &= \frac{1}{a}\frac{\mu_t-R_0}{\sigma_t^2}\frac{1}{B-AR_0}\Sigma^{-1}(\mu-R_0\mathbbm{1}) \quad \text{in the first case} \\
+      &= \frac{1}{a}\Sigma^{-1}(\mu-R_0\mathbbm{1})
+    \end{align*} since $$SR_t/\sigma_t = \frac{\frac{C-BR_0}{B-AR_0}- R_0}{\frac{C-2R_0B+R_0^2A}{(B-AR_0)^2}} = \frac{\frac{C-BR_0-R_0B+AR_0^2}{B-AR_0}}{\frac{C-2R_0B+R_0^2A}{(B-AR_0)^2}} = B-AR_0.$$
+
+    In the second case, we obtain: 
+  \begin{align*} 
+  &w_p = x_tw_t + x_zw_z \\ 
+  &= \frac{1}{a}((B-AR_0)(1-\frac{\sigma_z^2}{\sigma_t^2+\sigma_z^2})+ am\frac{\sigma_z^2}{\sigma_t^2+\sigma_z^2})w_t + \frac{1}{a}(am\frac{\sigma_t^2}{\sigma_t^2+\sigma_z^2}-(B-AR_0)\frac{\sigma_t^2}{\sigma_t^2+\sigma_z^2})w_z \\
+  &= \frac{1}{a}(1 - \frac{\sigma_z^2}{\sigma_t^2+\sigma_z^2})\Sigma^{-1}(\mu-R_0\mathbbm{1}) + m\frac{\sigma_z^2}{\sigma_t^2+\sigma_z^2}\frac{1}{B-AR_0}\Sigma^{-1}(\mu-R_0\mathbbm{1}) + x_zw_z
+  \end{align*} and cannot be expressed in a simpler form. 
+
+  Now we give the mean, standard deviation and Sharpe ratios in the two cases:
+  \\
+  First, commonly known: 
+  $$ \mu_p = \frac{1-B/a}{A}B + \frac{C}{a}$$
+  $$ \sigma_p = \sqrt{\frac{1-B/a}{A} + \frac{\mu_p}{a}}$$
+  $$ SR_p = \frac{\mu_p-R_0}{\sigma_p} $$
+  
+  And in the second case:
+  $$ \mu_p = x_t\mu_t + x_z\mu_z = x_t(\mu_t -R_0) + mR_0$$
+  $$ \sigma_p = \sqrt{x_t^2\sigma_t^2 + x_z^2\sigma_z^2}$$
+  $$ SR_p = \frac{\mu_p -R_0 }{\sqrt{x_t^2\sigma_t^2 + x_z^2\sigma_z^2}}$$
+
+\item The two previous cases imply two cases for the risk aversion, meaning there exists $a^\star$ that separates $a$ in each case. 
+\\
+In the first case, we have: $\frac{SR_t}{a\sigma_t} < m$ and thus $a > \frac{SR_t}{m\sigma_t}$. So we can set $a^\star :=  \frac{SR_t}{m\sigma_t}$. 
+  
+  
   \end{itemize}
 
 \end{exercise}
