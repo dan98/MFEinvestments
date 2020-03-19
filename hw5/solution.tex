@@ -154,7 +154,7 @@
       x_z &= \frac{1}{a}(-\lambda/\sigma_z^2)
     \end{align*}
     For $\lambda$, we have two cases: if $x_t+x_z < m$, then the KKT conditions imply that $\lambda = 0$. In this case, the investor does not invest in the zero beta portfolio ($x_z = 0$ and $x_t = SR_t/{a\sigma_t}$). The second case is $x_t+x_z = m$ and using the expressions for $x_t$ and $x_z$ we get:
-    $$ \frac{1}{a}(SR_t\sigma_t - \lambda/\sigma_t^2) + \frac{1}{a}(-\lambda/\sigma_z^2) = m$$
+    $$ \frac{1}{a}(SR_t/\sigma_t - \lambda/\sigma_t^2) + \frac{1}{a}(-\lambda/\sigma_z^2) = m$$
     and thus $$ \lambda = (SR_t/\sigma_t -am)\frac{\sigma_t^2\sigma_z^2}{\sigma_t^2+\sigma_z^2}$$
 
     So the portfolio becomes, in the first case: 
@@ -184,7 +184,32 @@
 
 \item The two previous cases imply two cases for the risk aversion, meaning there exists $a^\star$ that separates $a$ in each case. 
 \\
-In the first case, we have: $\frac{SR_t}{a\sigma_t} < m$ and thus $a > \frac{SR_t}{m\sigma_t}$. So we can set $a^\star :=  \frac{SR_t}{m\sigma_t}$. 
+In the first case, we have: $\frac{SR_t}{a\sigma_t} < m$ and thus $a > \frac{SR_t}{m\sigma_t}$. So we can set $a^\star :=  \frac{SR_t}{m\sigma_t}$. In this situation, $x_z = 0$ and the investor does not invest in the zero beta portfolio. And in the second case, we also have $a = \frac{SR_t/\sigma_t}{m}(1-\lambda/\sigma_t^2-\lambda/\sigma_z^2) < \frac{SR_t}{m\sigma_t} = a^\star$ since $\lambda \geq 0$. Here, $x_z >0$, so the investor will invest in the zero beta portfolio. 
+
+We now give the values for the different weights and portfolios: 
+\begin{itemize}
+  \item First case, take $a > a^\star = 2.2963$, for example $a = 3$: $x_z = 0$ and $x_t = SR_t/a\sigma_t = 0.9185$. So $w_p = (0.4048, 0.2651, 0.2487)$. The expected return, standard deviation and Sharpe ratio of this portfolio is: 
+  \begin{align*}
+    \mu_p = 10.31\% \\
+    \sigma_p = 13.80\% \\
+    SR_p = 0.3848
+  \end{align*}
+  \item In the second case, we can select $a = 2$. We get the weights: 
+   $$ x_t = 1.2331, \quad x_z = -0.0331$$
+   So we short the zero beta portfolio and invest in the tangency portfolio. The weights of the obtained portfolio are $w = (0.4802, 0.3650, 0.3549)$ and the usual mean, standard deviation and Sharpe ratio: 
+   \begin{align*}
+    \mu_p = 13.67\%\\
+    \sigma_p = 18.55\% \\
+    SR_p = 0.4674
+   \end{align*} 
+\end{itemize}
+  \item The graph of the Sharpe Ratio of the optimal portfolio can be found in Figure \ref{SR}.
+  \begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.8]{Figures/SharpeRatio.png}
+    \caption{Sharpe Ratios in function of the risk aversion}
+    \label{SR}
+  \end{figure}
   
   
   \end{itemize}
