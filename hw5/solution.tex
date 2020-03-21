@@ -204,7 +204,7 @@ We now give the values for the different weights and portfolios:
    \end{align*} 
 \end{itemize}
   \item The graph of the Sharpe Ratio of the optimal portfolio can be found in Figure \ref{SR}.
-  \begin{figure}[h]
+  \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.8]{Figures/SharpeRatio.png}
     \caption{Sharpe Ratios in function of the risk aversion}
@@ -213,6 +213,54 @@ We now give the values for the different weights and portfolios:
   
   
   \end{itemize}
+
+\end{exercise}
+
+\newpage
+
+\begin{exercise}{2}
+
+	(a) We recall the equation for computing the excess returns considering the one factor regression:
+	
+	\begin{align*}
+		R_{i}^{e} = \alpha_{i} + \beta_{i}R_{M}^{e}  + \epsilon_{i} \forall i
+	\end{align*}
+	
+	The expected profit (in dollars) is therefore:
+	
+	\begin{align*}
+		1'000'000 \times (0.01 + 1 \times R_{M}^{e}) - 1'000'000 \times (	-0.01 + 1 \times R_{M}^{e}) = 20'000 \$
+	\end{align*}		
+
+	The standard deviation is computed as follows:
+	
+	\begin{align*}
+		\sqrt{10 \times \left( \frac{2'000'000}{10} \times 0.20 \right)^{2}} = 126'491.11 
+	\end{align*}
+
+	(b) For 40 or 100 stocks, the expected profit will not change since there are as many stocks with positive alpha than there are with negative alpha.
+	
+	\smallbreak
+	
+	The standard deviation however will change. For 40 stocks:
+	
+	\begin{align*}
+		\sqrt{40 \times \left( \frac{2'000'000}{40} \times 0.20 \right)^{2}} = 63'245.55
+	\end{align*}
+	
+	For 100 stocks:
+	
+	\begin{align*}
+		\sqrt{100 \times \left( \frac{2'000'000}{100} \times 0.20 \right)^{2}} = 40'000.00
+	\end{align*}
+
+	As the number of stocks increases, the volatility decreases.
+
+\end{exercise}
+
+\newpage
+
+\begin{exercise}{3}
 
 \end{exercise}
   
