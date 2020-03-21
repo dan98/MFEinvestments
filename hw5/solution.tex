@@ -262,6 +262,160 @@ We now give the values for the different weights and portfolios:
 
 \begin{exercise}{3}
 
+	(b) After downloading the data, we compute the annualized mean, standard deviation, and sharpe ratio of BRK excess returns, the three Fama-French factors ($R_{m}^{e}$, $SMB$, $HML$), the momentum ($MOM$), and the risk free rate:
+
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Annualized mean \\ [0.5ex] 
+ 			\hline\hline
+ 			BRK excess returns & 0.185343 \\ 
+ 			$R_{m}^{e}$ & 0.078565 \\
+ 			SMB & 0.024547 \\
+ 			HML & 0.027563 \\
+ 		    MOM & 0.075058 \\
+ 			Risk-free & 0.043717 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Annualized standard deviation \\ [0.5ex] 
+ 			\hline\hline
+ 			BRK excess returns & 0.231796 \\ 
+ 			$R_{m}^{e}$ & 0.151624 \\
+ 			SMB & 0.099633 \\
+ 			HML & 0.099377 \\
+ 		    MOM & 0.151413 \\
+ 			Risk-free & 0.010153 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c||} 
+ 			\hline
+ 			& Annualized sharpe ratio \\ [0.5ex] 
+ 			\hline\hline
+ 			BRK excess returns & 0.610997 \\ 
+ 			$R_{m}^{e}$ & 0.229836 \\
+ 			SMB & -0.192405 \\
+ 			HML & -0.162549 \\
+ 		    MOM & 0.206992 \\
+ 			Risk-free & 0.0 \\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+	
+	(c) We then run various regressions, where we report the estimated $\alpha$, $\beta s$ along with the associated $t$-statistics, $R^{2}$, and information ratio of BRK. We proceed with the first regression
+	
+	\begin{align*}
+		R_{t}^{e} = \alpha + \beta_{1}R^{e}_{mt} + \epsilon_{t} 
+	\end{align*}
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c c c c||} 
+ 			\hline
+ 			Regression 1 & Full-sample data & $t$ & Data until 1995 & \\ [0.5ex] 
+ 			\hline\hline
+ 		  	& Value & $t$-stat & Value & $t$-stat\\ [0.5ex] 
+ 			\hline\hline
+ 			$\alpha$ & 0.011 & 4.121 &  0.019 & 4.204\\ 
+ 			$\beta_{1}$ & 0.684 & 11.363 & 0.898 & 8.696\\ [1ex]
+ 			\hline\hline
+ 			$R^{2}$ & 0.200 & & 0.249 &\\
+ 			IR & 0.635 & & 0.975 &\\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}	
+
+	The second regression
+	
+	\begin{align*}
+		R_{t}^{e} = \alpha + \beta_{1}R^{e}_{mt} + \beta_{2}SMB_{t}+ \beta_{3}HML_{t} + \epsilon_{t} 
+	\end{align*}
+	
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c c c c||} 
+ 			\hline
+ 			Regression 2 & Full-sample data &  & Data until 1995 & \\ [0.5ex] 
+ 			\hline\hline
+ 		  	& Value & $t$-stat & Value & $t$-stat\\ [0.5ex]  
+ 			\hline\hline
+ 			$\alpha$ & 0.009 & 3.659 & 0.016 & 3.460\\ 
+ 			$\beta_{1}$ & 0.810 & 13.115 & 0.996 & 8.399\\
+ 			$\beta_{2}$ &  -0.245 & -2.683 & 0.225 & 1.213\\
+ 			$\beta_{3}$ & 0.502 & 5.443 & 0.475 & 2.349\\ [1ex]
+ 			\hline\hline
+ 			$R^{2}$ & 0.256 & & 0.271 &\\
+ 			IR & 0.570 & &  0.833 &\\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}
+
+	The third regression
+	
+	\begin{align*}
+		R_{t}^{e} = \alpha + \beta_{1}R^{e}_{mt} + \beta_{2}SMB_{t}+ \beta_{3}HML_{t} + \beta_{4}MOM_{t} \epsilon_{t} 
+	\end{align*}
+
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c c c c||} 
+ 			\hline
+ 			Regression 3 & Full-sample data & & Data until 1995 & \\ [0.5ex] 
+ 			\hline\hline
+ 		  	& Value & $t$-stat & Value & $t$-stat\\ [0.5ex] 
+ 			\hline\hline
+ 			$\alpha$ & 0.009 & 3.375 &  0.016 & 3.218\\ 
+ 			$\beta_{1}$ & 0.823 & 13.087 & 0.991 & 8.267\\
+ 			$\beta_{2}$ &  -0.250 & -2.740 & 0.223 & 1.203\\
+ 			$\beta_{3}$ &  0.531 & 5.546 & 0.486 & 2.368\\
+ 			$\beta_{4}$ & 0.068 & 1.121 & 0.049 & 0.336\\ [1ex]
+ 			\hline\hline
+ 			$R^{2}$ & 0.258 & & 0.271 &\\
+ 			IR & 0.537 & &  0.810 &\\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}
+	
+	The last regression
+	
+		\begin{align*}
+		R_{t}^{e} = \alpha + \beta_{1}R^{e}_{mt} + \beta_{2}SMB_{t}+ \beta_{3}HML_{t} + \beta_{4}MOM_{t} + \beta_{5}RMW_{t} + \beta_{6}CMA_{t} + \epsilon_{t} 
+	\end{align*}
+
+	\begin{table}[h!]
+		\centering
+ 		\begin{tabular}{||c c c c c||} 
+ 			\hline
+ 			Regression 4 & Full-sample data & & Data until 1995 & \\ [0.5ex] 
+ 			\hline\hline
+ 		  	& Value & $t$-stat & Value & $t$-stat\\ [0.5ex] 
+ 			\hline\hline
+ 			$\alpha$ & 0.007 & 3.375 & 0.013 &  2.580\\ 
+ 			$\beta_{1}$ & 0.857 & 13.018 & 1.011 & 8.214\\
+ 			$\beta_{2}$ &  -0.126 & -1.300 & 0.289 & 1.485\\
+ 			$\beta_{3}$ &  0.478 & 3.666 & 0.572 & 1.858\\
+ 			$\beta_{4}$ &  0.037 & 0.602 & 0.018 & 0.118\\
+ 			$\beta_{5}$ &  0.436 & 3.434 & 0.450 & 1.142\\
+ 			$\beta_{6}$ & 0.001 & 0.006 & 0.099 & 0.220\\ [1ex]
+ 			\hline\hline
+ 			$R^{2}$ & 0.275 & & 0.275 &\\
+ 			IR & 0.443 & & 0.702 &\\ [1ex] 
+ 			\hline
+		 \end{tabular}
+	\end{table}
+	
+	(h) We process similarly as in part (c) but this time with data until 1995. See tables in part (c).
+
 \end{exercise}
   
 \end{document}
