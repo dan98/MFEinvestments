@@ -95,14 +95,14 @@
 \begin{exercise}{1}
   \begin{itemize}
     \item The tangency portfolio is the optimal weights solution for the variance minimization problem:
-    $$ \min_w{\frac{1}{2}w'\Sigma w} \quad \text{ with the constraints } (\mu-R_0\mathbbm{1})'w = \mu_p-R_0 \text{ and } w'\mathbbm{1} = 1$$ which can be solved by using a Lagrangian function: $L(w,\lambda) =  \frac{1}{2}w'\Sigma w - \lambda((\mu-R_0\mathbbm{1})'w - \mu_p-R_0)$. 
+    $$ \min_w{\frac{1}{2}w'\Sigma w} \quad \text{ with the constraints } (\mu-R_0\mathbbm{1})'w = \mu_p-R_0 \text{ and } w'\mathbbm{1} = 1$$ which can be solved by using a Lagrangian function: $$L(w,\lambda) =  \frac{1}{2}w'\Sigma w - \lambda((\mu-R_0\mathbbm{1})'w - \mu_p-R_0)$$. 
     \\
     We derive with respect to the two parameters:
     \begin{align*}
       &\frac{\partial L}{\partial w} = \Sigma w -\lambda (\mu-R_0\mathbbm{1}) = 0 \\
       &\frac{\partial L}{\partial \lambda} = (\mu-R_0\mathbbm{1})'w - \mu_p-R_0 = 0 
     \end{align*}
-    And, thus: $w = \lambda\Sigma^{-1}(\mu-R_0\mathbbm{1})$. $\lambda$ can be calculated using the second constraint (the sum of weights equals $1$, only risky-assets in the portfolio). So, we obtain:
+    And, thus: $w = \lambda\Sigma^{-1}(\mu-R_0\mathbbm{1})$. $\lambda$ can be calculated using the second constraint (the sum of weights equals $1$, as there are only risky-assets in the portfolio). So, we obtain:
     $$ \lambda = (\mathbbm{1}'\Sigma^{-1}(\mu-R_0\mathbbm{1}))^{-1}$$
     
     Using the course notations, with $A = \mathbbm{1}'\Sigma^{-1}\mu$ and $B=\mathbbm{1}'\Sigma^{-1}\mathbbm{1}$, we end up with:
@@ -114,8 +114,8 @@
       0.0075  &  0.0625  &  0.0150\\
       0.0090  &  0.0150  &  0.0900
     \end{array} } \right]$$ since $Cov(i,j) = Corr(i,j)\sigma_i\sigma_j$. Because $A = 54.4444$ and $B = 5.4778$, so the tangency portfolio has the following weights: $$ w_t = (0.4407, 0.2886, 0.2707)$$ 
-    The tangency mean and standard deviation are $\mu_t = w_t'\mu = 11.22\%$ and $\sigma_t = \sqrt{w_t'\Sigma w_t} = 15.02\%$. Its Sharpe Ratio is $SR_t = \frac{\mu_t - R_0}{\sigma_t} = 0.4140$. 
-    \item To find the zero beta portfolio $w_z$, the portfolio has to satisfy $w_z'\Sigma w_t = 0$ and is of the form $w = \lambda\Sigma^{-1}\mathbbm{1}+ \gamma\Sigma^{-1}\mu$ since it is also a mean-variance portfolio. Using the previous results, we can rewrite it as:
+    The tangency mean and standard deviation are $\mu_t = w_t'\mu = 0.1122$ and $\sigma_t = \sqrt{w_t'\Sigma w_t} = 0.1502$. Its Sharpe Ratio is $SR_t = \frac{\mu_t - R_0}{\sigma_t} = 0.4140$. 
+    \item To find the zero beta portfolio $w_z$, the portfolio has to satisfy $w_z'\Sigma w_t = 0$ and must be of the form $w = \lambda\Sigma^{-1}\mathbbm{1}+ \gamma\Sigma^{-1}\mu$ since it is also a mean-variance portfolio. Using the previous results, we can rewrite it as:
     \begin{align*}
       0 &= w_z'\Sigma(\frac{1}{B-AR_0}\Sigma^{-1}(\mu-R_0\mathbbm{1})) \\
       &= \frac{1}{B-AR_0}w_z'(\mu-R_0\mathbbm{1}) \\
@@ -173,15 +173,15 @@
   Now we give the mean, standard deviation and Sharpe ratios in the two cases:
   \\
   First, commonly known: 
-  $$ \mu_p = \frac{1-B/a}{A}B + \frac{C}{a}$$
-  $$ \sigma_p = \sqrt{\frac{1-B/a}{A} + \frac{\mu_p}{a}}$$
-  $$ SR_p = \frac{\mu_p-R_0}{\sigma_p} $$
+  $$ \mu_p = \frac{B-AR_0}{a}\mu_{tan} + (1-\frac{B-AR_0}{a})R_0  = \frac{C-BR_0}{a} + (1-\frac{B-AR_0}{a})R_0$$
+  $$ \sigma_p = x_t\sigma_t$$
+  $$ SR_p = \frac{\mu_p-R_0}{\sigma_p} = SR_t $$ since the $x_t$ factor cancels.
   
   And in the second case:
-  $$ \mu_p = x_t\mu_t + x_z\mu_z = x_t(\mu_t -R_0) + mR_0$$
+  $$ \mu_p = x_t\mu_t + x_z\mu_z = x_t(\mu_t -R_0) + R_0$$
   $$ \sigma_p = \sqrt{x_t^2\sigma_t^2 + x_z^2\sigma_z^2}$$
-  $$ SR_p = \frac{\mu_p -R_0 }{\sqrt{x_t^2\sigma_t^2 + x_z^2\sigma_z^2}}$$
-
+  $$ SR_p = \frac{\mu_p -R_0 }{\sqrt{x_t^2\sigma_t^2 + x_z^2\sigma_z^2}} = \frac{x_t(\mu_t-R_0)}{\sqrt{x_t^2\sigma_t^2 + x_z^2\sigma_z^2}}$$
+because $$ x_t = x_z +  \frac{2}{a}\frac{\mu_t-\mu_z}{\sigma_t^2+\sigma_z^2}$$
 \item The two previous cases imply two cases for the risk aversion, meaning there exists $a^\star$ that separates $a$ in each case. 
 \\
 In the first case, we have: $\frac{SR_t}{a\sigma_t} < m$ and thus $a > \frac{SR_t}{m\sigma_t}$. So we can set $a^\star :=  \frac{SR_t}{m\sigma_t}$. In this situation, $x_z = 0$ and the investor does not invest in the zero beta portfolio. And in the second case, we also have $a = \frac{SR_t/\sigma_t}{m}(1-\lambda/\sigma_t^2-\lambda/\sigma_z^2) < \frac{SR_t}{m\sigma_t} = a^\star$ since $\lambda \geq 0$. Here, $x_z >0$, so the investor will invest in the zero beta portfolio. 
@@ -190,9 +190,9 @@ We now give the values for the different weights and portfolios:
 \begin{itemize}
   \item First case, take $a > a^\star = 2.2963$, for example $a = 3$: $x_z = 0$ and $x_t = SR_t/a\sigma_t = 0.9185$. So $w_p = (0.4048, 0.2651, 0.2487)$. The expected return, standard deviation and Sharpe ratio of this portfolio is: 
   \begin{align*}
-    \mu_p = 10.31\% \\
+    \mu_p = 10.71\% \\
     \sigma_p = 13.80\% \\
-    SR_p = 0.3848
+    SR_p = SR_t = 0.4140
   \end{align*}
   \item In the second case, we can select $a = 2$. We get the weights: 
    $$ x_t = 1.2331, \quad x_z = -0.0331$$
@@ -200,10 +200,10 @@ We now give the values for the different weights and portfolios:
    \begin{align*}
     \mu_p = 13.67\%\\
     \sigma_p = 18.55\% \\
-    SR_p = 0.4674
+    SR_p = 0.4117
    \end{align*} 
 \end{itemize}
-  \item The graph of the Sharpe Ratio of the optimal portfolio can be found in Figure \ref{SR}.
+  \item The graph of the Sharpe Ratio of the optimal portfolio can be found in Figure \ref{SR}. We can see that when $a>a^\star$, when we are investing in the unconstrained portfolio, that is only composed of the tangency portfolio and risk-free asset, the Sharpe ratio is constant. This ratio is the one of the tangency portfolio. So the risk-aversion parameter does not have any impact on the Sharpe ratio of the optimal portfolio. However, in the other case, $a<a^\star$, the Sharpe Ratio decreases with the risk aversion. Indeed, the investor has a greater leverage than $m$ but he is constrained with $x_t + x_z = m$ and so he cannot achieve the given portfolios. Moreover, we see that for an unconstrained investor, the optimal portfolio is the one with only investments in the tangency portfolio and in the risk free rate. So its Sharpe ratio should be lower than $SR_t$ which is indeed the case on the figure. 
   \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.8]{Figures/SharpeRatio.png}
