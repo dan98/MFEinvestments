@@ -238,7 +238,7 @@ We now give the values for the different weights and portfolios:
 		\sqrt{10 \times \left( \frac{2'000'000}{10} \times 0.20 \right)^{2}} = 126'491.11 
 	\end{align*}
 
-	(b) For 40 or 100 stocks, the expected profit will not change since there are as many stocks with positive alpha than there are with negative alpha.
+	(b) For 40 or 100 stocks, the expected profit will not change since there are as many stocks with positive alpha that there are with negative alpha.
 	
 	\smallbreak
 	
@@ -413,6 +413,68 @@ We now give the values for the different weights and portfolios:
  			\hline
 		 \end{tabular}
 	\end{table}
+
+  (d) The RMW (Robust-minus-Weak) and the CMA (Conservative-minus-Aggresive)
+  factors are constructed in a fashion similar to the HML where instead of the
+  book-to-market ratio, the stocks are sorted by the \textit{OP} (\text{operating
+    profitability}) and \textit{Inv} (expected growth of book equity, i.e.
+  investment). The RMW and the CMA are then the differences between the returns
+  of two portfolios - one formed of some top quintile and second of a bottom
+  quintile in the underlying metric. Fama and French argue that these two
+  factors are a meaningful addition to the model as a replacement of the
+  book-to-market ratio. Indeed, nowadays, several tech firms seem to reap
+  returns by unstinting investment in spite of null operational profitability
+  (ex. Amazon). Why SML can be dropped if RMW and CMA are introduced? It goes
+  back to the Miller-Modigliani theory of the market value of a firm's stock as
+  the discounted sum of its future earnings minus investments:
+
+  \begin{equation}
+    \frac{M_t}{B_t} = \frac{\sum_{\tau = 1}^\infty(Y_{t + \tau} - d B_{t + \tau})/(1 + r)^\tau}{B_t}
+  \end{equation}
+where $Y_{t + \tau}$ is total equity earnings for period $t + \tau$, $dB_{t
+  + \tau}$ is the change in total book equity, $r$ is the expected stock return
+and $M_t$ and $B_t$ are the market and the book value of the firm at time $t$.
+One observes that for a fixed book-to-market ratio $B_t / M_t$, the expected
+stock return $r$ can be written as a function of the expected earnings
+(operational profitability) and as
+a function of the firms book equity (investments). Controlling on these two
+factors would render the book-to-market ratio redundant. 
+
+(e)
+
+An interpretation of the betas in the Regression 4 can help us assess what kind
+of investor Warren Buffet is. First of all, (1) his firm has less market exposure
+than the market portfolio ($\beta_1 < 1$). This holds true even in the current
+crisis of indiscriminate stock sell off caused by the coronavirus: while the S\&P 500 dropped $29\%$
+from March 2 to March 23, the BRK stock price dropped by $27 \%$ in the same
+time period. Warren Buffet
+is a (2) value investor. The Berkshire Hathaway has a negative exposure to the
+SMB factor which means that when the small stocks outperform big stocks, Buffet
+takes a hit. A personal quote of Buffet catches him saying that 'Life is like a
+snowball. The important thing is finding wet snow and a really long hill.' His
+personal philosophy translates directly into his investment strategy: Buffet
+makes few, but important investment decisions. This makes him miss-out on the
+precipitous growth of certain small stocks, information which investors price in by lowering the price of his
+shares in such instances. Positive factor loadings of $\beta_3 = 0.478$ and $\beta_5 = 0.436$ for
+High-minus-Low book-to-market ratios and Robust-minus-Weak factors show that
+Buffet invests in firms with strong fundamentals that demonstrate potential
+for persistent profitability. On the other hand, low MOM and CMA loadings corroborate
+that Buffet is (4) not driven by Market momentum and does not discriminate
+between firms with aggressive or conservative investments policies as long as
+they can sustain their profits.
+
+(f) From the simple Regression 1 which controls only for systematic risk to
+Regression 4 which controls for a variety of factors, the alpha of Warren Buffet
+decreases from $\alpha_1 = 1.1\%$ to $\alpha_4 = 0.7 \%$ which is not dramatic
+considering the multitude of controlling factors in Regression 4. The
+information ratio IR decreases from $IR_1 = 0.635$ to $IR_4 = 0.443$. Therefore, the
+exposure to common risk factors is far from explaining the full genius of Warren
+Buffet. 
+
+
+(g)
+
+
 	
 	(h) We process similarly as in part (c) but this time with data until 1995. See tables in part (c).
 
