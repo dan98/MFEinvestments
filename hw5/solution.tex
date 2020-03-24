@@ -454,13 +454,13 @@ takes a hit. A personal quote of Buffet catches him saying that 'Life is like a
 snowball. The important thing is finding wet snow and a really long hill.' His
 personal philosophy translates directly into his investment strategy: Buffet
 makes few, but important investment decisions. This makes him miss-out on the
-precipitous growth of certain small stocks, information which investors price in by lowering the price of his
+precipitous growth of certain small stocks, information which investors factoring in by lowering the price of his
 shares in such instances. Positive factor loadings of $\beta_3 = 0.478$ and $\beta_5 = 0.436$ for
 High-minus-Low book-to-market ratios and Robust-minus-Weak factors show that
 Buffet invests in firms with strong fundamentals that demonstrate potential
 for persistent profitability. On the other hand, low MOM and CMA loadings corroborate
 that Buffet is (4) not driven by Market momentum and does not discriminate
-between firms with aggressive or conservative investments policies as long as
+between firms with aggressive or conservative investments policies, as long as
 they can sustain their profits.
 
 (f) From the simple Regression 1 which controls only for systematic risk to
@@ -469,14 +469,82 @@ decreases from $\alpha_1 = 1.1\%$ to $\alpha_4 = 0.7 \%$ which is not dramatic
 considering the multitude of controlling factors in Regression 4. The
 information ratio IR decreases from $IR_1 = 0.635$ to $IR_4 = 0.443$. Therefore, the
 exposure to common risk factors is far from explaining the full genius of Warren
-Buffet. 
+Buffet. It would have explained the outperformance of Buffett only if the
+$\alpha_4$ would have been close to 0.
 
 
-(g)
+(g) In order to construct a maximum Sharpe Ratio portfolio (which is a mean-variance
+optimal portfolio) out of the 6 factor portfolios $R^e_M$, $SMB$, $HML$, $MOM$,
+$RMW$, $RMW$, $CMA$, the Berkshire Hathaway and the riskless T-bill, we have to
+determine the $IR$ of each of the securities and their corresponding $\alpha$'s
+and $\sigma$'s. The Sharpe Ratio of the efficient portfolio will then be
 
+\begin{equation}
+  SR_P = \sqrt{SR_F^2 + \sum_{i = 1}^n IR^2_i}
+\end{equation}
+
+We compute the needed statistics such as $IR^2$, $\alpha$ and $\sigma$ by
+regressing each factor on all the previous factors in the ordered list. This
+makes sure that the $\epsilon_i$ are indeed uncorrelated. Then, we invest $x_i =
+\frac{\alpha_i}{a \sigma_i^2}$ in each portfolio with an $a = \frac{SR_P}{0.20}
+\approx 6.840$ corresponding to our risk preference of $20\%$ of volatility. In the table
+below, we summarize these statistics:
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{||c c c c c||} 
+    \hline
+    Factor & $\alpha_i$ & $\sigma_i$ & $IR_i$ &  $x_i$ \\
+    \hline\hline
+    $R_f$ & - & - & 0 &  -5.733 \\
+    $R_M$ & 0 & 0.043 & $SR_F = $ 0.518 & 1.734 \\
+    $SMB$ & 0.001 & 0.028 & 0.130 &  0.197 \\
+    $HML$ & 0.004 & 0.028 & 0.442 & 0.677 \\
+    $MOM$ & 0.008 & 0.042 & 0.694 & 0.703 \\
+    $RMW$ & 0.004 & 0.020 & 0.652 & 1.380 \\
+    $CMA$ & 0.002 & 0.013 & 0.535 & 1.715 \\
+    $BRK$ & 0.007 & 0.057 & 0.443 & 0.328 \\
+    \hline\hline
+    \end{tabular}
+    \caption{Period 1976 - 2019}
+\end{table}
+
+As it is seen in the table above, the resulting portfolio is highly leveraged,
+with considerable weights corresponding to the market portfolio,
+Robust-minus-Weak portfolio and
+Conservative-minus-aggressive investment portfolio. The Berkshire Hathaway
+investment represents only $0.328/6.733 \approx 4,87 \%$ of the total investment
+in stocks. This is convincing since Berkshire Hathaway has a lot of firm-specific risk
+which needs to be diluted for the portfolio to by well-diversified and efficient.
 
 	
-	(h) We process similarly as in part (c) but this time with data until 1995. See tables in part (c).
+	(h) We process similarly as in part (c) but this time with data until 1995.
+  See tables in part (c). 
+
+  Put side by side, the regression results on the full-sample data and data
+  until 1995, call to mind the stark contrast in the performance of the firm. It
+  seems that till 1995, the firm has outperformed itself by a factor of two
+  times, when compared to itself during the period from 1976 to 2019.
+  Moreover, the exposure to Small-minus-Big stocks has been higher, even
+  positive, for the data until 1995. The exposure to the market  has been 
+  higher (close to $\beta_1 = 1$) as well. To explain these results, we have to consider
+  what Berkshire Hathaway does to make profit. Tersely put, it invests in firms
+  by buying them, i.e. Buffet acquires and merges firms. Over time, the acquired
+  firms grow in value and the profits allow for more expensive deals. For
+  example, from the publicly available data, most of the acquisitions before
+  1995 were priced below \$1 billion while in 1995, a big acquisition of General
+  Reinsurance Corporation for \$ 22 billion and the ensuing bigger firms have
+  tilted Buffett's portfolio towards big stocks.
+  
+  With a larger portfolio of acquired assets, it is expected that consistently maintaining
+   a positive $\alpha$ is less feasible. This is corroborated by
+  theory we have covered in class: in large portfolios (such as Buffett's nowadays),
+  most assets have to have close to zero alphas. Buffett has also published a
+  number of books revealing his investing genius. It is a safe assumption to
+  say that his popularity has only amplified his reach and impact on the
+  investment craft. As such, many have learned some of his secrets of investment
+  and management which presumably allowed them to reach for those positive
+  alphas for themselves, canceling out Buffett's uncommon big alpha.
 
 \end{exercise}
   
