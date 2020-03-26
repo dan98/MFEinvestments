@@ -88,12 +88,31 @@
 	
   \renewcommand{\qedsymbol}{\smiley}
 	\title{Investments Class \\ Problem set 6}
-	\author{Daniel Grosu, William Martin, Denis Stiffen}
+	\author{Daniel Grosu, William Martin, Denis Steffen}
 		
 \maketitle
 
 \begin{exercise}{1}
-  
+  \begin{itemize}
+    \item We can first compute the expected stock return using the formula of the model, and we obtain by linearity of the expectation: 
+     $$ \Ebb[R_i] = \alpha_i + \sum_{k=1}^K B_{ik}\Ebb[F_k] + \Ebb[\epsilon_i] = \alpha_i + \sum_{k=1}^K B_{ik}m_k $$
+     The Arbitrage Pricing Theory requires that the expected stock return has the following form: $$ \Ebb[R_i] = R_0 + \sum_{k=1}^K B_{ik}m_k^e$$ where $m_k^e$ are the expected excess returns ($m_k^e = m_k - R_0$). 
+     So, we obtain the condition for $\alpha_i$: 
+     $$ \alpha_i = R_0 - R_0\sum_{k=1}^K B_{ik} = R_0(1-\sum_{k=1}^KB_{ik})$$
+    \item If the market portfolio is spanned by the factors, we have $$ R_M = \sum_{k=1}^Kw_kF_k$$ And the CPAM holds if $$ \Ebb[R_i] = R_0 + \beta_i(\Ebb[R_M]-R_0) = R_0 + \frac{Cov(R_i,R_M)}{\sigma_M^2}(\sum_{k=1}^Kw_km_k-R_0)$$
+    $$ = R_0 + \left(\frac{1}{\sigma_M^2}\sum_{k=1}^Kw_kCov(R_i,F_k)\right)(\sum_{k=1}^Kw_km_k-R_0)$$ because the $(F_k)_{1\leq k\leq K}$ random variables are independent.
+    \\
+    So, we can rewrite the expectation using $\beta_{F_k} = \frac{Cov(F_k,R_M)}{\sigma_M^2}$ as: \textbf{FALSE HERE}
+    \begin{align*}
+      \Ebb[R_i] &= R_0 + \left(\sum_{k=1}^K w_k\beta_{F_k}\right)\left(\sum_{k=1}^Kw_km_k-R_0\right) \\
+      &= R_0 + \sum_{k=1}^K w_k(\beta_{F_k}(\Ebb[R_M]-R_0)) \\
+      &= R_0 + \sum_{k=1}^K w_k\lambda_k
+    \end{align*} where $ \lambda_k = \beta_{F_k}(\Ebb[R_M]-R_0) = \Ebb[F_k] - R_0$, by the CPAM relation for $F_k$.
+
+    Thus, we know that the APT must hold: 
+    $$ \Ebb[R_i] = R_0 + \sum_{k=1}^K w_k(\Ebb[F_k] - R_0) = R_0 + \sum_{k=1}^K w_k(m_k^e)$$ and this is true if and only if the CPAM holds. 
+
+  \end{itemize}
 	
 \end{exercise}
   
