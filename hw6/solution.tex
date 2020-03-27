@@ -100,17 +100,20 @@
      So, we obtain the condition for $\alpha_i$: 
      $$ \alpha_i = R_0 - R_0\sum_{k=1}^K B_{ik} = R_0(1-\sum_{k=1}^KB_{ik})$$
     \item If the market portfolio is spanned by the factors, we have $$ R_M = \sum_{k=1}^Kw_kF_k$$ And the CPAM holds if $$ \Ebb[R_i] = R_0 + \beta_i(\Ebb[R_M]-R_0) = R_0 + \frac{Cov(R_i,R_M)}{\sigma_M^2}(\sum_{k=1}^Kw_km_k-R_0)$$
-    $$ = R_0 + \left(\frac{1}{\sigma_M^2}\sum_{k=1}^Kw_kCov(R_i,F_k)\right)(\sum_{k=1}^Kw_km_k-R_0)$$ because the $(F_k)_{1\leq k\leq K}$ random variables are independent.
+    $$ = R_0 + \left(\frac{1}{\sigma_M^2}\sum_{k=1}^KB_{ik}Cov(F_k,R_M)\right)(\sum_{k=1}^Kw_km_k-R_0)$$ because the $(F_k)_{1\leq k\leq K}$ random variables are independent.
     \\
-    So, we can rewrite the expectation using $\beta_{F_k} = \frac{Cov(F_k,R_M)}{\sigma_M^2}$ as: \textbf{FALSE HERE}
+    So, we can rewrite the expectation using $\beta_{F_k} = \frac{Cov(F_k,R_M)}{\sigma_M^2}$ as: 
     \begin{align*}
-      \Ebb[R_i] &= R_0 + \left(\sum_{k=1}^K w_k\beta_{F_k}\right)\left(\sum_{k=1}^Kw_km_k-R_0\right) \\
-      &= R_0 + \sum_{k=1}^K w_k(\beta_{F_k}(\Ebb[R_M]-R_0)) \\
-      &= R_0 + \sum_{k=1}^K w_k\lambda_k
+      \Ebb[R_i] &= R_0 + \left(\sum_{k=1}^K B_{ik}\beta_{F_k}\right)\left(\sum_{k=1}^Kw_km_k-R_0\right) \\
+      &= R_0 + \sum_{k=1}^K B_{ik}(\beta_{F_k}(\Ebb[R_M]-R_0)) \\
+      &= R_0 + \sum_{k=1}^K B_{ik}\lambda_k
     \end{align*} where $ \lambda_k = \beta_{F_k}(\Ebb[R_M]-R_0) = \Ebb[F_k] - R_0$, by the CPAM relation for $F_k$.
 
     Thus, we know that the APT must hold: 
-    $$ \Ebb[R_i] = R_0 + \sum_{k=1}^K w_k(\Ebb[F_k] - R_0) = R_0 + \sum_{k=1}^K w_k(m_k^e)$$ and this is true if and only if the CPAM holds. 
+    $$ \Ebb[R_i] = R_0 + \sum_{k=1}^K B_{ik}(\Ebb[F_k] - R_0) = R_0 + \sum_{k=1}^K B_{ik}(m_k^e)$$ and this is true if and only if the CPAM holds.
+    We need to have: $$ \beta_{F_k}(\sum_{l=1}^K w_lm_l - R_0) = m_k - R_0$$ and so $$ \sum_{l=1}^K w_lm_l = R_0 + \frac{m_k-R_0}{\beta_{F_k}}$$
+    \item In this case we have that: 
+    $$ \Ebb[R_i] = R_0 + \sum_{k=1}^K B_{ik}\lambda_k + \Ebb[\epsilon_i]$$
 
   \end{itemize}
 	
