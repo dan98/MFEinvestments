@@ -111,10 +111,20 @@
 
     Thus, we know that the APT must hold: 
     $$ \Ebb[R_i] = R_0 + \sum_{k=1}^K B_{ik}(\Ebb[F_k] - R_0) = R_0 + \sum_{k=1}^K B_{ik}(m_k^e)$$ and this is true if and only if the CPAM holds.
-    We need to have: $$ \beta_{F_k}(\sum_{l=1}^K w_lm_l - R_0) = m_k - R_0$$ and so $$ \sum_{l=1}^K w_lm_l = R_0 + \frac{m_k-R_0}{\beta_{F_k}}$$
+    We need to have: $$ \beta_{F_k}(\sum_{l=1}^K w_lm_l - R_0) = m_k - R_0$$ and so $$ \sum_{l=1}^K w_lm_l = R_0 + \frac{m_k-R_0}{\beta_{F_k}}\quad \text{(risk premia)}$$
+    and $$ \sigma_M^2 = \sum_{k=1}^K w_k^2(\sigma_k^2 + m_k^2)-(\sum_{k=1}^Kw_km_k)^2 \quad \text{(volatility)}$$
     \item In this case we have that: 
-    $$ \Ebb[R_i] = R_0 + \sum_{k=1}^K B_{ik}\lambda_k + \Ebb[\epsilon_i]$$
+    $$ \Ebb[R_i] = R_0 + \sum_{k=1}^K B_{ik}\lambda_k$$ and so for $N$ assets in portfolio $p$:
+    $$ \Ebb[R_p] = \frac{1}{N}\sum_{i=1}^N\Ebb[R_i] = \frac{1}{N}\sum_{i=1}^N(R_0 + \sum_{k=1}^K B_{ik}\lambda_k)$$, using that $B_{ik}\geq b \forall (i,k)$
+    $$ \Ebb[R_p] \geq \frac{1}{N}\left(NR_0 + N\sum_{k=1}^K b\lambda_k\right) = R_0 + b\sum_{k=1}^K\lambda_k > 0 $$ because $b> 0, \lambda_k >0 \text{ and } R_0 \geq 0$.
 
+    Hence, we see that the returns do not converge to zero when the number of assets $N$ tends to infinity. This contradicts the Arbitrage Pricing Theory on fully diversified portfolios that requires $ \frac{1}{N}\sum_{i=1}^Nw_i\nu_i \rightarrow 0$ when $N \rightarrow \infty$.  
+
+    We can see that the volatility of each asset is $V(R_i) = \sigma_{\epsilon}$ because $\sum_{k=1}^KB_{ik}\lambda_k$ is deterministic and known. 
+    So for the portfolio: 
+    $$ V(R_p) = \frac{1}{N^2}\sum_{i=1}^N\sigma_{\epsilon} = \frac{1}{N}\sigma_\epsilon \rightarrow 0 \quad \text{when } N \rightarrow \infty$$
+    So the asymptotic arbitrage portfolio is given by $w = (\frac{1}{N},\dots,\frac{1}{N})$ 
+    This portfolio has stricly positive expected profits (as $\Ebb[R_p] > 0$) and no risk (as $V(R_p)\rightarrow 0$).
   \end{itemize}
 	
 \end{exercise}
