@@ -123,8 +123,8 @@
     We can see that the volatility of each asset is $V(R_i) = \sigma_{\epsilon}$ because $\sum_{k=1}^KB_{ik}\lambda_k$ is deterministic and known. 
     So for the portfolio: 
     $$ V(R_p) = \frac{1}{N^2}\sum_{i=1}^N\sigma_{\epsilon} = \frac{1}{N}\sigma_\epsilon \rightarrow 0 \quad \text{when } N \rightarrow \infty$$
-    So the asymptotic arbitrage portfolio is given by $w = (\frac{1}{N},\dots,\frac{1}{N})$ 
-    This portfolio has stricly positive expected profits (as $\Ebb[R_p] > 0$) and no risk (as $V(R_p)\rightarrow 0$).
+    So the asymptotic arbitrage portfolio is given by $w = (\pm\frac{1}{N},\dots,\pm\frac{1}{N})$ such that $\mathbbm{1}'w = 0$. If $N$ is even, it suffices to short the half of the assets and long the other half. If $N$ is odd, we can choose $w = (+\frac{1}{N},-\frac{1}{N},\dots,+\frac{1}{N},-\frac{1}{2N},-\frac{1}{2N})$.
+    This portfolio has stricly positive expected profits (as $\Ebb[R_p] > 0$) and no risk (as $V(R_p)\rightarrow 0$) without initial investment. We have an asymptotic artbitrage portfolio. 
   \end{itemize}
 	
 \end{exercise}
