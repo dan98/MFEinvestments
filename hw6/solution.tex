@@ -16,6 +16,8 @@
 \usepackage{hyperref}
 \usepackage{bbm}
 \usepackage{booktabs}
+\usepackage{xcolor-solarized}
+\usepackage{xcolor}
 \pgfplotsset{compat=1.5}
 
 \usepackage{listings}
@@ -84,7 +86,10 @@
 \newenvironment{definition}[2][Definition]{\begin{trivlist}
   \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
+\definecolor{solar}{rgb}{0.9960, 0.9960, 0.9647}
+
 \begin{document}
+  \pagecolor{solar}
 	
   \renewcommand{\qedsymbol}{\smiley}
 	\title{Investments Class \\ Problem set 6}
@@ -128,5 +133,103 @@
   \end{itemize}
 	
 \end{exercise}
+
+\begin{exercies}{2}
+  In the following discussion we will refer to the \textit{full sample} as the
+  stock returns data of the 636 stocks from 2000-01-31 to 2019-12-31, the
+  \textit{first sample} as the subsample from 2000-01-31 to 2009-12-31 and the
+  \textit{second sample} as the subsample from 2010-01-31 to 2019-12-31. In the
+  figure below we plot the excess returns against beta of the portfolios corresponding to 
+  the $0-10, 10-20, 20-30, \ldots, 90-100$ market beta quantiles of stocks. The excess
+  returns and the betas are empirically estimated over the full sample.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{plot1.eps}
+    \caption{Excess return against beta: full sample.}
+  \end{figure}
+
+  It is clearly observed that the risk-premium is significant over the
+  full-sample: high-beta portfolios achieve higher returns.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{plot2.eps}
+    \caption{Excess return against beta: first sample portfolios with second
+      sample market returns.}
+  \end{figure}
+
+  If one computes the portfolios based on the first subsample and keeps them
+  static over the second sample, the correlations between high beta and higher
+  return is not clearly observed: the fitted line is mostly flat. Why? Perhaps
+  over the decade, the portfolios have changed their sensitivity to the market
+  and the market has incorporated quickly information, offering an either higher
+  or lower risk premium than previously awarded. In the language that we used in
+  the class, the high and low beta portfolios do not have much
+  \textit{beta-}momentum from the first to the second decade of the twenty-first
+  century.
+
+  Theoretically, the beta of the market is $\beta_M = 1$. Hence, to test whether
+  the CAPM holds for the full sample, we can evaluate $r_M = 1 \times a$ where a
+  is the slope of the empirical SML line and check whether their difference is
+  close to zero. The slope of the fitted line is: $a=0.00132$ and the average
+  excess market retun over the risk-free rate is $r_M - r_f = 0.00451$ monthly. Clearly,
+  this shows that CAPM does not fully explain the market and that there are
+  other factors and sources of risk which are not priced in the current model.
+
+  However, there is another explanation. In the table below we provide the betas
+  of the decile portfolios in the first sample and the betas of the same
+  portfolios in the second sample:
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{| c | c | c |}
+      \hline\hline
+      Quantile & 2000-2009 & 2010-2019 \\ \hline \hline
+1.0       &       0.219238    &     0.539616 \\ \hline
+2.0        &      0.412684    &     0.757070 \\ \hline
+3.0         &     0.573625    &     0.929977 \\ \hline
+4.0         &     0.715312    &     1.052507 \\ \hline
+5.0         &     0.842216    &     1.207823 \\ \hline
+6.0         &     0.961448    &     1.284644 \\ \hline
+7.0         &     1.139001    &     1.392084 \\ \hline
+8.0         &     1.330552    &     1.475634 \\ \hline
+9.0         &     1.576502    &     1.490454 \\ \hline
+10.0         &     2.041873    &     1.782677 \\ \hline
+    \end{tabular}
+    \caption{Betas of the static portfolios during 2000-2009 and 2010-2019}
+  \end{table}
+
+
+  The ``regression to the mean'' phenomena is clearly visible: the low beta
+  portfolios become larger beta portfolios and the high beta portfolios become
+  smaller beta portfolios. Although this phenomena can be explained with a
+  purely probabilistic argument: that the extreme events in a first draw have the
+  highest probability of during the second draw around the mean, we think there
+  is more to this phenomena than just randomness, because the performance of
+  equities are at the end of the day tied to the fundamentals of the firm. The
+  low-beta portfolios formed out of stocks of firms with less sensitivity to the
+  market increase in their sensitivity because of the globalization and the
+  interconnectedness between firms that has increased over the second decade.
+  The high beta portfolios with stocks of firms with high sensitivity (also
+  smaller firms), grow in their size and establish themselves, leading to less
+  risky cash flows and hence less sensitivity. This phenomena can also be a
+  consequence of the investment sentiment in the wake of the 2008 financial
+  crisis: the preference of the investors has tilted towards less risky
+  equities and companies undertook less risky projects because they were not
+  compensated by the investors for the extra risk in their cash flows.
+
+  
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{plot3.eps}
+    \caption{First beta portfolios against second beta portfolios.}
+  \end{figure}
+\end{exercise}
   
 \end{document}
+
+
+\section{Appendix}
+\lstinputlisting[language=Python]{ps6_py.py}
+\appendix
