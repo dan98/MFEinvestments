@@ -97,8 +97,38 @@
 		
 \maketitle
 
-\begin{exercise}{1}
-  
+\begin{exercise}{1}(Portfolio choice with liabilities)
+  \begin{itemize}
+    \item The investor can invest in the risky assets with expected returns $\mu$ and in the riskless asset with return $R_0$. So the expected return of the portfolio is: $$ \Ebb[R_p] = w'\mu + R_0w_0 = w'\mu + R_0(1-w'\mathbbm{1})$$
+    So the optimization problem becomes: 
+    $$ \max_w \left(w'\mu + R_0(1-w'\mathbbm{1}) -\frac{a}{2}w'\Sigma w\right)$$ and there is no constraint, so the Lagrangien function equals this expression. 
+    \\
+    We differentiate with respect to $w$ and get:
+    $$ \frac{\partial \mathcal{L}}{\partial w} = \mu - R_0\mathbbm{1} - a \Sigma w $$ and the optimal $w$ is: 
+    $$ w = \frac{1}{a}\Sigma^{-1}(\mu- R_0\mathbbm{1})$$
+    $$ w_0 = 1 - \frac{1}{a}(\mu- R_0\mathbbm{1})'\Sigma^{-1}\mathbbm{1}$$
+
+    We can rewrite the weights in risky assets as: 
+    $$ w = \frac{B-R_0A}{a}w_{tan} \quad \text{with } w_{tan} = \frac{\Sigma^{-1}(\mu-R_0\mathbbm{1})}{B-R_0A}$$
+    
+    Thus, the investor can invest in two funds, the tangency portfolio that is independent of the risk-aversion and only consists of risky assets, with coefficient $ \frac{B-R_0A}{a}$ and in the riskfree asset with coefficient $w_0$. 
+
+    If the risk-aversion tends to infinity, we can see that $w_0 \rightarrow 1$ and $w \rightarrow \mathbf{0} $, so she invests only in the riskfree asset. This is consistent, because she does not want to take any risk. 
+    \item Now, the investor has access to a liability $L$. So the function to be optimized becomes: 
+    $$ \Ebb[R_p - L] - \frac{a}{2}Var(R_p-L) = w'\mu +R_0(1-w'\mathbbm{1}) - \mu_L - \frac{a}{2}(w'\Sigma w + \sigma_L - 2\Sigma_L'w)$$ because $\Ebb[L] = \mu_L$ and  $$Var(R_p - L) = Var(R_p) + Var(L) - 2Cov(R_p,L)  = w'\Sigma w + \sigma_L - 2\Sigma_L'w$$
+
+    Again, there is no constraint, so we can differentiate the Lagrangien: 
+    $$ \frac{\partial \mathcal{L}}{\partial w} = \mu -R_0\mathbbm{1} - a\Sigma w + a\Sigma_L$$ and the optimal weights equal:
+    $$ w = \frac{1}{a}\left(\Sigma^{-1}(\mu-R_0\mathbbm{1})\right) + \Sigma^{-1}\Sigma_L $$
+    $$ w_0 = 1 - \left(\frac{1}{a}(\mu-R_0\mathbbm{1})'\Sigma^{-1}\mathbbm{1} + \Sigma_L'\Sigma^{-1}\mathbbm{1}\right)$$
+
+    \item Now, if we set $w_L = \Sigma^{-1}\Sigma_L$, we end up with a three-fund separation because the investor invests in $w_{tan}$ the tangency portfolio (only in risky assets), in the riskless asset and in $w_L$. 
+    $$ w = \frac{B-R_0A}{a}w_{tan} + w_L \quad \text{and } w_0 = 1 - w'\mathbbm{1}$$
+
+    If the risk aversion becomes infinitely large, than $w = w_L$ and $w_0 = 1 - w_L$. This can be understood as follows: 
+    \\
+    As the investor is infinitely risk averse, so she does not want to hold risky securities, she only wants to invest in the riskless asset (as in the previous case). However, she has to pay back her liability $L$ and therefore she can only invest $1 - w_L$ in the risk-free asset. The liability is considered as a risky investment and so $w = w_L$ because she will pay back the liability (we can say equivalently, that she invests $w_L$). 
+  \end{itemize}
 \end{exercise}
   
 \end{document}
