@@ -111,11 +111,11 @@
   
   The alpha of D is in the following equation: 
   $$ r_D - r_0 = \alpha_D + \beta_D(r_M-r_0) \quad \Rightarrow \quad \alpha_D = r_D^e -\beta_D*r_M^e = 0.06 - 0.048 = 0.012.$$ 
-  The systematic risk is given by: $\beta_D^2\sigma_M^2 = 0.0576$, and the residual risk equals the standard deviation minus the systematic risk: $\sigma_D-\beta_D^2\sigma_M^2 = 0.0224.$
+  The systematic risk is given by: $\beta_D^2\sigma_M^2 = 0.0576$, and the residual risk equals the standard deviation minus the systematic risk: $\sigma_D^2-\beta_D^2\sigma_M^2 = 0.0208.$
 
   In addition, the Information Ratio is the ratio $IR = \frac{\alpha_D}{\sigma_D} =\frac{0.012}{0.08}= 0.15$
   \item[(d)] Finally, the optimal portfolio with risk-aversion $1$ is given by:
-  $$ w_0 = \Sigma^{-1}(\mu-r_0\mathbbm{1}_5)$$ with assets (A,B,C,M,D), $\mu = (r_A,r_B,r_C,r_M,r_D)^\top$. So the covariance matrix $\Sigma$ is: 
+  $$ w = \Sigma^{-1}(\mu-r_0\mathbbm{1}_5)$$ with assets (A,B,C,M,D), $\mu = (r_A,r_B,r_C,r_M,r_D)^\top = (0.032,0.05,0.076,0.06,0.08)^\top$. So the covariance matrix $\Sigma$ is: 
   $$ \Sigma = \left[\begin{array}{ccccc}
     \sigma_A^2& 0 &0 &Cov(r_A,r_M)& 0\\
     0&\sigma_B^2 & 0 & Cov(r_B,r_M)&0 \\
@@ -125,8 +125,18 @@
   \end{array}\right]$$ 
   And with the given parameters: 
   $$ \Sigma = \left[\begin{array}{ccccc}
-    
+    0.0225 & 0 & 0 & 0.012 &0 \\
+    0 & 0.0625 & 0 & 0.03 & 0 \\
+    0 & 0 & 0.1225 & 0.056 & 0 \\
+    0.012 & 0.03 & 0.056 & 0.04 & 0.048 \\
+    0 & 0 & 0 & 0.048 & 0.0784 
   \end{array}\right]$$
+
+  And the optimal portfolio weights are: 
+ $$ w = (0.3562, -0.7581, 0.3392, 0.2579, 0.6074)$$
+ The weight invested in the T-bills, that are our riskfree asset, is $w_0 = 1- \mathbbm{1}'w = 0.1974$.
+
+ Now, we can compute the usual statistics for this portfolio. First, the expected return is $w'\mu + w_0r_0 = 0.0673$ and the standard deviation equals $\sqrt{w'\Sigma w} = 0.2175$. And the Sharpe Ratio is $ \frac{w'\mu - r_0}{\sqrt{w'\Sigma w}} = 0.2175$.
 \end{itemize}
   
 \end{document}
