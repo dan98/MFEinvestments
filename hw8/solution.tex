@@ -164,7 +164,7 @@ Where the $SMB$ and $HML$ factors are factors from Kenneth French’s website. $
    
 \bigbreak
 
-We now create 2 portfolios based on the previous month's market capitalization.  The zero-cost strategy's return is given in figure \ref{ps8_ex2_plot2}.
+We now create 2 portfolios based on the previous month's market capitalization.  The zero-cost strategy's return is given in figure \ref{ps8_ex2_plot2}. We observe a drop of the alpha when introducing the momentum factor into the regression. This means the zero-cost strategy went from slightly outperforming the market to slightly underperforming. This can be explained by fact that the strategy we built is built around the momentum (by taking the lagged average returns).
 
 \begin{figure}[h]
     \centering
@@ -180,7 +180,7 @@ We now run the same regressions:
 	R_{ZC}  &= \alpha_d + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
 \end{align*}  
 
-We obtain $\alpha_{c} =  -0.00960$ and $\alpha_{d} = -0.01151$.
+We obtain $\alpha_{c} =  0.00960$ and $\alpha_{d} = 0.01151$. In this part, running a regression with the momentum factor improves the alpha, i.e. the strategy outperforms the market better. In our case, firms with the smallest market capitalization did better than the firms with a higher market capitalization and thus outperform the market. 
    
 \end{document}
 
