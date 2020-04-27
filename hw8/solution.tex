@@ -156,8 +156,8 @@ After creating 10 portfolios sorted by average return computed as described in t
 We then run the following regressions, similarly as in problem set 5 (the zero-cost strategy is denoted $ZC$):
 
 \begin{align*}	
-	R^{e}_{ZC} &= \alpha_a +  \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML \\
-	R^{e}_{ZC}  &= \alpha_b + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
+	R_{ZC} &= \alpha_a +  \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML \\
+	R_{ZC}  &= \alpha_b + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
 \end{align*}  
 
 Where the $SMB$ and $HML$ factors are factors from Kenneth French’s website. $MOM$ is the momentum factor. Moreover, returns denotes $R^e$ are excess returns computed by subtracting the risk-free rate from the returns. We obtain $\alpha_{a} = 0.00609$ and $\alpha_{b} = -0.00749$.   
@@ -176,8 +176,8 @@ We now create 2 portfolios based on the previous month's market capitalization. 
 We now run the same regressions:
 
 \begin{align*}	
-	R^{e}_{ZC} &= \alpha_c +  \beta_1 R^e_{mt}  + \beta_2 SMB + \beta_3 HML \\
-	R^{e}_{ZC}  &= \alpha_d + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
+	R_{ZC} &= \alpha_c +  \beta_1 R^e_{mt}  + \beta_2 SMB + \beta_3 HML \\
+	R_{ZC}  &= \alpha_d + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
 \end{align*}  
 
 We obtain $\alpha_{c} = -0.01336$ and $\alpha_{d} = -0.01522$.
