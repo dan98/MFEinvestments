@@ -153,18 +153,18 @@ After creating 10 portfolios sorted by average return computed as described in t
     \label{ps8_ex2_plot1}    
 \end{figure}
 
-We then run the following regressions (the zero-cost strategy is denoted $ZC$)
+We then run the following regressions, similarly as in problem set 5 (the zero-cost strategy is denoted $ZC$):
 
 \begin{align*}	
-	R_{ZC} &= \alpha_{market} + \beta_1 R_{market} \\
-	R_{ZC}  &= \alpha_{fama} + \beta_1 SMB + \beta_2 HML
+	R^{e}_{ZC} &= \alpha_a +  \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML \\
+	R^{e}_{ZC}  &= \alpha_b + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
 \end{align*}  
 
-Where the $SMB$ and $HML$ factors are factors from Kenneth French’s website. We obtain $\alpha_{market} = 0.0084$ and $\alpha_{fama} = 0.0074$.   
+Where the $SMB$ and $HML$ factors are factors from Kenneth French’s website. $MOM$ is the momentum factor. Moreover, returns denotes $R^e$ are excess returns computed by subtracting the risk-free rate from the returns. We obtain $\alpha_{a} = 0.00609$ and $\alpha_{b} = -0.00749$.   
    
 \bigbreak
 
-We know create 2 portfolios based on the previou's months market capitalization.  The zero-cost strategy's return is give in figure \ref{ps8_ex2_plot2}.
+We now create 2 portfolios based on the previous month's market capitalization.  The zero-cost strategy's return is given in figure \ref{ps8_ex2_plot2}.
 
 \begin{figure}[h]
     \centering
@@ -173,14 +173,14 @@ We know create 2 portfolios based on the previou's months market capitalization.
     \label{ps8_ex2_plot2}    
 \end{figure}
 
-We now run the following regressions:
+We now run the same regressions:
 
 \begin{align*}	
-	R_{ZC} &= \alpha_{market} + \beta_1 R_{market} \\
-	R_{ZC}  &= \alpha_{fama} + \beta_1 SMB + \beta_2 HML + \beta_3 MOM
+	R^{e}_{ZC} &= \alpha_c +  \beta_1 R^e_{mt}  + \beta_2 SMB + \beta_3 HML \\
+	R^{e}_{ZC}  &= \alpha_d + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
 \end{align*}  
 
-Where $MOM$ is the momentum factor from Kenneth French’s website. We obtain $\alpha_{market} = -0.0107$ and $\alpha_{fama} = -0.0122$.
+We obtain $\alpha_{c} = -0.01336$ and $\alpha_{d} = -0.01522$.
    
 \end{document}
 
