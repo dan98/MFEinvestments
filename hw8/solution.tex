@@ -139,8 +139,52 @@
  Now, we can compute the usual statistics for this portfolio. First, the expected return is $w'\mu + w_0r_0 = 0.0673$ and the standard deviation equals $\sqrt{w'\Sigma w} = 0.2175$. And the Sharpe Ratio is $ \frac{w'\mu - r_0}{\sqrt{w'\Sigma w}} = 0.2175$.
 \end{itemize}
   
+\newpage
+
+\begin{exercise}{2}{The momentum factor}
+\end{exercise}
+
+After creating 10 portfolios sorted by average return computed as described in the problems et sheet, we compute the value-weighted  returns  of these portfolios. We then create a zero-cost portfolio which consists  in going long in the decile with the highest pas returns and shorting the decile with the lowest past return. Plotting the returns of this newly created portfolio gives us figure \ref{ps8_ex2_plot1}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{ps8_ex2_plot1.png}
+    \caption{Returns of a zero-cost portfolio going  long on highest pas returns and shorting lowest past returns}
+    \label{ps8_ex2_plot1}    
+\end{figure}
+
+We then run the following regressions (the zero-cost strategy is denoted $ZC$)
+
+\begin{align*}	
+	R_{ZC} &= \alpha_{market} + \beta_1 R_{market} \\
+	R_{ZC}  &= \alpha_{fama} + \beta_1 SMB + \beta_2 HML
+\end{align*}  
+
+Where the $SMB$ and $HML$ factors are factors from Kenneth French’s website. We obtain $\alpha_{market} = 0.0084$ and $\alpha_{fama} = 0.0074$.   
+   
+\bigbreak
+
+We know create 2 portfolios based on the previou's months market capitalization.  The zero-cost strategy's return is give in figure \ref{ps8_ex2_plot2}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{ps8_ex2_plot2.png}
+    \caption{Returns of a zero-cost portfolio going  long on highest pas returns and shorting lowest past returns}
+    \label{ps8_ex2_plot2}    
+\end{figure}
+
+We now run the following regressions:
+
+\begin{align*}	
+	R_{ZC} &= \alpha_{market} + \beta_1 R_{market} \\
+	R_{ZC}  &= \alpha_{fama} + \beta_1 SMB + \beta_2 HML + \beta_3 MOM
+\end{align*}  
+
+Where $MOM$ is the momentum factor from Kenneth French’s website. We obtain $\alpha_{market} = -0.0107$ and $\alpha_{fama} = -0.0122$.
+   
 \end{document}
 
 
 
 \appendix
+
