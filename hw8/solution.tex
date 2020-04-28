@@ -102,14 +102,17 @@
 \begin{itemize}
   \item[(a)] By definition of the beta of an asset, we have: $$ \sigma_M^2 = \frac{Cov(r_A,r_M)}{\beta_A} = \frac{Corr(r_A,r_M)\sigma_M\sigma_A}{\beta_A}$$ and so $$ \sigma_M = \frac{Corr(r_A,r_M)\sigma_A}{\beta_A} = 0.2$$
   Thus we can deduce the beta of asset B: $$\beta_B = \frac{Corr(r_B,r_M)\sigma_M\sigma_B}{\sigma_M^2} = 0.75$$
-  And, 
+  And the correlation between asset C and the market portfolio:
   $$Corr(r_C,r_M) = \frac{Cov(r_C,r_M)}{\sigma_C\sigma_M} = \frac{\beta_C\sigma_M}{\sigma_C}  = 0.8$$
-  \item[(b)] Assuming the CAPM holds, we can know compute the market portfolio return using asset A: 
+  \item[(b)] Assuming that the CAPM holds, we can compute the market portfolio
+    return based on the return and beta of asset A: 
   $$ r_A = r_0 + \beta_A(r_M-r_0) \quad \Rightarrow \quad r_M = \frac{r_A-r_0}{\beta_A} + r_0 = 0.06$$ 
-  And using the CAPM formula for assets B and C, we obtain: $ r_B = 0.05$ and $r_C = 0.076$.
-  \item[(c)] We can see that asset D has a better expected return than all assets A, B and C, but has a lower standard deviation than C. So the security D will be over the market security line and is undervalued as it has greater return for less risk than C (that is on the line). 
+  Similarly, using the CAPM formula for assets B and C, we obtain: $ r_B = 0.05$ and $r_C = 0.076$.
+  \item[(c)] We can see that asset D has a better expected return than all the
+    other assets A, B and C, but has a lower standard deviation than asset C. So
+    the security D is priced above the market security line and is undervalued as it has greater return for less risk than C (that is on the line). 
   
-  The alpha of D is in the following equation: 
+  The alpha of D is found from the equation of the CAPM model: 
   $$ r_D - r_0 = \alpha_D + \beta_D(r_M-r_0) \quad \Rightarrow \quad \alpha_D = r_D^e -\beta_D*r_M^e = 0.06 - 0.048 = 0.012.$$ 
   The systematic risk is given by: $\beta_D^2\sigma_M^2 = 0.0576$, and the residual risk equals the standard deviation minus the systematic risk: $\sigma_D^2-\beta_D^2\sigma_M^2 = 0.0208.$
 
@@ -134,9 +137,9 @@
 
   And the optimal portfolio weights are: 
  $$ w = (0.3562, -0.7581, 0.3392, 0.2579, 0.6074)$$
- The weight invested in the T-bills, that are our riskfree asset, is $w_0 = 1- \mathbbm{1}'w = 0.1974$.
+ The weight invested in the T-bill that constitutes our riskfree asset, is $w_0 = 1- \mathbbm{1}'w = 0.1974$.
 
- Now, we can compute the usual statistics for this portfolio. First, the expected return is $w'\mu + w_0r_0 = 0.0673$ and the standard deviation equals $\sqrt{w'\Sigma w} = 0.2175$. And the Sharpe Ratio is $ \frac{w'\mu - r_0}{\sqrt{w'\Sigma w}} = 0.2175$.
+ Now, we can compute the usual statistics for this portfolio. Firstly, the expected return is $w'\mu + w_0r_0 = 0.0673$ while the standard deviation equals $\sqrt{w'\Sigma w} = 0.2175$. Secondly, the Sharpe Ratio is $ \frac{w'\mu - r_0}{\sqrt{w'\Sigma w}} = 0.2175$.
 \end{itemize}
   
 \newpage
@@ -144,23 +147,48 @@
 \begin{exercise}{2}{The momentum factor}
 \end{exercise}
 
-After creating 10 portfolios sorted by average return computed as described in the problems et sheet, we compute the value-weighted  returns  of these portfolios. We then create a zero-cost portfolio which consists  in going long in the decile with the highest pas returns and shorting the decile with the lowest past return. Plotting the returns of this newly created portfolio gives us figure \ref{ps8_ex2_plot1}.
+After creating 10 portfolios sorted by average return computed as described in
+the problems sheet, we compute the value-weighted  returns  of these portfolios.
+We then create a zero-cost portfolio which consists of going long in the decile
+with the highest average past returns and shorting the decile with the lowest
+average past returns. The returns of this newly created portfolio are plotted in
+figure \ref{ps8_ex2_plot1}. 
 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{ps8_ex2_plot1.png}
-    \caption{Returns of a zero-cost portfolio going  long on highest pas returns and shorting lowest past returns}
+    \caption{Returns of a zero-cost portfolio going long past winners and short past losers}
     \label{ps8_ex2_plot1}    
 \end{figure}
 
-We then run the following regressions, similarly as in problem set 5 (the zero-cost strategy is denoted $ZC$):
+We then run the following regressions, similar to the ones in problem set 5 (the zero-cost strategy is denoted $ZC$):
 
 \begin{align*}	
-	R_{ZC} &= \alpha_a +  \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML \\
-	R_{ZC}  &= \alpha_b + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
+	R^t_{ZC} &= \alpha^t_a +  \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML \\
+	R^t_{ZC}  &= \alpha^t_b + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
 \end{align*}  
 
-Where the $SMB$ and $HML$ factors are factors from Kenneth French’s website. $MOM$ is the momentum factor. Moreover, returns denotes $R^e$ are excess returns. We obtain $\alpha_{a} = 0.00985$ and $\alpha_{b} = -0.00378$.   
+with the following results:
+\begin{align*}	
+	R^t_{ZC} &= 0.00985 - 0.38 R^e_{mt} + 0.02 SMB -0.62 HML \\
+	R^t_{ZC}  &= -0.00378 -0.05 R^e_{mt} + 0.04 SMB -0.03 HML + 1.56 MOM
+\end{align*}  
+
+Where the $SMB$ and $HML$ factors are factors from Kenneth French’s website.
+$MOM$ is the momentum factor.
+
+Moreover, returns denotes $R^e$ are excess returns. We obtain $\alpha_{a} = 0.00985$ and $\alpha_{b} = -0.00378$.   
+As expected, the loading on the Momentum factor is disproportionately high
+relative to the other factors, clearly as a result of our construction.
+
+Since by construction we do not discern between small and big stocks, the
+loading on the HML factor is negative, suggesting that we could have improved
+the performance by trading on the size factor.
+
+The fact
+that the loading on the HML factor reverts to zero when we factor in the MOM,
+suggests that MOM acts as a very good proxy for the High-minus-low effect. Why
+this is true will become crystal clear once we complete the next part of the exercise.
    
 \bigbreak
 
@@ -179,8 +207,61 @@ We now run the same regressions:
 	R_{ZC} &= \alpha_c +  \beta_1 R^e_{mt}  + \beta_2 SMB + \beta_3 HML \\
 	R_{ZC}  &= \alpha_d + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
 \end{align*}  
+with the results:
+
+\begin{align*}	
+	R_{ZC} &= 0.0096 + 0.134 R^e_{mt}  + 1.16 SMB + 0.30 HML \\
+	R_{ZC}  &= 0.01151 + 0.087 R^e_{mt} + 1.16 SMB + 0.22 HML - 0.218 MOM
+\end{align*}  
+
 
 We obtain $\alpha_{c} =  0.00960$ and $\alpha_{d} = 0.01151$. In this part, running a regression with the momentum factor improves the alpha, i.e. the strategy outperforms the market better. In our case, firms with the smallest market capitalization did better than the firms with a higher market capitalization and thus outperform the market. 
+
+According to our expectations, the loading on the Small-minus-big factor is the
+greatest in magnitude. However, when we factor in the momentum, the loading on
+the new factor is negative, suggesting indicating that there is extra return to
+be gained by taking into account the momentum factor.
+
+To grasp the consequences of controlling o Kenneth's MOM risk factor, one should
+firstly investigate how exactly \textit{is} Kenneth computing his MOM. On his website he
+describes the MOM factor with the following equation:
+
+\begin{equation}
+  MOM = \frac{1}{2} \left( Small High + Big High \right) - \frac{1}{2}\left(
+    Small Low + Big Low \right).
+  \end{equation}
+
+  That is, MOM longs the small and big stocks with highest returns and
+  shorts the small and big stocks with smallest past returns. Written
+  differently however,
+
+  \begin{equation}
+  MOM = \frac{1}{2} \left( Small High - Small Low \right) + \frac{1}{2}\left(
+    Big High - Big Low \right),
+  \end{equation}
+  the Momentum factor is nothing but the sum of two portfolios split in two
+  groups by the market capitalization within which the best performers are
+  longed and the worst and shorted.
+
+  It is now clear why our strategy runs contrary to the MOM: we long all the
+  Small and short all the Big stocks, while MOM shorts some Small and longs some
+  Big stocks.
+
+  The fact that the regression says that we have negative exposure to the MOM
+  suggests that when the MOM is doing great, our portfolios underperform for no
+  particular necessary reason as one can always hedge with the MOM. The
+  fact that one can always invest in the MOM is accounted for when one controls
+  for the MOM in the regression.
+
+  In part (b) we observe a decrease in the alpha when including the
+  momentum factor in the regression, meaning that the way we computed the
+  momentum is not exhaustive (at least not in Kenneth's) sense. At the same time,
+  in part (c) we saw that building portfolios solely based on the market
+  capitalization is not optimal either. The take-away lesson is that the market
+  capitalization and the momentum factors are intertwined and one should better
+  build a ``layered'' model: splitting the stocks in market-cap deciles and then
+  within each decile into good and bad performers.
+
    
 \end{document}
 
