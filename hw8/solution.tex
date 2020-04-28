@@ -177,27 +177,34 @@ with the following results:
 Where the $SMB$ and $HML$ factors are factors from Kenneth French’s website.
 $MOM$ is the momentum factor.
 
-Moreover, returns denotes $R^e$ are excess returns. We obtain $\alpha_{a} = 0.00985$ and $\alpha_{b} = -0.00378$.   
+Moreover, the values denoted by $R^e$ are excess returns. We obtain $\alpha_{a} = 0.00985$ and $\alpha_{b} = -0.00378$.   
 As expected, the loading on the Momentum factor is disproportionately high
 relative to the other factors, clearly as a result of our construction.
 
-Since by construction we do not discern between small and big stocks, the
+Since by construction we do not discern between value and growth stocks, the
 loading on the HML factor is negative, suggesting that we could have improved
-the performance by trading on the size factor.
+the performance by trading on this factor.
 
 The fact
 that the loading on the HML factor reverts to zero when we factor in the MOM,
-suggests that MOM acts as a very good proxy for the High-minus-low effect. Why
+suggests that MOM acts as a very good proxy for the High-minus-low effect (the
+outperformance of value stocks over growth stocks). Why
 this is true will become crystal clear once we complete the next part of the exercise.
    
 \bigbreak
 
-We now create 2 portfolios based on the previous month's market capitalization.  The zero-cost strategy's return is given in figure \ref{ps8_ex2_plot2}. We observe a drop of the alpha when introducing the momentum factor into the regression. This means the zero-cost strategy went from slightly outperforming the market to slightly underperforming. This can be explained by fact that the strategy we built is built around the momentum (by taking the lagged average returns).
+We now create 2 portfolios based on the lagged market capitalization. The return
+of the zero-cost strategy is given in the figure \ref{ps8_ex2_plot2}. We observe
+a decrease in alpha when introducing the momentum factor into the regression.
+This means the zero-cost strategy went from slightly outperforming the market to
+slightly underperforming. This can be explained by the fact that the strategy is
+built around the momentum (by taking lagged average returns).  
 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{ps8_ex2_plot2.png}
-    \caption{Returns of a zero-cost portfolio going  long on highest pas returns and shorting lowest past returns}
+    \caption{Returns of a zero-cost portfolio going long on stocks with highest
+      past returns and shorting those with lowest past returns}
     \label{ps8_ex2_plot2}    
 \end{figure}
 
@@ -206,8 +213,9 @@ We now run the same regressions:
 \begin{align*}	
 	R_{ZC} &= \alpha_c +  \beta_1 R^e_{mt}  + \beta_2 SMB + \beta_3 HML \\
 	R_{ZC}  &= \alpha_d + \beta_1 R^e_{mt} + \beta_2 SMB + \beta_3 HML + \beta_4 MOM
-\end{align*}  
-with the results:
+\end{align*}
+
+obtaining the following results:
 
 \begin{align*}	
 	R_{ZC} &= 0.0096 + 0.134 R^e_{mt}  + 1.16 SMB + 0.30 HML \\
@@ -219,7 +227,7 @@ We obtain $\alpha_{c} =  0.00960$ and $\alpha_{d} = 0.01151$. In this part, runn
 
 According to our expectations, the loading on the Small-minus-big factor is the
 greatest in magnitude. However, when we factor in the momentum, the loading on
-the new factor is negative, suggesting indicating that there is extra return to
+the new factor is negative, indicating that there is extra return to
 be gained by taking into account the momentum factor.
 
 To grasp the consequences of controlling o Kenneth's MOM risk factor, one should
@@ -239,17 +247,20 @@ describes the MOM factor with the following equation:
   MOM = \frac{1}{2} \left( Small High - Small Low \right) + \frac{1}{2}\left(
     Big High - Big Low \right),
   \end{equation}
-  the Momentum factor is nothing but the sum of two portfolios split in two
+  it follows that the Momentum factor is nothing but the sum of two portfolios split in two
   groups by the market capitalization within which the best performers are
   longed and the worst and shorted.
 
   It is now clear why our strategy runs contrary to the MOM: we long all the
-  Small and short all the Big stocks, while MOM shorts some Small and longs some
-  Big stocks.
+  Small and short all the Big stocks, while MOM on top of that shorts some Small
+  and longs some 
+  Big stocks. That is, following the strategy, we trade against the momentum,
+  but when we control for it, we eliminate that fault because we can correct in
+  with a MOM portfolio.
 
   The fact that the regression says that we have negative exposure to the MOM
   suggests that when the MOM is doing great, our portfolios underperform for no
-  particular necessary reason as one can always hedge with the MOM. The
+  necessary reason as one can always hedge with the MOM. The
   fact that one can always invest in the MOM is accounted for when one controls
   for the MOM in the regression.
 
