@@ -133,6 +133,198 @@
 \begin{exercise}{2}
 \end{exercise}
 
+a) We solve for the optimal portfolio when there is one single risky asset and the risk-less asset. Thus, maximizing the mean-variance objective function gives us the optimal portfolio (one dimensional) if we decide to long the risky asset $X_1$:
+
+\begin{align*}
+	max \quad C(X_1) = R_f + X_1(\mu - R_f) - \frac{\gamma}{2} \Sigma X_1^2 - (X_1 - X_0)b
+\end{align*}
+
+Solving for the optimal portfolio $X_1^*$ 
+
+\begin{align*}
+	& \mu - R_f - \gamma \Sigma X_1^* - b = 0 \\
+	& X_1^* = \frac{1}{\gamma} \Sigma^{-1} (\mu - R_f  - b)
+\end{align*}
+
+If it is optimal from the initial dollar position $X_0$ to buy more of $X_1$, then this can be done as long as as $X_0 < X_1^*$. We thus have $X_1^* = X_L$ where we should trade. In other words
+
+\begin{align*}
+	X_0 < X_L = \frac{1}{\gamma} \Sigma^{-1} (\mu - R_f  - b)
+\end{align*}
+
+Shorting $X_1$ is equivalent to maximizing the following mean-variance objective function:
+
+\begin{align*}
+	max \quad C(X_1) = R_f + X_1(\mu - R_f) - \frac{\gamma}{2} \Sigma X_1^2 - (-X_1 + X_0)b
+\end{align*}
+
+Computing the first order condition with respect to $X_1$ gives us:
+
+\begin{align*}
+	X_1^* =\frac{1}{\gamma} \Sigma^{-1} (\mu - R_f + b)
+\end{align*}
+
+Similarly, we can sell the risky asset $X_1$ from initial dollar position $X_0$ as long as $X_0 > X_1^*$, which gives us $X_h$:
+
+\begin{align*}
+	X_0 > X_h = \frac{1}{\gamma} \Sigma^{-1} (\mu - R_f + b)
+\end{align*}
+
+The no-trade region is thus the inverse of the optimal trading region, that is $[X_l, X_h]$, where we should not trade.
+
+\bigbreak
+
+b) With two assets to trade, we can draw all trade possibilities in a table:
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+           & \multicolumn{1}{l|}{buy 1} & \multicolumn{1}{l|}{no trade 1} & \multicolumn{1}{l|}{sell 1} \\ \hline
+sell 2      & bs  & ns & ss \\ \hline
+no trade 2 & bn  & nn & sn \\ \hline
+buy 2     & bb & nb & sb  \\ \hline
+\end{tabular}
+\end{center}
+
+The no-trade region is thus, similarly to a), the inverse region of the do-trade region defined by the sets $\{bb, bn, bs, nb, ns, sb, sn, ss\}$. We thus need to define these 8 regions first in order to define the no-trade region.
+
+\smallbreak
+
+We need to control the sign of each component of $(X_1 - X_0)^T$. To this end we introduce the diagonal matrix \textbf{A}:
+
+\begin{align*}
+	A = \begin{pmatrix}
+a_{1} & 0\\
+0 & a_{2}
+\end{pmatrix}
+\end{align*}
+
+Where components $a_{11}$ and $a_{22}$ can either take values -1, 1 or 0 to emulate either a sell, buy or no-trade position of each risky asset. We can therefore rewrite the objective function as follows
+
+\begin{align*}
+	max \quad C(X_1) = R_f  + X_1^T(\mu - R_f)  - \frac{\gamma}{2} X_1^T \Sigma X_1  - (X_1  - X_0)^TAb
+\end{align*}
+
+Taking the first case of the table, that is buy risky asset 1 and 2 ($bb$) and maximizing the modified mean-variance objective function, taking the first order condition: 
+
+\begin{align*}
+	& \mu - R_f - \gamma \Sigma X_1 - Ab = 0\\
+	& X_{bb} = X_1^*(A) = \frac{1}{\gamma}\Sigma^{-1} (\mu - R_f - Ab)
+\end{align*}
+
+Where 
+
+\begin{align*}
+	A = \begin{pmatrix}
+	1 & 0\\	
+	0 & 1
+\end{pmatrix}
+\end{align*}
+
+Let us denote by $X_0^1$ and $X_0^2$ the initial dollar position of the first and second risky assets respectively and similarly $X_1^1$ and $X_1^2$ their final dollar position. The optimal trading region for the $bb$ case is thus when $bb = \{X_0^1 < X_{bb}^1 \cap  X_0^2 < X_{bb}^2\}$.
+
+\bigbreak
+
+The other 3 corners of the table can be expressed by following the same procedure. For the $sb$ case. We have 
+
+\begin{align*}
+	X_{sb} &= X_1^*(A) \\
+	A &=  \begin{pmatrix}
+	-1 & 0\\	
+	0 & 1
+\end{pmatrix}
+\end{align*}
+
+Therefore $sb = \{X_0^1 > X_{sb}^1 \cap  X_0^2 < X_{sb}^2\}$. For the $bs$ case we have 
+
+\begin{align*}
+		X_{bs} &= X_1^*(A) \\
+	A &=  \begin{pmatrix}
+	1 & 0\\	
+	0 & -1
+\end{pmatrix}
+\end{align*}
+
+Therefore $bs = \{X_0^1 < X_{bs}^1 \cap  X_0^2 > X_{bs}^2\}$. Finally for the $ss$ case we have 
+
+\begin{align*}
+		X_{ss} &= X_1^*(A) \\
+	A &=  \begin{pmatrix}
+	-1 & 0\\	
+	0 & -1
+\end{pmatrix}
+\end{align*}
+
+Therefore $ss = \{X_0^1 > X_{ss}^1 \cap  X_0^2 > X_{ss}^2\}$.
+
+\bigbreak
+
+We now need to defined the trading regions where only one risky asset is traded. For the $bn$ case, we leave the second risky asset untouched, that is $X_1^2 = X_0^2$: its final and initial dollar positions are identical. The modified mean-variance objective function to maximize becomes the following ($a_1 = 1$ and $a_2 = 0$ in the matrix $A$)
+
+\begin{align*}
+	max \quad C(X_1^1) &= R_f + X_1^T(\mu - R_f) - \frac{\gamma}{2}X_1^T\Sigma X_1 - (X_1 - X_0)^T \begin{pmatrix}
+	1 & 0\\	
+	0 & 0
+\end{pmatrix} b \\
+&= R_f + X_1^1(\mu_1 - R_f) + X_0^2(\mu_2 - R_f) - \frac{\gamma}{2}  \begin{pmatrix}
+	X_1^1 & X_0^2
+\end{pmatrix} \begin{pmatrix}
+	\sigma_1^2 & \rho \sigma_1 \sigma_2\\	
+	\rho \sigma_1 \sigma_2 & \sigma_2^2
+\end{pmatrix} \begin{pmatrix}
+	X_1^1 \\	
+	X_0^2 
+\end{pmatrix} \\
+& - \begin{pmatrix}
+	X_1^1 - X_0^1 & X_0^2 - X_0^2
+\end{pmatrix} \begin{pmatrix}
+	b_1 \\	
+	b_2 
+\end{pmatrix}\\
+&= R_f + X_1^1(\mu_1 - Rf - b_1) + X_0^2(\mu_2 - R_f) - \frac{\gamma}{2}\left( X_1^1 X_1^1 \sigma_1^2 + X_0^2 X_0^2 \sigma_2^2 + 2 X_1^1X_0^2\rho \sigma_1 \sigma_2 \right)
+\end{align*}
+
+Taking the first order condition with respect to $X_1^1$ gives us
+
+\begin{align*}
+	& \mu_1 - R_f - b_1 - \gamma X_1^1\sigma_1^2 - \gamma X_0^2 \rho \sigma_1 \sigma_2 = 0	\\
+	& X_{bn}^1(X_0^2) =  X_1^{1*}(X_0^2)  = \frac{\mu_1 - R_f - b_1}{\gamma \sigma_1^2} - \frac{X_0^2 \rho  \sigma_2}{\sigma_1}
+\end{align*}
+
+Moreover, since we are not trading risky asset 2, this must mean that for the  $bn$ case it must be in the no-trade region knowing that risky asset 1 is in a long position: $X_{bb}^2 \leq X_0^2 \leq X_{bs}^2$ (result similar to the first part $a$). The  set $bn $ is thus the intersection between not trading risky asset 2 (conditional on longing risky asset 1) and buy risky asset 1 (conditional on not trading risky asset 2) until reaching $X_{bn}^1(X_0^2)$. Therefore, $bn = \{ X_{bb}^2 \leq X_0^2 \leq X_{bs}^2 \cap X_0^1 < X_{bn}^1(X_0^2) \}$.
+
+\bigbreak
+
+We can derive similar results for the other 3 quadrants of the table, where one risky asset is traded and the other risky asset is not traded. For $sn$, we optimally sell risky asset 1 and don't trade risky asset 2
+
+\begin{align*}
+	X_{sn}^1(X_0^2) =  X_1^{1*}(X_0^2)  = \frac{\mu_1 - R_f + b_1}{\gamma \sigma_1^2} - \frac{X_0^2 \rho  \sigma_2}{\sigma_1}
+\end{align*}
+
+Following the same argument than for $bn$, we obtain the set $sn = \{ X_{sb}^2 \leq X_0^2 \leq X_{ss}^2 \cap X_0^1 > X_{sn}^1(X_0^2) \}$. For $nb$, we optimally buy risky asset 2 while not trading risky asset 1
+
+\begin{align*}
+	X_{nb}^2(X_0^1) =  X_1^{2*}(X_0^1)  = \frac{\mu_2 - R_f - b_2}{\gamma \sigma_2^2} - \frac{X_0^1 \rho  \sigma_1}{\sigma_2}
+\end{align*}
+
+The set is thus $nb = \{ X_{bb}^1 \leq X_0^1 \leq X_{sb}^1 \cap X_0^2 < X_{nb}^2(X_0^1) \}$.
+
+For $ns$, we optimally sell risky asset 2 while not trading risky asset 1
+
+\begin{align*}
+	X_{ns}^2(X_0^1) =  X_1^{2*}(X_0^1)  = \frac{\mu_2 - R_f + b_2}{\gamma \sigma_2^2} - \frac{X_0^1 \rho  \sigma_1}{\sigma_2}
+\end{align*}
+
+The set is thus $ns = \{ X_{bs}^1 \leq X_0^1 \leq X_{ss}^1 \cap X_0^2 > X_{ns}^2(X_0^1) \}$.
+
+\bigbreak
+
+Finally the no-trade region is the inverse of all trading regions. That is 
+
+\begin{align*}
+	nn = {\overline{bb \cup sb \cup bs \cup ss \cup bn \cup sn \cup nb \cup ns}}
+\end{align*}
+
 \newpage
 
 \begin{exercise}{3}{Optimal Dynamic trading of a single asset with linear-proportional price impact (quadratic transaction costs)}
@@ -143,4 +335,5 @@
 
 
 \appendix
+
 
