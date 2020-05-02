@@ -170,7 +170,7 @@ Similarly, we can sell the risky asset $X_1$ from initial dollar position $X_0$ 
 	X_0 > X_h = \frac{1}{\gamma} \Sigma^{-1} (\mu - R_f + b)
 \end{align*}
 
-The no-trade region is thus the inverse of the optimal trading region, that is $[X_l, X_h]$, where we should not trade.
+The no-trade region is thus the inverse of the optimal trading region, that is $X_0 \in [X_l, X_h]$, where we should not trade.
 
 \bigbreak
 
@@ -221,7 +221,7 @@ Where
 \end{pmatrix}
 \end{align*}
 
-Let us denote by $X_0^1$ and $X_0^2$ the initial dollar position of the first and second risky assets respectively and similarly $X_1^1$ and $X_1^2$ their final dollar position. The optimal trading region for the $bb$ case is thus when $bb = \{X_0^1 < X_{bb}^1 \cap  X_0^2 < X_{bb}^2\}$.
+Let us denote by $X_0^1$ and $X_0^2$ the initial dollar position of the first and second risky assets respectively and similarly $X_1^1$ and $X_1^2$ their final dollar position. The optimal trading region for the $bb$ case is thus when $bb = \{ X_0 \in \mathbb{R}^2 \vert X_0^1 < X_{bb}^1 \cap  X_0^2 < X_{bb}^2\}$.
 
 \bigbreak
 
@@ -235,7 +235,7 @@ The other 3 corners of the table can be expressed by following the same procedur
 \end{pmatrix}
 \end{align*}
 
-Therefore $sb = \{X_0^1 > X_{sb}^1 \cap  X_0^2 < X_{sb}^2\}$. For the $bs$ case we have 
+Therefore $sb = \{X_0 \in \mathbb{R}^2 \vert X_0^1 > X_{sb}^1 \cap  X_0^2 < X_{sb}^2\}$. For the $bs$ case we have 
 
 \begin{align*}
 		X_{bs} &= X_1^*(A) \\
@@ -245,7 +245,7 @@ Therefore $sb = \{X_0^1 > X_{sb}^1 \cap  X_0^2 < X_{sb}^2\}$. For the $bs$ case 
 \end{pmatrix}
 \end{align*}
 
-Therefore $bs = \{X_0^1 < X_{bs}^1 \cap  X_0^2 > X_{bs}^2\}$. Finally for the $ss$ case we have 
+Therefore $bs = \{X_0 \in \mathbb{R}^2 \vert X_0^1 < X_{bs}^1 \cap  X_0^2 > X_{bs}^2\}$. Finally for the $ss$ case we have 
 
 \begin{align*}
 		X_{ss} &= X_1^*(A) \\
@@ -255,7 +255,7 @@ Therefore $bs = \{X_0^1 < X_{bs}^1 \cap  X_0^2 > X_{bs}^2\}$. Finally for the $s
 \end{pmatrix}
 \end{align*}
 
-Therefore $ss = \{X_0^1 > X_{ss}^1 \cap  X_0^2 > X_{ss}^2\}$.
+Therefore $ss = \{ X_0 \in \mathbb{R}^2 \vert X_0^1 > X_{ss}^1 \cap  X_0^2 > X_{ss}^2\}$.
 
 \bigbreak
 
@@ -279,19 +279,20 @@ We now need to defined the trading regions where only one risky asset is traded.
 	X_1^1 - X_0^1 & X_0^2 - X_0^2
 \end{pmatrix} \begin{pmatrix}
 	b_1 \\	
-	b_2 
+	0 
 \end{pmatrix}\\
-&= R_f + X_1^1(\mu_1 - Rf - b_1) + X_0^2(\mu_2 - R_f) - \frac{\gamma}{2}\left( X_1^1 X_1^1 \sigma_1^2 + X_0^2 X_0^2 \sigma_2^2 + 2 X_1^1X_0^2\rho \sigma_1 \sigma_2 \right)
+&= R_f + X_1^1(\mu_1 - Rf - b_1) + X_0^2(\mu_2 - R_f) - \frac{\gamma}{2}\left( X_1^1 X_1^1 \sigma_1^2 + X_0^2 X_0^2 \sigma_2^2 + 2 X_1^1X_0^2\rho \sigma_1 \sigma_2 \right)\\
+	& + X_0^1b_1
 \end{align*}
 
 Taking the first order condition with respect to $X_1^1$ gives us
 
 \begin{align*}
 	& \mu_1 - R_f - b_1 - \gamma X_1^1\sigma_1^2 - \gamma X_0^2 \rho \sigma_1 \sigma_2 = 0	\\
-	& X_{bn}^1(X_0^2) =  X_1^{1*}(X_0^2)  = \frac{\mu_1 - R_f - b_1}{\gamma \sigma_1^2} - \frac{X_0^2 \rho  \sigma_2}{\sigma_1}
+	& X_{bn}^1(X_0^2) =  X_1^{1*}(X_0^2)  = \frac{\mu_1 - R_f - b_1}{\gamma \sigma_1^2} - \frac{X_0^2 \rho  \sigma_2}{\sigma_1} 
 \end{align*}
 
-Moreover, since we are not trading risky asset 2, this must mean that for the  $bn$ case it must be in the no-trade region knowing that risky asset 1 is in a long position: $X_{bb}^2 \leq X_0^2 \leq X_{bs}^2$ (result similar to the first part $a$). The  set $bn $ is thus the intersection between not trading risky asset 2 (conditional on longing risky asset 1) and buy risky asset 1 (conditional on not trading risky asset 2) until reaching $X_{bn}^1(X_0^2)$. Therefore, $bn = \{ X_{bb}^2 \leq X_0^2 \leq X_{bs}^2 \cap X_0^1 < X_{bn}^1(X_0^2) \}$.
+Moreover, since we are not trading risky asset 2, this must mean that for the  $bn$ case it must be in the no-trade region knowing that risky asset 1 is in a long position: $X_{bb}^2 \leq X_0^2 \leq X_{bs}^2$ (result similar to the first part $a$). The  set $bn $ is thus the intersection between not trading risky asset 2 (conditional on longing risky asset 1) and buy risky asset 1 (conditional on not trading risky asset 2) until reaching $X_{bn}^1(X_0^2)$. Therefore, $bn = \{ X_0 \in \mathbb{R}^2 \vert X_{bb}^2 \leq X_0^2 \leq X_{bs}^2 \cap X_0^1 < X_{bn}^1(X_0^2) \}$.
 
 \bigbreak
 
@@ -301,13 +302,13 @@ We can derive similar results for the other 3 quadrants of the table, where one 
 	X_{sn}^1(X_0^2) =  X_1^{1*}(X_0^2)  = \frac{\mu_1 - R_f + b_1}{\gamma \sigma_1^2} - \frac{X_0^2 \rho  \sigma_2}{\sigma_1}
 \end{align*}
 
-Following the same argument than for $bn$, we obtain the set $sn = \{ X_{sb}^2 \leq X_0^2 \leq X_{ss}^2 \cap X_0^1 > X_{sn}^1(X_0^2) \}$. For $nb$, we optimally buy risky asset 2 while not trading risky asset 1
+Following the same argument than for $bn$, we obtain the set $sn = \{ X_0 \in \mathbb{R}^2 \vert X_{sb}^2 \leq X_0^2 \leq X_{ss}^2 \cap X_0^1 > X_{sn}^1(X_0^2) \}$. For $nb$, we optimally buy risky asset 2 while not trading risky asset 1
 
 \begin{align*}
 	X_{nb}^2(X_0^1) =  X_1^{2*}(X_0^1)  = \frac{\mu_2 - R_f - b_2}{\gamma \sigma_2^2} - \frac{X_0^1 \rho  \sigma_1}{\sigma_2}
 \end{align*}
 
-The set is thus $nb = \{ X_{bb}^1 \leq X_0^1 \leq X_{sb}^1 \cap X_0^2 < X_{nb}^2(X_0^1) \}$.
+The set is thus $nb = \{X_0 \in \mathbb{R}^2 \vert X_{bb}^1 \leq X_0^1 \leq X_{sb}^1 \cap X_0^2 < X_{nb}^2(X_0^1) \}$.
 
 For $ns$, we optimally sell risky asset 2 while not trading risky asset 1
 
@@ -315,15 +316,44 @@ For $ns$, we optimally sell risky asset 2 while not trading risky asset 1
 	X_{ns}^2(X_0^1) =  X_1^{2*}(X_0^1)  = \frac{\mu_2 - R_f + b_2}{\gamma \sigma_2^2} - \frac{X_0^1 \rho  \sigma_1}{\sigma_2}
 \end{align*}
 
-The set is thus $ns = \{ X_{bs}^1 \leq X_0^1 \leq X_{ss}^1 \cap X_0^2 > X_{ns}^2(X_0^1) \}$.
+The set is thus $ns = \{ X_0 \in \mathbb{R}^2 \vert X_{bs}^1 \leq X_0^1 \leq X_{ss}^1 \cap X_0^2 > X_{ns}^2(X_0^1) \}$.
 
 \bigbreak
 
 Finally the no-trade region is the inverse of all trading regions. That is 
 
 \begin{align*}
-	nn = {\overline{bb \cup sb \cup bs \cup ss \cup bn \cup sn \cup nb \cup ns}}
+	nn = \{ X_0 \in \mathbb{R}^2 \textbackslash (bb \cup sb \cup bs \cup ss \cup bn \cup sn \cup nb \cup ns) \}
 \end{align*}
+
+Plotting the optimal trading regions gives us figure \ref{ex2_1}, the no-trading region being a parallelogram: 
+
+\begin{figure}[h]
+    \centering
+    \makebox[\linewidth][c]{\includegraphics[scale=0.5]{ex2_1.png}}
+    \caption{Optimal trading regions}
+    \label{ex2_1}    
+\end{figure}
+
+\bigbreak
+
+c) As we increase the correlation coefficient $\rho$ between the two assets, we obtain figure \ref{ex2_2}, the no-trading region starts by being a rectangle and flattens into a parallelogram until it completely vanishes.
+
+\begin{figure}[h]
+    \centering
+    \makebox[\linewidth][c]{\includegraphics[scale=0.5]{ex2_2.png}}
+    \caption{Optimal trading regions as $\rho$ increases}
+    \label{ex2_2}    
+\end{figure}
+
+As we increase the voltatility of asset 2, we obtain figure \ref{ex2_3}. The $bn$,$sn$, and no trade regions become slimmer. On the other hand, the $bs$, $bb$, $ss$, and $sb$ regions become larger.
+
+\begin{figure}[h]
+    \centering
+    \makebox[\linewidth][c]{\includegraphics[scale=0.5]{ex2_3.png}}
+    \caption{Optimal trading regions as $\sigma_2$ increase}
+    \label{ex2_3}   
+\end{figure}
 
 \newpage
 
