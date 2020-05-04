@@ -124,8 +124,18 @@
   
   Thus the no-trade region is an interval $[\underline{X},\overline{X}]$ depending on the parameters, $\mu, b_0, b_1,\gamma, \lambda$ and $\sigma^2$. 
 
-  Now we need to compute the trading speed and the aim portfolio such that: $X_1 = \tau aim + (1-\tau)X_0$
+  Now we need to compute the trading speed and the aim portfolio such that: $X_1 = \tau aim + (1-\tau)X_0$. We know from the course that $\tau = \{\gamma \Sigma + \rho Q + \Lambda \}^{-1}\{\gamma\Sigma + \rho Q\} = \frac{\gamma\sigma^2}{\gamma\sigma^2 + \lambda} $ with our case. And also, the aim porfolio equals $$\text{aim } = Q^{-1}qf_t = \frac{\gamma\sigma^2}{\gamma\sigma^2/\lambda + 1}\frac{\lambda \zeta}{\gamma\sigma^2 + \lambda}f_t = \frac{\zeta}{\gamma\sigma^2} = \begin{cases}
+    \frac{\mu - b_1}{\gamma\sigma^2} & \text{if sign}(X_1-X_0) > 0 \\
+    \frac{\mu + b_1}{\gamma\sigma^2} & \text{if sign}(X_1-X_0) < 0
+  \end{cases}$$ 
 
+Changes regarding the cost parameters:
+\begin{itemize}
+  \item if $b_0 = 0$, there are no fixed costs then the no-trade region reduces (as the fixed cost constraint gives an optimal point instead of an interval) and investor will thus trade in more cases. The strategy does not change. 
+  \item if $b_1 = 0$, the linear-proportional costs are zero and so the first order conditions of the Lagrangian give only one optimal point. So the no-trade region shrinks and the aim portfolio changes. Thus the investor has more situations where he trades. 
+  \item if $b_0, b_1 = 0$, as seen before, the no-trade region will shrink and there will be more trading opportunities. The trading strategy (when it is optimal) may also change.
+  \item if $\lambda = 0$, the trading speed increases, so investor is more likely to rebalance rapidly his investments and will "converge" faster to the aim portfolio. The latter does not change. In addition, the no-trade region is possible to change because the trader acts more agressively and thus the gains of the trades increase.  
+\end{itemize}
 \end{exercise}
 
 \newpage
