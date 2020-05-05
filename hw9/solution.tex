@@ -358,6 +358,266 @@ As we increase the voltatility of asset 2, we obtain figure \ref{ex2_3}. The $bn
 \newpage
 
 \begin{exercise}{3}{Optimal Dynamic trading of a single asset with linear-proportional price impact (quadratic transaction costs)}
+
+  \begin{itemize}
+    \item
+    The value function with trading costs at time $T$ is
+    \begin{align*}
+      V(T, n_{T - 1}) &= \Ebb\left[ \sum_{t = T}^T \gamma^{t - T}\left\{ n_t\mu -
+      \frac \lambda 2 \left( n_t - n_{t - 1} \right)^2 + \frac \gamma 2
+      n_t^2\sigma^2 \right\} \right]  \\
+      &= n_T\mu -
+      \frac \lambda 2 \left( n_T - n_{T - 1} \right)^2 + \frac \gamma 2
+      n_T^2\sigma^2.  \\
+    \end{align*}
+  Solving the First-Order condition with respect to $n_{T}$ yields the solution
+  to the last period maximization problem:
+  \begin{align*}
+    \frac{\partial V(T, n_{T - 1})}{\partial n_T} = \mu - \lambda (n_T -
+    n_{T-1}) + \gamma n_T \sigma^2 = 0
+  \end{align*}
+  which solves to
+  \begin{align*}
+    n_T = \frac{\mu + \lambda n_{T-1}}{\lambda + \gamma \sigma^2} = n^*(T, n_{T
+    - 1})
+  \end{align*}
+  The solution $n^*(T, n_{T-1})$ is indeed a maximum since $\frac{\partial^2 V(T,
+    n_{T-1})}{\partial n_T^2} = -\lambda - \gamma < 0$. The value function at
+  the maximizer evaluates to:
+
+  \begin{align*}
+    V^*(T, n_{T-1}) &= n^*(T, n_{T-1})\mu - \frac \lambda 2 \left(n^*(T, n_{T - 1}) -
+    n_{T-1}\right)^2 - \frac \gamma 2 n^*(T, n_{T-1})^2 \sigma^2 \\
+    &= \frac{\mu + \lambda n_{T-1}}{\lambda + \gamma \sigma^2}\mu - \frac \gamma
+      2 \left( \frac{\mu + \lambda n_{T-1}}{\lambda + \gamma \sigma^2} - n_{T-1}\right)^2 - \frac
+      \gamma 2 \left(\frac{\mu + \lambda n_{T-1}}{\lambda + \gamma \sigma^2} \right) ^2
+      \sigma^2 \\
+    &= \frac{\mu + \lambda n_{T-1}}{\lambda + \gamma \sigma^2}\mu - \frac \gamma
+      2 \left( \frac{\mu - \gamma\sigma^2n_{T-1}}{\lambda + \gamma \sigma^2}\right)^2 - \frac
+      \gamma 2 \left(\frac{\mu + \lambda n_{T-1}}{\lambda + \gamma \sigma^2} \right) ^2
+      \sigma^2 \\
+    &= \frac{\mu^2 + \lambda n_{T-1} \mu}{\lambda + \gamma \sigma^2} - \frac \gamma
+      2 \frac{\mu^2 - 2\mu\gamma\sigma^2n_{T-1} + \gamma^2\sigma^4n_{T-1}^2}{(\lambda + \gamma \sigma^2)^2} - \frac
+      \gamma 2 \frac{\mu^2 + 2\mu\lambda n_{T-1} + \lambda^2 n_{T-1}^2}{(\lambda + \gamma \sigma^2)^2}
+      \sigma^2 \\
+    &= \frac{\mu^2(\lambda \gamma\sigma^2) - \frac\lambda 2 \mu^2 - \frac \gamma
+      2 \mu^2\sigma^2}{(\lambda  + \gamma\sigma^2)^2} + \\
+      & \;\;\;\; + \frac{\lambda\mu n_{t-1} (\lambda + \gamma \sigma^2) +
+        \lambda\mu n_{T-1}\gamma \sigma^2 - \gamma \lambda
+        n_{T-1}\sigma^2}{(\lambda + \gamma \sigma ^2)^2} +  \\
+        & \;\;\;\; + \frac 1 2 \frac{n_{T-1}^2 (\gamma \sigma ^2 ( - \lambda \gamma
+          \sigma^2 - \lambda ^ 2))}{(\lambda + \gamma \sigma^2)^2}\\
+    &= \frac{\frac 1 2 \mu^2 (\lambda + \gamma \sigma^2)}{(\lambda  + \gamma\sigma^2)^2} 
+       + \frac{\lambda\mu n_{t-1} (\lambda + \gamma \sigma^2)} {(\lambda + \gamma \sigma ^2)^2}  
+         - \frac 1 2 \frac{n_{T-1}^2 (\lambda \gamma \sigma ^2 ( \gamma
+          \sigma^2 + \lambda))}{(\lambda + \gamma \sigma^2)^2}\\
+    &= \frac{\frac 1 2 \mu^2}{(\lambda  + \gamma\sigma^2)} 
+       + \frac{\lambda\mu n_{t-1}} {(\lambda + \gamma \sigma ^2)} 
+         - \frac 1 2 \frac{n_{T-1}^2 \lambda \gamma \sigma ^2}{(\lambda + \gamma \sigma^2)}\\
+         &= - \frac 1 2 \frac{ \lambda \gamma \sigma ^2}{\lambda + \gamma
+           \sigma^2} n_{T-1}^2 
+        + \frac{\lambda\mu }{\lambda + \gamma \sigma ^2}n_{t-1}
+        + \frac 1 2 \frac{\mu^2}{\lambda  + \gamma\sigma^2}.  \\
+  \end{align*}
+  The constants are then read to be
+  \begin{align*}
+    Q_T = \frac{\lambda\gamma\sigma^2}{\lambda + \gamma\sigma^2}, \\
+    q_T = \frac{\lambda \mu}{\lambda + \gamma\sigma^2}, \\
+    c_T = \frac 1 2 \frac{\mu^2}{\lambda + \gamma \sigma^2}.
+  \end{align*}
+
+  \item
+    The Bellman equation
+    \begin{align*}
+      V(t, n_{t - 1}) = max_{n_t}\left\{ n_t\mu - \lambda 2 (n_t - n_{t-1})^2
+      \frac \gamma 2 n_t^2 \sigma^2 + \rho \Ebb_t\left[ V(t+1, n_t) \right] \right\}
+    \end{align*}
+    under the assumption that the value function $V(t +1, n_t)$ is a quadratic
+    form:
+    \begin{align*}
+      V(t+1, n_t) = - \frac 1 2 Q_{t+1}n_{t} + q_{t+1}n_t + c_{t + 1},
+    \end{align*}
+    reduces to the following maximization problem:
+    \begin{align*}
+      V(t, n_{t-1}) = \max_{n_t}\left\{ n_t \mu - \frac \lambda 2 (n_t -
+      n_{t-1})^2 - \frac \gamma 2 n_t^2 \sigma^2 - \gamma \frac 1 2 n_t^2
+      Q_{t+1} + \rho n_t q_{t+1} + \rho c_{t+1} \right\}.
+    \end{align*}
+    Once again, the First-order condition is:
+    \begin{align*}
+      \frac{\partial V(t,n_{t-1})}{\partial n_t} = \mu - \lambda(n_t - n_{t-1})
+      - \gamma n_t \sigma^2 - \rho n_t Q_{t+1} + \rho q_{t+1} = 0,
+    \end{align*}
+    which solves to the optimum
+    \begin{align*}
+      n_t^* = \frac{\mu + \lambda n_{t-1} + \rho q_{t+1}}{\lambda + \gamma\sigma^2+ \rho Q_{t+1}}.
+    \end{align*}
+
+    Plugging it back in the value function, we have that
+    \begin{align*}
+      V(t, n_{t - 1}) &= \frac{\mu + \lambda n_{t-1} + \rho q_{t+1}}{\lambda + \gamma\sigma^2+ \rho Q_{t+1}}(\mu + \rho q_{t+1}) \\
+      & \;\;\;\; - \frac \lambda 2
+      \frac{(\mu + \rho q_{t+1} - n_{t-1}(\gamma\sigma^2 + \rho Q_{t+1}))^2}{(\lambda + \gamma\sigma^2+ \rho Q_{t+1})^2}  \\
+      & \;\;\;\; + \left( \frac{\mu + \lambda n_{t-1} + \rho q_{t+1}}{\lambda + \gamma\sigma^2+ \rho Q_{t+1}}
+ \right)^2\left( - \frac 1 2 \gamma \sigma^2 - \frac 1 2 \rho Q_{t + 1} \right) \\
+      &= \frac{(\mu  + \rho q_{t+1})+ \lambda n_{t-1}}{\lambda + (\gamma\sigma^2+ \rho Q_{t+1})}(\mu + \rho q_{t+1}) \\
+      & \;\;\;\; - \frac \lambda 2
+      \frac{((\mu + \rho q_{t+1}) - n_{t-1}(\gamma\sigma^2 + \rho Q_{t+1}))^2}{(\lambda + (\gamma\sigma^2+ \rho Q_{t+1}))^2}  \\
+      & \;\;\;\; - \frac 1 2\left( \frac{(\mu + \rho q_{t+1}) + \lambda n_{t-1}}{\lambda + (\gamma\sigma^2+ \rho Q_{t+1})}
+ \right)^2\left(\gamma \sigma^2 + \rho Q_{t + 1} \right).
+    \end{align*}
+    Notice that the algebra of this expression is congruent to the one of the
+    last period ($V(T, n_{T-1})$) up to the following substitution:
+    \begin{align*}
+      \mu &\mapsto \mu + \rho q_{t+1} \\
+      \gamma\sigma^2 &\mapsto \gamma\sigma^2 + \rho Q_{t+1}
+    \end{align*}
+    As such, we can use the previous results and perform the above substitutions
+    to get the following results:
+    \begin{align*}
+      Q_t &= \frac{(\gamma \sigma^2 + \rho Q_{t+1})\lambda}{\lambda + \gamma\sigma^2 + \rho Q_{t+1}}, \\
+      q_t &= \frac{\lambda(\mu + \rho q_{t+1})}{\lambda + \gamma \sigma^2 + \rho Q_{t+1}}, \\
+      c_t &= \frac 1 2 \frac{(\mu + \rho q_{t+1})^2}{\lambda + \gamma \sigma^2 + \rho Q_{t+1}} + \rho c_{t+1}.
+    \end{align*}
+
+    \item
+      The portfolio $aim_{t}$ maximizes the value function at any time $t$ in
+      absence of trading costs. That is, the FOC condition respected by obeyed
+      by $aim_t$ is ($\lambda = 0$):
+
+      \begin{align*}
+      \frac{\partial V(t,n_{t-1})}{\partial n_t} = \mu - \gamma n_t \sigma^2 - \rho n_t Q_{t+1} + \rho q_{t+1} = 0
+      \end{align*}
+      and
+      \begin{align*}
+        aim_t = \frac{\mu + \rho q_{t+1}}{\gamma\sigma^2 + \rho Q_{t+1}}.
+      \end{align*}
+
+      The optimum strategy $n_{t+1}$ can be written as:
+
+      \begin{align*}
+        n_{t+1} &= \frac{\mu + q_{t+2}}{\lambda + \gamma \sigma^2 + Q_{t+2}} + \frac{\lambda n_t}{\lambda + \gamma\sigma^2 + Q_{t+2}} \\
+        &= \left(1 - \frac{\gamma\sigma^2 + Q_{t+2}}{\lambda + \gamma\sigma^2 + Q_{t+2}} n_t \right) + \frac{\mu + q_{t+2}}{\lambda + \gamma \sigma^2 + Q_{t+2}} \\
+        &= \left(1 - \frac{\gamma\sigma^2 + Q_{t+2}}{\lambda + \gamma\sigma^2 + Q_{t+2}} n_t \right) + \frac{\gamma\sigma^2 + \rho Q_{t+2}}{\lambda + \gamma \sigma^2 + Q_{t+2}}\frac{\mu + q_{t+2}}{\gamma\sigma^2 + \rho Q_{t+2}}  \\
+      \end{align*}
+      which assumes the form $n_{t+1} = (1 - \tau_t) n_t + \tau_t aim_t$ for
+      \begin{align*}
+        \tau_t = \frac{\gamma\sigma^2 + \rho Q_{t+2}}{\lambda + \gamma \sigma^2 + Q_{t+2}} \;\;\;  \text{ and } \;\;\;
+        aim_t = \frac{\mu + \rho q_{t+1}}{\gamma\sigma^2 + \rho Q_{t+1}}.
+      \end{align*}
+
+      \item
+        The situation we are presented in this case involves a portfolio
+        consisting solely of shares of a single stock which are essentially
+        worthless from the point of view of investment opportunities ($\mu =
+        0$), not delivering their holder any capital or dividend gains. Surely
+        in case when the mean-variance investor can find zero risk investments
+        with positive yield (such as a positive risk-free rate), he will choose
+        to liquidate this portfolio. Therefore, at time T the investor will want
+        to hold zero shares of the asset.
+        The fact that at time T the investor would rather hold zero shares is
+        also a property intrinsic in the model: since our model is
+        finite-horizon, there is no utility to be gained beyond the $T$'th
+        period hence the investor may as well sell his shares at any
+        non-negative price. But wanting to liquidate the portfolio will not
+        always mean that he will also be able to: the trading fees may be high
+        enough that the cost of the transaction exceeds the market price of the
+        share, rendering the deal unjustified.
+
+        We choose the parameters for the model as follows:
+        \begin{align*}
+          \mu &= 0 \\
+          \gamma &= 0 \\
+          \lambda_t &= \begin{cases} 2 bps & \text{if } 2.5 <= t <= 4.5 \\ 1 bps & \text{otherwise} \end{cases} \\
+          \sigma_{annually} = 30 \%
+        \end{align*}
+        where $t$ is the elapsed time in hours since the opening of
+        the exchange on a given trading day. The annualized volatility will need
+        to be converted into 30 minutes and 10 minutes volatility for our
+        application. We do it directly in the application assuming that most
+        years contain 252 trading days and each trading day affords 6.5 trading
+        hours (from 09:30AM to 04:00PM).
+
+        \begin{align*}
+          \sigma_{daily} &= \frac{\sigma_{annually}}{\sqrt{252}} \\
+          \sigma_{30min} &= \frac{\sigma_{daily} }{\sqrt{13}} \\
+          \sigma_{10min} &= \frac{\sigma_{daily} }{\sqrt{39}}
+        \end{align*}
+
+        Between $09:30AM$ and $04:00PM$ there are 13 30-minute intervals and $3
+        \times 13 = 39$ 10-minute intervals. The 30-minute model will therefore
+        contain 14 periods and the 10-minute model 40 periods.
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{fig1.pdf}
+          \caption{The optimal holding portfolio as a function of time in the
+            case of a trading frequency of 30 minutes and 10 minutes}
+          \label{fig:fig1}
+        \end{figure}
+
+        The \autoref{fig:fig1} renders the optimal trading schedule of a trader
+        who trades every 30 or 10 minutes. The more frequent trader is able to
+        liquidate the portfolio at a higher speed than his slower counterpart.
+        
+        
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{fig2.pdf}
+          \caption{Cumulative trading costs as a function of time in the
+            case of a trading frequency of 30 minutes and 10 minutes and whether the
+          ``trader's lunch'' is taken into account or not.}
+          \label{fig:fig2}
+        \end{figure}
+        In \autoref{fig:fig2}, the cumulative trading costs substantiates our
+        expectations that most costs will be incured in the first large trades.
+
+
+        
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{fig3.pdf}
+          \caption{The difference in the portfolio holdings between the
+            portfolio of a trader who doesn't take into account and one that
+            takes into account the ``trader's lunch'' (for 30-minute and
+            10-minute frequency).}
+          \label{fig:fig3}
+        \end{figure}
+
+        In \autoref{fig:fig3} it is observed that the trader that doesn't take
+        into account the heightened illiquidity between 12:00PM and 02:00PM will
+        have a higher holding of shares than the one that does take it into
+        account. This of course implies that the trader facing heightened illiquidity
+        at lunch will optimally have to sell more shares before the lunch. For
+        the more frequent trader, higher trading costs do not seem to impact
+        markedly his optimal trading portfolio, presumably owing to his ability
+        to trade often and in small portions, paying less cumulative costs overall.
+
+
+        \item
+          The model predicts that the optimal trading schedule does not depend
+          on the realized price shocks, that is, if the stock price goes up over
+          the trading day or if it goes down does not affect the overall optimal
+          trading rule. This is of course preposterous. As an investor, you
+          would like to get out of a trade with as much cash in your hand as possible so you
+          would avoid trading if the price is too low, perhaps spreading out the
+          liquidation of the portfolio over a couple of days. This is especially
+          crucial if our portfolio consists of a large portion of a stock's
+          total number of outstanding shares (such as Buffett's airlines
+          portfolio) in which case a precipitate sell-off can turn the market
+          against the trader.
+
+          The model
+          assumes that we do not derive any utility from the price at which we sell off the
+          shares and therefore only tries to minimize the disutility of trading
+          costs. In order to change the optimal trading rule so that it accounts
+          for the price shocks, we can introduce a positive utility term in the
+          value function
+          representing the cash we get back for selling a part of shares:
+          \begin{align*}
+            c \times P_t \times (n_{t - 1} - n_t)
+          \end{align*}
+  \end{itemize}
+  
 \end{exercise}
    
 \end{document}
