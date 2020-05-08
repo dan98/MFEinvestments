@@ -99,16 +99,45 @@
 \maketitle
 
 \begin{exercise}{1. Fund performance and fees}
-
 \end{exercise}
 
 \newpage
 
 \begin{exercise}{2. Closed-end funds}
-
-a) Let $V_t$ be the net asset value (NAV) of the fund at time \textit{t}. 
-
 \end{exercise}
+
+a) Let $V_t$ be the net asset value (NAV) of the fund at time \textit{t}. At this moment, the fund has not yet paid the fund investors and management fees. Therefore, the NAV at time $t+1$, that is $V_{t+1}$ can be computed as follows, taking into account the return rate:
+
+\begin{align*}
+	V_{t+1} &= V_t(1 + R_{t+1}) - (f + \delta)V_t(1 + R_{t+1})\\
+	&= (1 - f - \delta)V_t(1 + R_{t+1})
+\end{align*}
+
+b) We can start by expressing the NAV at time $t+2$ and $t+3$:
+
+\begin{align*}
+	V_{t+2} &= (1-f-\delta)V_{t+1}(1 + R_{t+2}\\
+	&= (1-f-\delta)^2V_t(1 + R_{t+1})(1 + R_{t+2})\\
+	V_{t+3} &= (1-f-\delta)^3 V_t (1+R_{t+1})(1+R_{t+2})(1+R_{t+3})\\
+	&...
+\end{align*}
+
+Which can be generalized as follows
+
+\begin{align*}
+	V_{t+n} = (1-f-\delta)^n V_t \prod^n_{i=1}(1 + R_{t+i})
+\end{align*}
+
+Taking the expectation of $V_{t+n}$ gives us:
+
+\begin{align*}
+	\mathbb{E}[V_{t+n}] &= (1 - f - \delta)^n V_t \prod^n_{i=1} \mathbb{E}[1 + R_{t+i}]\\
+	&= (1 - f - \delta)^n V_t \left(1 + R_f +\beta (\mu_M - R_f)\right)^n
+\end{align*}
+
+Where $\mathbb{E}[\epsilon_t] = 0$.
+
+
 
 \end{document}
 
