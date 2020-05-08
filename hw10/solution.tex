@@ -132,12 +132,45 @@ Taking the expectation of $V_{t+n}$ gives us:
 
 \begin{align*}
 	\mathbb{E}[V_{t+n}] &= (1 - f - \delta)^n V_t \prod^n_{i=1} \mathbb{E}[1 + R_{t+i}]\\
-	&= (1 - f - \delta)^n V_t \left(1 + R_f +\beta (\mu_M - R_f)\right)^n
+	&= (1 - f - \delta)^n V_t \left(1 + R_f +\beta (\mu_M - R_f)\right)^n\\
+	&= (1 - f - \delta)^n V_t (1 + k)^n
 \end{align*}
 
-Where $\mathbb{E}[\epsilon_t] = 0$.
+Since $\mathbb{E}[1 + R_t] = 1 + k$, and where $\mathbb{E}[\epsilon_t] = 0$. Let's now compute the dividend that needs to be paid to the investor at period $t+n$ (using the relationship we found in a)):
 
+\begin{align*}
+	V_{t+n-1}(1+R_{t+n})\delta = \frac{V_{t+n}\delta}{1 - f - \delta}
+\end{align*}
 
+Therefore the net present value of the cash-flows paid out to the investor (with infinite horizon) can be computed as follows:
+
+\begin{align*}
+	NPV^{investor}_t &= \mathbb{E}\left[ \sum^\infty_{n=1} \frac{V_{t+n}\delta}{(1 - f - \delta)(1+k)^n} \right]\\
+	&=\frac{\delta}{1 - f - \delta}\sum^\infty_{n=1} \frac{\mathbb{E}[V_{t+n}]}{(1+k)^n}\\
+	&= \frac{\delta}{1 - f - \delta}V_t \sum^\infty_{n=1} \frac{(1-f-\delta)^n(1+k)^n}{(1+k)^n}\\
+	&= \delta V_t \sum^\infty_{n=1}(1-f-\delta)^{n-1}\\
+	&= \delta V_t \sum^\infty_{m=0}(1-f-\delta)^{m}\\
+	&= \delta V_t \frac{1}{1 - (1 - f - \delta)}\\
+	&= \frac{\delta V_t}{f + \delta}
+\end{align*}
+
+Where the third equality stems from expression for the expectation of $V_{t+n}$ derived previously, the fifth equality from a change of variable and the sixth equality from a well-known geometric series.
+
+\smallbreak
+
+Proceeding similarly for the net present value of the management fees gives us:
+
+\begin{align*}
+		NPV^{management}_t &= \mathbb{E}\left[ \sum^\infty_{n=1} \frac{V_{t+n}f}{(1 - f - \delta)(1+k)^n} \right]\\
+	&=\frac{f}{1 - f - \delta}\sum^\infty_{n=1} \frac{\mathbb{E}[V_{t+n}]}{(1+k)^n}\\
+	&= \frac{f}{1 - f - \delta}V_t \sum^\infty_{n=1} \frac{(1-f-\delta)^n(1+k)^n}{(1+k)^n}\\
+	&= f V_t \sum^\infty_{n=1}(1-f-\delta)^{n-1}\\
+	&= f V_t \sum^\infty_{m=0}(1-f-\delta)^{m}\\
+	&= f V_t \frac{1}{1 - (1 - f - \delta)}\\
+	&= \frac{f V_t}{f + \delta}
+\end{align*}
+
+The et present values for the investor and for the manager do not depend on the systematic or the idiosyncratic risk of the underlying closed-end fund portfolio. 
 
 \end{document}
 
