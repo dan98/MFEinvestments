@@ -99,6 +99,33 @@
 \maketitle
 
 \begin{exercise}{1. Fund performance and fees}
+	In this exercise, we want to find the fees for hedge funds that usually charge a management and a performance fee. 
+	\begin{itemize}
+		\item[a)] First, we can compute the variance of the hedge fund: $$ \sigma_H^2 = 16 (Var(2.2\% + \epsilon_t)) = 16 \sigma^2 $$ and so the volatility is: $\sigma_H = 4\sigma$, $\sigma^2$ being the variance of $\epsilon_t$.
+		\item[b)] Next, we compute the hedge fund's beta: 
+		$$ \beta_H = \frac{Cov(R_t^H,R_t^s)}{\sigma_M^2} = 4(\frac{Cov(R_t^{active},R_t^{stock})}{\sigma_M^2} - 1) = 4(1-1) = 0$$ using the expression of the hedge fund's return and that the beta of the active fund is $1$.
+		\item[c)] Then, we can see from the expression of the return of the active fund, that $\alpha^{\text{active}} = 2.2\%$ and \\ 
+		so the alpha of the hedge fund's alpha before fees is: $$ \alpha_H = R_t^{\text{hedge fund before fees}} - r - \beta_H(R_t^{stock}- r) - \epsilon_t $$ $$= 1\% + 4(2.2\% + \epsilon_t) -r - \epsilon_t = 4(2.2\%) = 8.8\%$$ because the expectation of the tracking error $\epsilon_t$ equals $0$. So $\alpha_H = 0.4\alpha^{\text{active}}$.
+		\item[d)] Writing in percentage of units invested (normalization to $1$), the return of this porfolio is $ 0.4(2.2\% + R_t^{\text{stock}} + \epsilon_t) + 0.6r$ and the volatility becomes $$0.4\sqrt{\sigma_M^2 + \sigma^2}$$ \\
+		Thus, the beta equals $\beta = 0.4\frac{Cov(R_t^{\text{stock}},R_t^{\text{stock}})}{\sigma_M^2} = 0.4$, and the alpha can be derived: $$ \alpha = 0.4(2.2\% + R_t^{\text{stock}}) + 0.6r -r - \beta(R_t^{\text{stock}- r}) = 0.4(2.2\%) = 8.8\%$$
+		\\
+		In addition, the market exposure and $\epsilon_t$ are both $0.4$. To find a second investment with the $2$ other funds and cash, we are looking for constants $a,b $ and $c$ such that the return will be $\tilde{R}_t = aR_t^{\text{passive}} + bR_t^{\text{hedge fund}} + cr = b(1\% + 4(2.2\% + \epsilon_t)) + aR_t^{\text{stock}} + cr$. But we want that the two investment possibilities have same market exposure, equal exposure to $\epsilon_t$, same volatility and alpha. 
+
+		The same exposures to the market and $\epsilon_t$ require that $a = 0.4$ and $4b = 0.4$, so $b = 0.1$ and $c = 1- a-b = 0.5$. So we get that the variance is $a^2\sigma_M^2 + b^2 16 \sigma^2 = 0.4^2(\sigma_M^2 + \sigma^2)$ and $\tilde{\beta} = a + b\times 0 = 0.4 = \beta$. 
+		And the alpha is: $\tilde{\alpha} = b(1\% + 4(2.2\%) + a R_t^{\text{stock}} + cr -r - \tilde{\beta}(R_t^{\text{stock}}-r) = 0.1(4(2.2\%)) = \alpha$ as desired. 
+
+		The fair management fee $x$ should satisfy the following equation: 
+		$$ 40 \times 0.10\% + 10 \times x = 40\times 1.20\% = 0.48 $$
+		$$ x = \frac{0.48 - 4\%}{10} = 4.4\%$$
+		So the management fee for the hedge fund should be $4.40\%$ and the investor would be indefferent between the two allocations in case of a zero performance fee for the hedge fund.
+		\item[e)] We now want to compute the performance fee ($y$) with a fixed management fee of $2\%$. The outperformance above the risk-free interest rate is: $$ R_t^{\text{hedge fund after fee}} -r = 1\% + 4(R_t^{\text{active after fees}}-R_t^{\text{stock index}}) - \text{fees} -r  $$ $$ = 1\% + 4(2.2\% +\epsilon_t - 1.2\%) -2\% - 1\%  = 2\% + 4\epsilon_t$$ 
+		But $\epsilon_t$ has zero mean and so the outperformance return is $2\%$. 
+
+		We need to solve the following equation for $y$: $$ 40 \times 0.10\% + 10\times 2\% + 10\times 2\% \times y = 0.48 $$ $$ y = 20\%$$ 
+		\item[f)] Hedge funds that charge $2$-$20$ fees are called "expensive" because they charge high fixed management costs but also charge fees on performance. So they seem to be very expensive, but hedge funds have a zero beta and try to outperform without having the market risk.  
+		
+		The fees for active management should be determined by the "performance" of the manager, meaning his ability to outperform the some indices or markets. It also should depend on the type of assets being hold in and the frequency of rebalancing assets in the fund. Performance fees could be a possibility to encourage greater alignment of interets between managers and asset owners. But this could lead to a more agressive strategy from the manager who will take more risks for higher return but will not have any loss in case of underperformance. One idea could be to have a payback from the manager in case of losses to empower the fund manager. 
+	\end{itemize}
 \end{exercise}
 
 \newpage
