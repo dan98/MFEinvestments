@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{beton}
+%\usepackage{ccfonts}
+%\usepackage{concrete}
+\usepackage{concmath}
+\usepackage{eulervm}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{marginnote}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{bbm}
+\usepackage{booktabs}
+\usepackage{xcolor-solarized}
+\usepackage{xcolor}
+\usepackage{accents}
+\pgfplotsset{compat=1.5}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{language=Python, style=mystyle}
+
+\usepackage{mathtools}
+
+\usepackage{wasysym}
+\usepackage[margin=1.5in]{geometry} 
+\usepackage{enumerate}
+\index{\usepackage}\usepackage{multicol}
+
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Lcal}{\mathcal{L}}
+\newcommand{\Acal}{\mathcal{A}}
+\newcommand{\Ecal}{\mathcal{E}}
+\newcommand{\Ebb}{\mathbb{E}}
+\newcommand{\Qbb}{\mathbb{Q}}
+
+
+\renewcommand{\mathbf}{\mathbold}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{definition}[2][Definition]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\definecolor{solar}{rgb}{0.9960, 0.9960, 0.9647}
+
+\begin{document}
+  \pagecolor{solar}
+	
+  \renewcommand{\qedsymbol}{\smiley}
+	\title{Investments Class \\ Problem set 11}
+	\author{Daniel Grosu, William Martin, Denis Steffen}
+		
+\maketitle
+
+\begin{exercise}(1. Bayesian updating)
+\begin{itemize}
+	\item[a)] We can use the Gaussian projection theorem in the same way as in the lecture with the following random variables: 
+	$$ X_1 = \mu = \mu + \epsilon_0 ; \quad X_2 = \mu + \nu_1$$ So we have the corresponding means and covariance matrices (actually, they are 1D here): 
+	$$ \mu_1 = \mu_0 ; \quad \mu_2 = \mu_0 ; \quad \Sigma_{11} = v_0^2; \quad \Sigma_{12} = \Sigma_{21} = v_0^2; \quad \Sigma_{22} = v_0^2 + v_1^2$$ Using the theorem, we know that $X1|X2 = \mu_1$ is distributed as a gaussian with mean $$ \overline{\mu} = \mu_0 + v_0^2(v_0^2 + v_1^2)^{-1}(\mu_1 - \mu_0)$$ and variance $$ \overline{\Sigma} = v_0^2 - v_0^2(v_0^2 + v_1^2)^{-1}v_0^2$$
+	\item[b)] We can see that we can rewrite the posterior mean and variance as:
+	$$ \overline{\mu} = \frac{\mu_0(v_0^2  + v_1^2) + v_0^2(\mu_1-\mu_0)}{v_0^2  + v_1^2} = \frac{\mu_0v_1^2 + v_0^2\mu_1}{v_0^2  + v_1^2} = \frac{\mu_0v_1^2(v_0^2v_1^2)^{-1} + \mu_1v_0^2(v_0^2v_1^2)^{-1}}{\frac{1}{v_0^2}  + \frac{1}{v_1^2}} $$ $$= \frac{\frac{1}{v_0^2}\mu_0 + \frac{1}{v_1^2}\mu_1}{\frac{1}{v_0^2}  + \frac{1}{v_1^2}} $$ 
+
+	$$ \overline{\Sigma} = \frac{v_0^2(v_0^2 + v_1^2)(v_0^2v_1^2)^{-1} - v_0^4(v_0^2v_1^2)^{-1}}{\frac{1}{v_0^2}  + \frac{1}{v_1^2}} = \frac{(v_0^2 + v_1^2)/v_1^2 - v_0^2/v_1^2}{\frac{1}{v_0^2}  + \frac{1}{v_1^2}} = \frac{1}{\frac{1}{v_0^2}  + \frac{1}{v_1^2}}$$
+
+	As seen in a), our unkown return random variable $\mu$ is normal with parameters the posterior mean and variance. In addition, $\overline{\mu}$ is composed of both the prior expectation and the signal. It is actually a linear combination of the two weighted by the variance in the prior and in the signal. So the errors around the prior mean and the signal weight our posterior mean in a way that the more one of the two is volatile, the more the weight fot this parameter is small (inverse proportional weighting). \\
+	For the variance $\overline{\Sigma}$, we can see that the prior variance and the variance of the signal do affect the posterior variance. However, this variance will be smaller than the biggest value between $v_0^2$ and $v_1^2$. So the variance reduces for the posterior. \\
+	Prior and signal act symmetrically on the posterior distribution because they are weighted by their respective variances and not by an external coefficient. 
+
+	\item[c)] We proceed by induction on $n$ to prove the generalized result. We have proven the case when $n = 2$, suppose the expressions are true for $n-1$. We only need to apply the expressions for $n=2$ on $\overline{\mu}_{n-1}$ and $\overline{\Sigma}_{n-1}$. \\
+	Thus: 
+	$$ \overline{\mu_n} = \frac{\frac{1}{\overline{\Sigma}_{n-1}}\overline{\mu}_{n-1} + \frac{1}{v_n^2}\mu_n}{\frac{1}{\overline{\Sigma}_{n-1}} + \frac{1}{v_n^2}} = \frac{(\sum_{i = 0}^{n-1} \frac{1}{v_i^2})\frac{\sum_{i=0}^{n-1}\frac{1}{v_i^2}\mu_i}{\sum_{i=0}^{n-1}\frac{
+	1}{v_i^2}}+ \frac{1}{v_n^2}\mu_n}{\sum_{i=0}^n \frac{1}{v_i^2}} = \frac{\sum_{i=0}^n \frac{1}{v_i^2}\mu_i}{\sum_{i=0}^n\frac{1}{v_i^2}}$$ and 
+	$$ \overline{\Sigma}_n = \frac{1}{\frac{1}{\overline{\Sigma}_{n-1}} + \frac{1}{v_n^2}} = \frac{1}{\sum_{i=0}^{n-1} \frac{1}{v_i^2} + \frac{1}{v_n^2}} = \frac{1}{\sum_{i=0}^n \frac{1}{v_i^2}}$$ as desired. 
+
+	Interpretation: 
+	 
+\end{itemize}
+
+\end{exercise}
+\end{document}
+
+
+
+\appendix
+
+
