@@ -98,7 +98,7 @@
 		
 \maketitle
 
-\begin{exercise}(1. Bayesian updating)
+\begin{exercise} 1 (Bayesian updating)
 \begin{itemize}
 	\item[a)] We can use the Gaussian projection theorem in the same way as in the lecture with the following random variables: 
 	$$ X_1 = \mu = \mu + \epsilon_0 ; \quad X_2 = \mu + \nu_1$$ So we have the corresponding means and covariance matrices (actually, they are 1D here): 
@@ -109,16 +109,25 @@
 	$$ \overline{\Sigma} = \frac{v_0^2(v_0^2 + v_1^2)(v_0^2v_1^2)^{-1} - v_0^4(v_0^2v_1^2)^{-1}}{\frac{1}{v_0^2}  + \frac{1}{v_1^2}} = \frac{(v_0^2 + v_1^2)/v_1^2 - v_0^2/v_1^2}{\frac{1}{v_0^2}  + \frac{1}{v_1^2}} = \frac{1}{\frac{1}{v_0^2}  + \frac{1}{v_1^2}}$$
 
 	As seen in a), our unkown return random variable $\mu$ is normal with parameters the posterior mean and variance. In addition, $\overline{\mu}$ is composed of both the prior expectation and the signal. It is actually a linear combination of the two weighted by the variance in the prior and in the signal. So the errors around the prior mean and the signal weight our posterior mean in a way that the more one of the two is volatile, the more the weight fot this parameter is small (inverse proportional weighting). \\
-	For the variance $\overline{\Sigma}$, we can see that the prior variance and the variance of the signal do affect the posterior variance. However, this variance will be smaller than the biggest value between $v_0^2$ and $v_1^2$. So the variance reduces for the posterior. \\
-	Prior and signal act symmetrically on the posterior distribution because they are weighted by their respective variances and not by an external coefficient. 
+	For the variance $\overline{\Sigma}$, we can see that the prior variance and the variance of the signal do affect the posterior variance. However, this variance will be smaller than the biggest value between $v_0^2$ and $v_1^2$. So the variance reduces for the posterior distribution. \\
+	Prior and signal act symmetrically on the posterior distribution because they are weighted by their respective variances and not by an other coefficient. 
 
-	\item[c)] We proceed by induction on $n$ to prove the generalized result. We have proven the case when $n = 2$, suppose the expressions are true for $n-1$. We only need to apply the expressions for $n=2$ on $\overline{\mu}_{n-1}$ and $\overline{\Sigma}_{n-1}$. \\
+	\item[c)] We proceed by induction on $n$ to prove the generalized result. We have proven the case when $n = 2$, so let's suppose the expressions are true for $n-1$. We only need to apply the expressions for 2 signals on $\overline{\mu}_{n-1}$ and $\overline{\Sigma}_{n-1}$. \\
 	Thus: 
 	$$ \overline{\mu_n} = \frac{\frac{1}{\overline{\Sigma}_{n-1}}\overline{\mu}_{n-1} + \frac{1}{v_n^2}\mu_n}{\frac{1}{\overline{\Sigma}_{n-1}} + \frac{1}{v_n^2}} = \frac{(\sum_{i = 0}^{n-1} \frac{1}{v_i^2})\frac{\sum_{i=0}^{n-1}\frac{1}{v_i^2}\mu_i}{\sum_{i=0}^{n-1}\frac{
 	1}{v_i^2}}+ \frac{1}{v_n^2}\mu_n}{\sum_{i=0}^n \frac{1}{v_i^2}} = \frac{\sum_{i=0}^n \frac{1}{v_i^2}\mu_i}{\sum_{i=0}^n\frac{1}{v_i^2}}$$ and 
 	$$ \overline{\Sigma}_n = \frac{1}{\frac{1}{\overline{\Sigma}_{n-1}} + \frac{1}{v_n^2}} = \frac{1}{\sum_{i=0}^{n-1} \frac{1}{v_i^2} + \frac{1}{v_n^2}} = \frac{1}{\sum_{i=0}^n \frac{1}{v_i^2}}$$ as desired. 
 
-	Interpretation: 
+  Interpretation: As in the case of two prior indicators (prior distribution and signal), we can see that the posterior is normally distributed with mean a linear combination of the means of the information. Again, the variance of each prior indicator acts inversely proportional on the weight of the indicator. So, the signal is more weighted when we trust in this signal (when the variance is lower than the one of the other signals). The posterior variance is also always smaller than each single variance in the panel of the $n$ signals' variances. 
+  
+We can also see that the posterior mean is unbiased since:
+$$ \Ebb[\overline{\mu}|\mu] = \frac{1}{\sum_{i=0}^n \frac{1}{v_i^2}} \sum_{i=0}^n \frac{1}{v_i^2}\Ebb[\mu_i|\mu] = \frac{1}{\sum_{i=0}^n \frac{1}{v_i^2}}\sum_{i=0}^n \frac{1}{v_i^2}\mu$$ as $\mu_i = \mu + \nu_i \sim \mathcal{N}(\mu,v_i^2) $, and thus 
+$$ \Ebb[\overline{\mu}|\mu] = \mu$$ Moreover, the variance of this estimator is: 
+$$ Var(\overline{\mu}|\mu) = \frac{1}{(\sum_{i=0}^n \frac{1}{v_i^2})^2} \sum_{i=0}^n \frac{1}{v_i^4}Var(\mu_i|\mu) =\frac{1}{(\sum_{i=0}^n \frac{1}{v_i^2})^2} \sum_{i=0}^n \frac{1}{v_i^4}v_i^2 = \frac{1}{\sum_{i=0}^n \frac{1}{v_i^2}} = \overline{\Sigma}_n $$ that is finite if the posterior variance is finite. We used the fact that the signals are independent. 
+
+If the variance of each signal is finite, we can see that $\sum_{i=0}^n \frac{1}{v_i^2} \leq n \max(1/v_i^2) \to \infty$ as $n$ goes to infinity, because $\max(1/v_i^2) > 0$. 
+
+Thus, as expected, the posterior variance will tend to zero and so the posterior mean will tend to $\mu$ with more certainty as there are more signals. 
 	 
 \end{itemize}
 
