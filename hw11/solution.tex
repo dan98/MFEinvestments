@@ -132,6 +132,49 @@ Thus, as expected, the posterior variance will tend to zero and so the posterior
 \end{itemize}
 
 \end{exercise}
+
+\newpage
+
+\begin{exercise}{2}
+\end{exercise}
+
+a-d) See Jupyter Notebook.
+
+\bigbreak
+
+e) To show that the optimal portfolio $w^*$ can be decomposed into the prior portfolio and an 'overlay' of view portfolios, we seek a constant $\lambda$ and a K-vector $\Lambda$ such that 
+
+\begin{align*}
+	w^* = \lambda w_0 + P^\top \Lambda
+\end{align*}
+
+Which can be rewritten using the definition of the optimal mean-variance portfolio and the definition of the posterior distribution a follows
+
+\begin{align*}
+	\frac{1}{\gamma} \hat{\Sigma}^{-1}\hat{\mu} = \lambda (\gamma (1 + \tau) \Sigma)^{-1} \mu_0 + P^\top \Lambda
+\end{align*}
+
+Substituting the definition of $\hat{\Sigma}$ and $\hat{\mu}$, we obtain
+
+\begin{align*}
+	&\frac{1}{\gamma} \left[ \Sigma + \left( \Omega_0^{-1} + P^\top \Omega^{-1}P \right)^{-1} \right]^{-1} \left( \Omega_0^{-1} + P^\top \Omega^{-1} P \right)^{-1} \left( \Omega_0^{-1}\mu_0 + P^\top \Omega^{-1} q \right)^{-1} \\
+	& = \lambda(\gamma ( 1 + \tau) \Sigma)^{-1} \mu_0 + P^\top \Lambda
+\end{align*}
+
+The expression can be rearranges and simplified to derive the following
+
+\begin{align*}
+	&\left( \frac{1}{\tau} - \frac{\lambda}{1+\tau} \left( 1 + \frac{1}{\tau} \right) \right) \Sigma^{-1} \mu_0 \\
+	&= P^\top \Omega^{-1} \left( \frac{\lambda}{1 + \tau} P \mu_0 - q + \gamma P \Sigma P^\top \Lambda + \gamma \left( 1 + \frac{1}{\tau} \right)  \Omega \Lambda \right)
+\end{align*}
+
+The above equation is satisfied if 
+
+\begin{align*}
+	&\lambda = 1\\
+	&\Lambda = \frac{1}{\gamma} \left[ P\Sigma P^\top  + \left( 1 + \frac{1}{\tau} \right) \Omega \right]^{-1} \left( q - \frac{1}{1+\tau} P \mu_0 \right)
+\end{align*}
+
 \end{document}
 
 
