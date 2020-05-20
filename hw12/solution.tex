@@ -1,0 +1,133 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{beton}
+%\usepackage{ccfonts}
+%\usepackage{concrete}
+\usepackage{concmath}
+\usepackage{eulervm}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{marginnote}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{bbm}
+\usepackage{booktabs}
+\usepackage{xcolor-solarized}
+\usepackage{xcolor}
+\usepackage{accents}
+\pgfplotsset{compat=1.5}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{language=Python, style=mystyle}
+
+\usepackage{mathtools}
+
+\usepackage{wasysym}
+\usepackage[margin=1.5in]{geometry} 
+\usepackage{enumerate}
+\index{\usepackage}\usepackage{multicol}
+
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Lcal}{\mathcal{L}}
+\newcommand{\Acal}{\mathcal{A}}
+\newcommand{\Ecal}{\mathcal{E}}
+\newcommand{\Ebb}{\mathbb{E}}
+\newcommand{\Qbb}{\mathbb{Q}}
+
+
+\renewcommand{\mathbf}{\mathbold}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{definition}[2][Definition]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\definecolor{solar}{rgb}{0.9960, 0.9960, 0.9647}
+
+\begin{document}
+  \pagecolor{solar}
+	
+  \renewcommand{\qedsymbol}{\smiley}
+	\title{Investments Class \\ Problem set 11}
+	\author{Daniel Grosu, William Martin, Denis Steffen}
+		
+\maketitle
+
+\begin{exercise} 1
+  To compute a forward price of a forward contract on a stock, one can easily doe the cash \& carry argument by replicating the contract buying the stock and borrowing money. We can use a general expression for the forward price $F_t(T)$ at date $t$ for maturity $T$. 
+
+  To do so, we borrow $F_t(T)e^{-r(T-t)}$ at the bank at date $t$ and so we will need to pay back $F_t(T)$ at maturity. We also borrow the discounted amount of dividend $\delta e^{-r(\theta-t)}$ for a dividend $\delta$ paid at date $\theta \in (t,T]$. Then we buy the stock at date t. Thus the cash flows at date $t$ are $$ -S_t + F_t(T)e^{-r(T-t)} + \delta e^{-r(\theta-t)}$$
+  And we replicate properly the forward contract, as the cash flows are $0$ at date $\theta$ and $S_T - F_t(T)$ at maturity. 
+
+  The cash flows at date $t$ must be $0$ to avoid an arbitrage opportunity between our strategy and buying the contract, thus: 
+  $$ F_t(T) = e^{r(T-t)}(S_t - \delta e^{-r(\theta-t)})$$
+
+  \begin{itemize}
+    \item[(a)]
+    To compute the forward price of the three-month contract, we have $r = 0.06$, $S_t = 24.50$, $\delta = 0.50$, $T = 3/12$, $t=0$ and $\theta = 2/12$. 
+    So: 
+    $$ F_0(3/12) = e^{0.06(3/12)}(24.50 - 0.50 e^{-0.06(2/12)}) = 26.36776 $$
+     
+    \item[(b)] 
+    In this case, we have to change the value of $t = 1/12$ and $S_t = 23.50$, so:
+    $$F_1(3/12) = e^{0.06(2/12)}(23.50 - 0.50e^{0.06(1/12)}) = 23.23367$$
+    \item[(c)]  
+    Finally, we have with the parameters $S_t = 24.50$ and $\delta = 1.00$: 
+    $$ F_1(3/12) = e^{0.06(2/12)}(24.50 - 1.00e^{-0.06(1/12)}) = 23.73122 $$
+  \end{itemize}
+
+
+\end{exercise}
+
+\end{document}
+
+
+
+\appendix
+
+
