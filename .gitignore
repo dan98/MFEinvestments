@@ -7,3 +7,7 @@
 *.csv
 *.gz
 *.fls
+*ipynb_checkpoints/
+*DS_Store
+*.icloud
+*js.map
