@@ -124,6 +124,49 @@
 
 \end{exercise}
 
+\newpage
+
+\begin{exercise} 2
+\end{exercise}
+
+a) The 6-month forward futures prices of the SPX and STOXX can be computed using the formula for the  forward price
+
+\begin{align*}
+	F_t^T = S_te^{(r + v - c)(T - t)}
+\end{align*}
+
+Which gives us the following
+
+\begin{align*}
+	&F_{SPX}^{6months} = 1265 e^{(0.03)\frac{1}{2}} = 1284.12 \\
+	&F_{STOXX}^{6months} = 3671 e^{(0.05)\frac{1}{2}} = 3763.93
+\end{align*}
+
+The currency exchange rate between the dollar (domestic) and the euro (foreign) can be computed using the formula for the covered interest parity (CIP):
+
+\begin{align*}
+	F_{usd/eur}^{6months} = 1.28 e^{(0.03 - 0.05)\frac{1}{2}} = 1.267
+\end{align*}
+
+b) The 6-month futures of the STOXX is quoted at EUR 3782. This is not correctly priced since our calculations gave us EUR 3763.93 (it is actually overpriced). Since we assume that borrowing or lending in euros or dollars is not allowed,  the only actions we can undertake is going short and long on both indexes. The following arbitrage strategy can be undertaken to profit from this
+
+\begin{enumerate}
+	\item Sell 1 unit of SPX index at $t = 0$. Balance: USD $+1265$, EUR $+0$
+	\item Convert proceedings to EUR at $t=0$ using the current exchange rate of USD 1.28 / EUR. Balance: USD $+0$, EUR $+988.28$
+	\item Buy $\frac{988.28}{3671} = 0.269$ units of STOXX index at $t = 0$ such that the total balance in EUR is 0. Balance: USD $+0$,  EUR $+0$
+\end{enumerate}
+
+At $t = 0$, we thus have USD $+0$, EUR $+0$ but  0.269 units of STOXX. We continue our arbitrage strategy
+
+\begin{enumerate}
+	\setcounter{enumi}{3}
+	\item Short 0.269 units of STOXX futures, which is quoted at EUR $3782$.  Balance: USD $0$, EUR $1018.16$
+	\item Convert the proceedings back to USD using the currency forwards computed in part $a$ (1.267). Balance: USD $+1290.01$, EUR $+0$
+	\item We buy back the unite of SPX index sold initially at the futures price of USD $1284.12$. Balance: USD $5.89$, EUR $+0$  
+\end{enumerate}
+
+We have thus made a profite of USD $5.89$ using this strategy and taking advantage of the overpriced futures of the STOXX index. 
+
 \end{document}
 
 
